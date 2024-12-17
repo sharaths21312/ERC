@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "ERC Character Schema",
+  "title": "Characters",
+  "description": "A product in the catalog",
+  "type": "object",
+  "properties": {
+    "characters": {
+      "type": "array",
+      "items": {
+        "title": "Character Object",
+        "type": "object",
+        "properties": {
+          "names": {
+            "title": "Names",
+            "description": "All the names this character goes by",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "element": {
+            "title": "Element",
+            "type": "string",
+            "enum": [
+              "Pyro",
+              "Hydro",
+              "Dendro",
+              "Electro",
+              "Cryo",
+              "Anemo"
+            ]
+          },
+          "weapon": {
+            "title": "Weapon",
+            "description": "Type of weapon",
+            "enum": [
+              "Sword",
+              "Claymore",
+              "Catalyst",
+              "Bow",
+              "Polearm"
+            ]
+          },
+          "particlesources": {
+            "title": "Particle Sources",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "label"
+              ],
+              "properties": {
+                "label": {
+                  "type": "string"
+                },
+                "cooldown": {
+                  "type": "number",
+                  "description": "Cooldown in seconds"
+                },
+                "energytype": {
+                  "type": "string",
+                  "enum": [
+                    "Instant",
+                    "Turret",
+                    "Flat"
+                  ]
+                },
+                "amount": {
+                  "description": "Amount for flat energy/instant skills, particles/second for turrets",
+                  "type": "number"
+                },
+                "duration": {
+                  "type": "number",
+                  "description": "Duration of turrets"
+                }
+              },
+              "if": {
+                "properties": {
+                  "energytype": {"const": "Turret"}
+                }
+              },
+              "then": {
+                "properties": {
+                  "duration": true
+                }
+              },
+              "else": {
+                "properties": {
+                  "duration": false
+                }
+              }
+            }
+          }
+        },
+        "helptext": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "names",
+        "element"
+      ]
+    }
+  }
+}

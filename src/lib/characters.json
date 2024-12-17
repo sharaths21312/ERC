@@ -1,0 +1,48 @@
+{
+    "$schema": "./characterschema.json",
+    "characters": [
+        {
+            "names": ["Kuki Shinobu", "Shinobu"],
+            "element": "Electro",
+            "weapon": "Sword",
+            "helptext": "Kuki C4 triggers thrice and has a 45% chance of generating a particle on every trigger",
+            "particlesources": [
+                {
+                    "label": "C0",
+                    "cooldown": 15,
+                    "energytype": "Turret",
+                    "amount": 0.3,
+                    "duration": 12
+                },
+                {
+                    "label": "C2",
+                    "cooldown": 15,
+                    "energytype": "Turret",
+                    "amount": 0.3,
+                    "duration": 15
+                },
+                {
+                    "label": "C4",
+                    "cooldown": 15,
+                    "energytype": "Turret",
+                    "amount": 0.39,
+                    "duration": 15
+                }
+            ]
+        },
+        {
+            "names": ["Kamisato Ayaka", "Ayaka"],
+            "element": "Cryo",
+            "weapon": "Sword",
+            "helptext": "",
+            "particlesources": [
+                {
+                    "label": "Press",
+                    "cooldown": 10,
+                    "energytype": "Instant",
+                    "amount": 4.5
+                }
+            ]
+        }
+    ]
+}
