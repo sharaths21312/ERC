@@ -1,20 +1,40 @@
 <script lang="ts">
     import * as jsonfile from "$lib/characters.json"
-	import type { TrawCharacterData } from "$lib/datatypes";
-    import { metadata, charsSelected } from "$lib/index.svelte";
+	import type { TcharsSelected as Tselection, TrawCharacterData, TtotalParticleGeneration, Tmetadata } from "$lib/datatypes";
+    // import {  } from "$lib/index.svelte";
 	import { setContext } from "svelte";
 	import Character from "./character.svelte";
     
     const charsData = jsonfile.characters;
-    console.log(charsData)
-    setContext("jsonchars", charsData);
-    let characterList: string[] = $state([]);
+    
+    let isRotFixed = true;
+
+    let metadata: Tmetadata = $state({
+        rotationLength: 20,
+        thresholdEnergyMode: "default",
+        customEnergyValue: 0,
+        rotationFixed: true,
+        isElectroReso: false,
+        eResoInterval: 5.5,
+        duration: 90
+    })
+
+    let char1 = "Shinobu"
+    let char2 = "Ayaka"
+    let charsSelected: Tselection = $state({
+        0: getCharData(char1) as TrawCharacterData,
+        1: getCharData(char2) as TrawCharacterData,
+    });
+    
+
+
+    let characterNameList: string[] = $state([]);
     for (const element of charsData) {
         for (const name of element.names) {
-            characterList.push(name);
+            characterNameList.push(name);
         }
     }
-    characterList.sort()
+    characterNameList.sort()
 
     function getCharData(charName:string) {
         for (const elt of charsData) {
@@ -23,15 +43,39 @@
             }
         }
     }
-    
 
-    let char1 = "Shinobu"
-    $charsSelected = {
-        0: getCharData(char1) as TrawCharacterData,
-        1: getCharData(char1) as TrawCharacterData,
-        2: getCharData(char1) as TrawCharacterData,
-        3: getCharData(char1) as TrawCharacterData,
-    };
+    function rotModeChange(e: Event) {
+        if (isRotFixed != metadata.rotationFixed) {
+            isRotFixed = !isRotFixed
+            for (const char in energyProd.characters) {
+                const chardata = energyProd.characters[char];
+                let tbb = chardata.timeBetweenBurst
+                chardata.timeBetweenBurst =
+                    isRotFixed
+                    ? tbb / metadata.rotationLength
+                    : tbb * metadata.rotationLength;
+            }
+        }
+    }
+
+    let energyProd: TtotalParticleGeneration = $state({
+        generalParticles: {
+            type: "None",
+            amount: 9
+        },
+        characters: []
+    });
+    setContext("changeChar", (charName: string, charIndex: number) =>
+        charsSelected[charIndex] = getCharData(charName) as TrawCharacterData)
+    setContext("charslist", characterNameList);
+    setContext("metadata", metadata)
+    setContext("charsSelected", charsSelected);
+    setContext("energyproduction", energyProd)
+    setContext("jsonchars", charsData);
+    setContext("chardatagetter", getCharData);
+
+    
+    $inspect(energyProd)
 
 </script>
 
@@ -39,33 +83,34 @@
     <div class="topbar-container items-center grid gap-5 grid-cols-4
      bg-neutral-700 p-3 rounded-lg my-3">
         <label for="duration">Duration</label>
-        <input type="number" class="data-inputs" bind:value={$metadata.duration}>
-        <label for="hppartcfg">HP Threshold Config</label>
-        <select name="hppartcfg" id="hppartcfg" class="data-inputs" bind:value={$metadata.thresholdEnergyMode}>
+        <input type="number" class="data-inputs" bind:value={metadata.duration}>
+        <label for="hp_threshold_mode">HP Threshold Config</label>
+        <select name="hp_threshold_mode" id="hp_threshold_mode" class="data-inputs" bind:value={metadata.thresholdEnergyMode}>
             <option value="default">Default</option>
             <option value="none">None</option>
             <option value="custom">Custom</option>
         </select>
-        {#if $metadata.thresholdEnergyMode == "custom"}
-            <label for="customhpparticles">Custom Threshold</label>
-            <input class="data-inputs" type="text" id="customhpparticles" bind:value={$metadata.customEnergyValue}/>
+        {#if metadata.thresholdEnergyMode == "custom"}
+            <label for="custom_hp_drops">Custom Threshold</label>
+            <input class="data-inputs" type="text" id="custom_hp_drops" bind:value={metadata.customEnergyValue}/>
         {/if}
         <label for="mode">Mode</label>
-        <select class="data-inputs" id="mode" name="mode" bind:value={$metadata.rotationMode}>
-            <option value="fixed">Fixed</option>
-            <option value="flexible">Flexible</option>
+        <select class="data-inputs" id="mode" name="mode" bind:value={metadata.rotationFixed} onchange={rotModeChange}>
+            <option value={true}>Fixed</option>
+            <option value={false}>Flexible</option>
         </select>
-        {#if $metadata.rotationMode == "fixed"}
+        {#if metadata.rotationFixed}
             <label for="rotationlength">Length</label>
-            <input class="data-inputs" type="number" id="rotationlength" bind:value={$metadata.rotationLength}/>
+            <input class="data-inputs" type="number" id="rotationlength" bind:value={metadata.rotationLength}/>
         {/if}
-        {#if $metadata.isElectroReso}
+        {#if metadata.isElectroReso}
             <label for="electroresinterval">Electro Resonance</label>
-            <input class="data-inputs" type="text" id="electroresinterval" bind:value={$metadata.eResoInterval}/>
+            <input class="data-inputs" type="text" id="electroresinterval" bind:value={metadata.eResoInterval}/>
         {/if}
     </div>
     <div class="flex flex-row ">
         <Character charIndex={0}/>
+        <Character charIndex={1}/>
     </div>
     <div>
         
@@ -73,7 +118,7 @@
 </div>
 
 <datalist id="listchars">
-    {#each characterList as c}
+    {#each characterNameList as c}
         <option value={c}></option>
     {/each}
 </datalist>
@@ -103,9 +148,12 @@
     }
     
     .data-inputs {
+        margin-right: 20px;
+    }
+
+    :global(.data-inputs) {
         color: black;
         text-align: center;
-        margin-right: 20px;
         min-width: 0px;
         padding-inline: 8px;
         padding-block: 5px;
@@ -116,5 +164,11 @@
         appearance: none;
         text-align: center;
         border-radius: 0px;
+    }
+    :global(input) {
+        color: black;
+    }
+    input {
+        margin: 0px;
     }
 </style>

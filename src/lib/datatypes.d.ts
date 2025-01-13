@@ -1,3 +1,5 @@
+import type { favGen } from "./index.svelte"
+
 export type TrawCharacterData = {
     names: string[],
     element: TElement,
@@ -5,33 +7,37 @@ export type TrawCharacterData = {
     particlesources: TparticleSource[]
 }
 
-export type TcharacterEnergyState = {
-    name: string,
-    sources: TparticleSource[]
-}
-
-export type TcharacterEnergyGeneration = {
-    name: string,
-    element: TElement,
-    amountPerSecond: Number
-}
-
 export type TparticleSource = {
     label: string,
     amount: number,
+    element: TElement,
     cooldown: Number,
     duration?: Number,
     energytype: "Turret"|"Flat"|"Instant"
 }
 
-export type TcharacterParticleGeneration = {
-    amount: number,
-    type: TElement,
-    generationType: "Turret"|"Flat"|"Instant"
+export type TcharacterParticleGeneration =
+{
+    sources: {
+        amount: number,
+        charName: string,
+        index: number,
+        isFunnel: boolean,
+        funnelAmt: number,
+        funnelChar: number
+    }[],
+    favs: favGen[],
+    fieldTimeFraction: number,
+    timeBetweenBurst: number,
+    bonusFlatEnergy: number,
+    enabled: boolean
+}
+
+export type Tfunnel = {
     isFunnel: boolean,
-    funnelTo: string[],
-    funnelChar: number[]
-}[]
+    funnelAmt: number,
+    funnelChar: number
+}
 
 export type TtotalParticleGeneration = {
     generalParticles: {
@@ -47,7 +53,7 @@ export type Tmetadata = {
     rotationLength: number,
     thresholdEnergyMode: string,
     customEnergyValue: number,
-    rotationMode: string,
+    rotationFixed: boolean,
     isElectroReso: boolean,
     eResoInterval: number,
     duration: number

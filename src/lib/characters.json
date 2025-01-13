@@ -12,21 +12,24 @@
                     "cooldown": 15,
                     "energytype": "Turret",
                     "amount": 0.3,
-                    "duration": 12
+                    "duration": 12,
+                    "element": "Electro"
                 },
                 {
                     "label": "C2",
                     "cooldown": 15,
                     "energytype": "Turret",
                     "amount": 0.3,
-                    "duration": 15
+                    "duration": 15,
+                    "element": "Electro"
                 },
                 {
                     "label": "C4",
                     "cooldown": 15,
                     "energytype": "Turret",
                     "amount": 0.39,
-                    "duration": 15
+                    "duration": 15,
+                    "element": "Electro"
                 }
             ]
         },
@@ -40,7 +43,8 @@
                     "label": "Press",
                     "cooldown": 10,
                     "energytype": "Instant",
-                    "amount": 4.5
+                    "amount": 4.5,
+                    "element": "Cryo"
                 }
             ]
         }

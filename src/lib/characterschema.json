@@ -70,6 +70,18 @@
                   "description": "Amount for flat energy/instant skills, particles/second for turrets",
                   "type": "number"
                 },
+                "element": {
+                  "title": "Element",
+                  "type": "string",
+                  "enum": [
+                    "Pyro",
+                    "Hydro",
+                    "Dendro",
+                    "Electro",
+                    "Cryo",
+                    "Anemo"
+                  ]
+                },
                 "duration": {
                   "type": "number",
                   "description": "Duration of turrets"

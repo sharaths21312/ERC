@@ -5,7 +5,6 @@
 
     let activeelt = false;
     onMount(() => {
-        console.log(document.URL)
         activeelt = document.location.pathname == "/help"
     })
 </script>
