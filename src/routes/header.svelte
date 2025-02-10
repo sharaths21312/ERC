@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { onMount } from "svelte";
+    import { base } from "$app/paths";
     import "../app.css"
 
-    let path = $state("/")
+    let path = $state(`${base}/`)
     onMount(() => {
         path = document.location.pathname
         for (const link of document.getElementsByTagName("a")) {
@@ -17,10 +18,10 @@
 </script>
 
 <div class="flex w-full px-5 justify-between items-center bg-zinc-700">
-    <a class="font-bold text-lg" href="/">Energy Recharge Calculator</a>
+    <a class="font-bold text-lg" href="{base}/">Energy Recharge Calculator</a>
     <div class="mx-3">
-        <a href="/data" class="{path == "data" ? "highlight" : ""}">Data</a>
-        <a href="/help" class="{path == "help" ? "highlight" : ""}">Help</a>
+        <a href="{base}/data" class="{path == "data" ? "highlight" : ""}">Data</a>
+        <a href="{base}/help" class="{path == "help" ? "highlight" : ""}">Help</a>
     </div>
 </div>
 
