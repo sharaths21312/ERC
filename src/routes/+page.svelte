@@ -19,9 +19,9 @@
         duration: 90
     })
 
-    let char1 = "Shinobu"
-    let char2 = "Ayaka"
-    let char3 = "Raiden"
+    let char1 = "Ayaka"
+    let char2 = "Kokomi"
+    let char3 = "Kazuha"
     let char4 = "Shenhe"
     let charsSelected: TcharsSelected = $state({
         0: getCharData(char1) as TrawCharacterData,

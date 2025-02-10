@@ -20,6 +20,7 @@
             }
           },
           "burstcost": {
+            "title": "Burst Cost",
             "type": "number"
           },
           "element": {
@@ -33,6 +34,11 @@
               "Cryo",
               "Anemo"
             ]
+          },
+          "cooldown": {
+            "title": "cooldown",
+            "description": "Burst cooldown",
+            "type": "number"
           },
           "weapon": {
             "title": "Weapon",

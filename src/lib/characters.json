@@ -101,6 +101,44 @@
                 }
             ],
             "weapon": "Polearm"
+        },
+        {
+            "names": ["Kaedehara Kazuha", "Kazuha"],
+            "burstcost": 60,
+            "cooldown": 18,
+            "element": "Anemo",
+            "helptext": "",
+            "weapon": "Sword",
+            "particlesources": [
+                {
+                    "label": "Press",
+                    "cooldown": 6,
+                    "element": "Anemo",
+                    "energytype": "Instant",
+                    "amount": 3
+                },
+                {
+                    "label": "Hold",
+                    "cooldown": 9,
+                    "element": "Anemo",
+                    "energytype": "Instant",
+                    "amount": 4
+                }
+            ]
+        },
+        {
+            "names": ["Sanganomiya Kokomi", "Kokomi"],
+            "burstcost": 70,
+            "cooldown": 18,
+            "element": "Hydro",
+            "particlesources": [{
+                "amount": 0.33,
+                "element": "Hydro",
+                "cooldown": 20,
+                "duration": 12,
+                "energytype": "Turret",
+                "label": "Skill"
+            }]
         }
     ]
 }

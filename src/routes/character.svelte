@@ -16,6 +16,7 @@
     let changeChar = getContext("changeChar") as (s: string, idx: number) => null
     let jsondata = getContext("jsonchars") as TJSONCharsData
     let charNameInp: HTMLInputElement
+    const numberformat = Intl.NumberFormat('en-US', { 'maximumFractionDigits': 0 })
 
     if (!energyProd.characters[thisCharIndex]) {
         energyProd.characters[thisCharIndex] = {
@@ -96,6 +97,25 @@
                     amt += energyMult * numseconds * (0.6 + 0.4 * fieldtimefrac) * sourceData.amount
                 }
             }
+
+            for (const sourceInput of charProd[1].favs) {
+                let particles = sourceInput.amount * 6 * relativeRots
+                if (sourceInput.isFunnel && sourceInput.funnelChar == thisCharIndex) {
+                    // If funnelling to this character
+                    amt += (0.6 + 0.4 * sourceInput.funnelAmt/100) * particles
+                } else if (cind == thisCharIndex) {
+                    if (sourceInput.isFunnel) {
+                        // If funnelling to someone else
+                        amt += (0.6 + 0.4 * (100 - sourceInput.funnelAmt)/100) * particles
+                    } else {
+                        // Particles for self
+                        amt += particles
+                    }
+                } else {
+                    // Off field particles
+                    amt += 0.6 * particles
+                }
+            }
             particleEnergyTotal[cind] = amt;
             flatEnergyTotal[cind] = amtflat;
         }
@@ -165,6 +185,10 @@
     onchange={charInpChange} bind:this={charNameInp}
     class="p-2">
     <div class="bg-gray-900 p-2 mt-2 flex flex-col">
+        <!-- Final ER requirement display -->
+        <span class="text-center mt-2 mb-1">Energy needed:</span>
+        <span class="text-lg font-bold text-center mb-2">{numberformat.format(debug.erneed)}%</span>
+
         <div class="flex flex-col bg-slate-800 p-2 rounded-md">
             <h2 class="sourceheader">Skill uses</h2>
             <!-- Normal particle sources -->
@@ -209,9 +233,6 @@
         bind:value={energyProd.characters[thisCharIndex].timeBetweenBurst} placeholder={metadata.rotationFixed ? "No. rots per burst" : "Time between bursts"}>
         <input class="charbottominp" type="number" id="character{thisCharIndex}fieldtime" name="character{thisCharIndex}fieldtime"
         bind:value={energyProd.characters[thisCharIndex].fieldTimeFraction} placeholder="Fractional field time">
-        <!-- Final ER requirement display -->
-        <span class="text-center mt-2 mb-1">Energy needed:</span>
-        <span class="text-lg font-bold text-center mb-2">{debug.erneed}%</span>
     </div>
 </div>
 
