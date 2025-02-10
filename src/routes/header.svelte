@@ -2,19 +2,38 @@
 	import { onMount } from "svelte";
     import "../app.css"
 
-
-    let activeelt = false;
+    let path = $state("/")
     onMount(() => {
-        activeelt = document.location.pathname == "/help"
+        path = document.location.pathname
+        for (const link of document.getElementsByTagName("a")) {
+            link.addEventListener("click", (e) => {
+                console.log("test")
+                var lnk = e.currentTarget as HTMLLinkElement
+                path = lnk.href.split("/")[3]
+            })
+        }
     })
+
 </script>
 
-<div class="flex w-full p-2 px-5 justify-between items-center bg-zinc-700">
-    <h2 class="font-bold text-lg">Energy Recharge Calculator</h2>
-    <div class="mx-3 {activeelt ? '.highlight' : ''}">
-        <a href="/help">Help</a>
+<div class="flex w-full px-5 justify-between items-center bg-zinc-700">
+    <a class="font-bold text-lg" href="/">Energy Recharge Calculator</a>
+    <div class="mx-3">
+        <a href="/data" class="{path == "data" ? "highlight" : ""}">Data</a>
+        <a href="/help" class="{path == "help" ? "highlight" : ""}">Help</a>
     </div>
 </div>
 
 <style>
+    a {
+        padding-inline: 15px;
+        padding-block: 7px;
+        margin-inline: 5px;
+        margin-block: 5px;
+        border-radius: 5px;
+    }
+
+    .highlight {
+        background-color: rgb(48, 48, 62);
+    }
 </style>

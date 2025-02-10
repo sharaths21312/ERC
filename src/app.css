@@ -7,10 +7,6 @@ body {
     @apply bg-neutral-800;
 }
 
-.highlight {
-    @apply bg-slate-700;
-}
-
 .subgrid-container {
     grid-column: 1/span 2;
 }

@@ -1,23 +1,24 @@
 <script lang="ts">
-    import type { TcharsSelected, Tfunnel, TJSONCharsData, Tmetadata, TrawCharacterData, TtotalParticleGeneration } from "$lib/datatypes";
-	import { favGen } from "$lib/index.svelte";
-    let { charIndex }: { charIndex: number } = $props();
+    import type { TcharsSelected, Tfunnel, TJSONCharsData, Tmetadata, TtotalParticleGeneration } from "$lib/datatypes";
+	import { particleTransferFrac, favGen, sum } from "$lib/index.svelte";
+    let { charIndex: thisCharIndex }: { charIndex: number } = $props();
 	import { getContext, onMount } from "svelte";
 	import { flip } from "svelte/animate";
     import { slide } from "svelte/transition";
     
     let charsSelected = getContext("charsSelected") as TcharsSelected
-    let thisChar = $state(charsSelected[charIndex])
+    let thisChar = $state(charsSelected[thisCharIndex])
     let metadata = getContext("metadata") as Tmetadata
 
     let energyProd: TtotalParticleGeneration = getContext("energyproduction")
+
     let charList = getContext("charslist") as string[]
     let changeChar = getContext("changeChar") as (s: string, idx: number) => null
     let jsondata = getContext("jsonchars") as TJSONCharsData
     let charNameInp: HTMLInputElement
 
-    if (!energyProd.characters[charIndex]) {
-        energyProd.characters[charIndex] = {
+    if (!energyProd.characters[thisCharIndex]) {
+        energyProd.characters[thisCharIndex] = {
             // svelte-ignore state_referenced_locally
             sources: [{
                 amount: 1,
@@ -34,9 +35,90 @@
             enabled: true
         };
     }
+    
+
+    let debug = $derived.by(() => {
+        let particleEnergyTotal: number[] = []
+        let energyAmt: number[] = []
+        let flatEnergyTotal: number[] = []
+        let numchars = Object.keys(energyProd.characters).length;
+        let totalfieldtime = 0
+        for (const elt of Object.values(energyProd.characters)) {
+            totalfieldtime += elt.fieldTimeFraction
+        }
+        let thisCharProd = energyProd.characters[thisCharIndex]
+        let timeBetweenBurst = (metadata.rotationFixed
+                                    ? thisCharProd.timeBetweenBurst * metadata.rotationLength
+                                    : thisCharProd.timeBetweenBurst)
+        let fieldtimefrac = thisCharProd.fieldTimeFraction / totalfieldtime
+
+        // Character energy
+        for (const charProd of Object.entries(energyProd.characters)) {
+            if (!charProd[1].enabled) break;
+            let cind = parseInt(charProd[0]);
+            let amt = 0;
+            let amtflat = 0;
+            let relativeRots = thisCharProd.timeBetweenBurst / energyProd.characters[cind].timeBetweenBurst
+            for (const sourceInput of charProd[1].sources) {
+                let sourceData = charsSelected[cind].particlesources[sourceInput.index]
+                let energyMult = particleTransferFrac(sourceData.element, thisChar.element)
+
+                if (sourceData.energytype == "Instant") {
+                    let particles = sourceInput.amount * sourceData.amount * energyMult * relativeRots
+                    if (sourceInput.isFunnel && sourceInput.funnelChar == thisCharIndex) {
+                        // If funnelling to this character
+                        amt += (0.6 + 0.4 * sourceInput.funnelAmt/100) * particles
+                    } else if (cind == thisCharIndex) {
+                        if (sourceInput.isFunnel) {
+                            // If funnelling to someone else
+                            amt += (0.6 + 0.4 * (100 - sourceInput.funnelAmt)/100) * particles
+                        } else {
+                            // Particles for self
+                            amt += particles
+                        }
+                    } else {
+                        // Off field particles
+                        amt += 0.6 * particles
+                    }
+                } else if (sourceData.energytype == "Flat") {
+                    amtflat += sourceData.amount * sourceInput.amount * relativeRots
+                } else {
+                    let sourceData = charsSelected[cind].particlesources[sourceInput.index]
+                    let totaltime = 20;
+                    if (metadata.rotationFixed) {
+                        totaltime = metadata.rotationLength * charProd[1].timeBetweenBurst
+                    } else {
+                        totaltime = charProd[1].timeBetweenBurst
+                    }
+                    let uptime = Math.min(1, sourceInput.amount * sourceData.duration!/totaltime)
+                    let numseconds = uptime * timeBetweenBurst
+                    let energyMult = particleTransferFrac(sourceData.element, thisChar.element)
+                    amt += energyMult * numseconds * (0.6 + 0.4 * fieldtimefrac) * sourceData.amount
+                }
+            }
+            particleEnergyTotal[cind] = amt;
+            flatEnergyTotal[cind] = amtflat;
+        }
+
+        // Default energy
+        switch (metadata.thresholdEnergyMode) {
+            case "default":
+                particleEnergyTotal.push(18 * (0.6 + 0.4 * fieldtimefrac) * timeBetweenBurst/metadata.duration)
+                break;
+            case "custom":
+                break;
+        }
+
+        let erpercent = Math.max(100, (thisChar.burstcost - sum(flatEnergyTotal))/sum(particleEnergyTotal) * 100)
+        return {
+            energy: particleEnergyTotal,
+            flat: flatEnergyTotal,
+            erneed: erpercent
+        };
+    })
 
     function addFav () {
-        energyProd.characters[charIndex].favs.push(new favGen());
+        energyProd.characters[thisCharIndex].favs.push(new favGen());
     }
 
     $effect(() => {
@@ -46,14 +128,14 @@
     function charInpChange(e: Event) {
         e.preventDefault();
         if (charList.findIndex(x => x == charNameInp.value) != -1) {
-            changeChar(charNameInp.value, charIndex)
-            thisChar = charsSelected[charIndex]
+            changeChar(charNameInp.value, thisCharIndex)
+            thisChar = charsSelected[thisCharIndex]
         }
     }
 
     function changeEnergy() {
-        if (!energyProd.characters[charIndex]) {
-            energyProd.characters[charIndex] = {
+        if (!energyProd.characters[thisCharIndex]) {
+            energyProd.characters[thisCharIndex] = {
                 sources: [],
                 favs: [],
                 fieldTimeFraction: 1,
@@ -62,7 +144,7 @@
                 enabled: true,
             };
         }
-        energyProd.characters[charIndex].sources.push({
+        energyProd.characters[thisCharIndex].sources.push({
             charName: thisChar.names[0],
             index: 0,
             amount: 1,
@@ -86,21 +168,21 @@
         <div class="flex flex-col bg-slate-800 p-2 rounded-md">
             <h2 class="sourceheader">Skill uses</h2>
             <!-- Normal particle sources -->
-            {#each energyProd.characters[charIndex]?.sources ?? [] as c, i (c)}
+            {#each energyProd.characters[thisCharIndex]?.sources ?? [] as c, i (c)}
                 <div animate:flip={{duration:100}} transition:slide={{duration:100}}
                     class="flex flex-col items-center mt-1 mb-1 py-2 border-b border-solid border-white">
                     <!-- Skill type picker -->
                     <div class="my-2 flex flex-row self-stretch">
-                        <select name="char{charIndex}sourcefor{i}" class="data-inputs w-full" bind:value={c.index}>
+                        <select name="char{thisCharIndex}sourcefor{i}" class="data-inputs w-full" bind:value={c.index}>
                             {#each thisChar.particlesources as p, j}
                                 <option value={j}>{p.label}</option>
                             {/each}
                         </select>
-                        <button class="text-center px-3" onclick={() => energyProd.characters[charIndex].sources.splice(i, 1)}>×</button>
+                        <button class="text-center px-3" onclick={() => energyProd.characters[thisCharIndex].sources.splice(i, 1)}>×</button>
                     </div>
                     <!-- Skill amount and funnel -->
                     <input type="number" class="w-full m-1" bind:value={c.amount} placeholder="# usages" min="0">
-                    {@render funnel(c, `character${charIndex}src${i}funnel`)}
+                    {@render funnel(c, `character${thisCharIndex}src${i}funnel`)}
                 </div>
             {/each}
             <button onclick={changeEnergy}>Add source</button>
@@ -108,30 +190,31 @@
         <div class="my-2 bg-slate-700 rounded-md p-2 flex flex-col">
             <!-- Favonius -->
             <h2 class="text-center text-lg font-bold mb-1 pb-1 border-b-2 border-white border-solid">Favonius</h2>
-            {#each energyProd.characters[charIndex].favs as fav, i (fav)}
+            {#each energyProd.characters[thisCharIndex].favs as fav, i (fav)}
                 <div class="flex flex-col border-b border-white border-solid favinput my-1 pb-2"
                 transition:slide={{duration:100}} animate:flip={{duration:100}}>
                     <div class="flex flex-row self-stretch">
                         <input type="number" bind:value={fav.amount}>
-                        <button class="text-center px-3" onclick={() => energyProd.characters[charIndex].favs.splice(i, 1)}>×</button>
+                        <button class="text-center px-3" onclick={() => energyProd.characters[thisCharIndex].favs.splice(i, 1)}>×</button>
                     </div>
-                    {@render funnel(fav, `character${charIndex}fav${i}funnel`)}
+                    {@render funnel(fav, `character${thisCharIndex}fav${i}funnel`)}
                 </div>
             {/each}
             <button onclick={addFav}>Add Fav</button>
         </div>
         <!-- Fieldtime and rot length -->
-        <input class="charbottominp" type="number" id="character{charIndex}bonusenergy" name="character{charIndex}bonusenergy"
-        bind:value={energyProd.characters[charIndex].bonusFlatEnergy} placeholder="Bonus flat energy">
-        <input class="charbottominp" type="number" id="character{charIndex}tbb" name="character{charIndex}tbb"
-        bind:value={energyProd.characters[charIndex].timeBetweenBurst} placeholder={metadata.rotationFixed ? "No. rots per burst" : "Time between bursts"}>
-        <input class="charbottominp" type="number" id="character{charIndex}fieldtime" name="character{charIndex}fieldtime"
-        bind:value={energyProd.characters[charIndex].fieldTimeFraction} placeholder="Fractional field time">
+        <input class="charbottominp" type="number" id="character{thisCharIndex}bonusenergy" name="character{thisCharIndex}bonusenergy"
+        bind:value={energyProd.characters[thisCharIndex].bonusFlatEnergy} placeholder="Bonus flat energy">
+        <input class="charbottominp" type="number" id="character{thisCharIndex}tbb" name="character{thisCharIndex}tbb"
+        bind:value={energyProd.characters[thisCharIndex].timeBetweenBurst} placeholder={metadata.rotationFixed ? "No. rots per burst" : "Time between bursts"}>
+        <input class="charbottominp" type="number" id="character{thisCharIndex}fieldtime" name="character{thisCharIndex}fieldtime"
+        bind:value={energyProd.characters[thisCharIndex].fieldTimeFraction} placeholder="Fractional field time">
         <!-- Final ER requirement display -->
         <span class="text-center mt-2 mb-1">Energy needed:</span>
-        <span class="text-lg font-bold text-center mb-2">100%</span>
+        <span class="text-lg font-bold text-center mb-2">{debug.erneed}%</span>
     </div>
 </div>
+
 
 {#snippet funnel(f: Tfunnel, name: string)}
 <label for={name} class="my-1">
@@ -181,5 +264,8 @@
         margin-bottom: 5px;
         padding-bottom: 2px;
         border-bottom: 2px solid white;
+    }
+    input {
+        color: black;
     }
 </style>

@@ -19,6 +19,9 @@
               "type": "string"
             }
           },
+          "burstcost": {
+            "type": "number"
+          },
           "element": {
             "title": "Element",
             "type": "string",
@@ -103,10 +106,10 @@
                 }
               }
             }
+          },
+          "helptext": {
+            "type": "string"
           }
-        },
-        "helptext": {
-          "type": "string"
         }
       },
       "required": [

@@ -4,15 +4,17 @@ export type TrawCharacterData = {
     names: string[],
     element: TElement,
     weapon: TWeapon,
-    particlesources: TparticleSource[]
+    burstcost: number,
+    particlesources: TparticleSource[],
+    helptext: string
 }
 
 export type TparticleSource = {
     label: string,
     amount: number,
     element: TElement,
-    cooldown: Number,
-    duration?: Number,
+    cooldown: number,
+    duration?: number,
     energytype: "Turret"|"Flat"|"Instant"
 }
 
@@ -51,7 +53,7 @@ export type TtotalParticleGeneration = {
 
 export type Tmetadata = {
     rotationLength: number,
-    thresholdEnergyMode: string,
+    thresholdEnergyMode: "default"|"none"|"custom",
     customEnergyValue: number,
     rotationFixed: boolean,
     isElectroReso: boolean,
@@ -68,15 +70,10 @@ export type TJSONCharsData = {
     element: string,
     weapon: string,
     helptext: string,
-    particlesources: {
-        label: string,
-        cooldown: number,
-        energytype: string,
-        amount: number,
-        duration: number,
-    }[];
+    burstcost: number,
+    particlesources: TparticleSource[];
 }[]
 
 
-export type TElement = "Pyro"|"Hydro"|"Dendro"|"Electro"|"Cryo"|"Anemo"|"None"
+export type TElement = "Pyro"|"Hydro"|"Dendro"|"Electro"|"Cryo"|"Anemo"|"Geo"|"None"
 export type TWeapon = "Sword"|"Claymore"|"Catalyst"|"Bow"|"Polearm"

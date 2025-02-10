@@ -5,6 +5,7 @@
             "names": ["Kuki Shinobu", "Shinobu"],
             "element": "Electro",
             "weapon": "Sword",
+            "burstcost": 60,
             "helptext": "Kuki C4 triggers thrice and has a 45% chance of generating a particle on every trigger",
             "particlesources": [
                 {
@@ -38,6 +39,7 @@
             "element": "Cryo",
             "weapon": "Sword",
             "helptext": "",
+            "burstcost": 80,
             "particlesources": [
                 {
                     "label": "Press",
@@ -47,6 +49,58 @@
                     "element": "Cryo"
                 }
             ]
+        },
+        {
+            "names": ["Raiden Shogun", "Shogun", "Raiden"],
+            "element": "Electro",
+            "weapon": "Polearm",
+            "burstcost": 90,
+            "helptext": "Note that the flat energy values are taken for TL10. For the energy column, simply put in the amount of ER above 100 (eg at 200 ER input 100)",
+            "particlesources": [
+                {
+                    "label": "Skill",
+                    "cooldown": 10,
+                    "duration": 25,
+                    "element": "Electro",
+                    "energytype": "Turret",
+                    "amount": 0.45
+                },
+                {
+                    "label": "Burst Default",
+                    "cooldown": 18,
+                    "energytype": "Flat",
+                    "amount": 12.5
+                },
+                {
+                    "label": "Burst ER bonus",
+                    "cooldown": 18,
+                    "energytype": "Flat",
+                    "amount": 0.075
+                }
+            ]
+        },
+        {
+            "names": ["Shenhe"],
+            "burstcost": 80,
+            "element": "Cryo",
+            "helptext": "",
+            "particlesources": [
+                {
+                    "label": "Press",
+                    "cooldown": 10,
+                    "element": "Cryo",
+                    "energytype": "Instant",
+                    "amount": 3
+                },
+                {
+                    "label": "Hold",
+                    "cooldown": 15,
+                    "element": "Cryo",
+                    "energytype": "Instant",
+                    "amount": 4
+                }
+            ],
+            "weapon": "Polearm"
         }
     ]
 }

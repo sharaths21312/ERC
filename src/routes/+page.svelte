@@ -1,6 +1,6 @@
 <script lang="ts">
     import * as jsonfile from "$lib/characters.json"
-	import type { TcharsSelected as Tselection, TrawCharacterData, TtotalParticleGeneration, Tmetadata } from "$lib/datatypes";
+	import type { TcharsSelected, TtotalParticleGeneration, Tmetadata, TJSONCharsData, TrawCharacterData } from "$lib/datatypes";
     // import {  } from "$lib/index.svelte";
 	import { setContext } from "svelte";
 	import Character from "./character.svelte";
@@ -21,9 +21,13 @@
 
     let char1 = "Shinobu"
     let char2 = "Ayaka"
-    let charsSelected: Tselection = $state({
+    let char3 = "Raiden"
+    let char4 = "Shenhe"
+    let charsSelected: TcharsSelected = $state({
         0: getCharData(char1) as TrawCharacterData,
         1: getCharData(char2) as TrawCharacterData,
+        2: getCharData(char3) as TrawCharacterData,
+        3: getCharData(char4) as TrawCharacterData,
     });
     
 
@@ -74,9 +78,6 @@
     setContext("jsonchars", charsData);
     setContext("chardatagetter", getCharData);
 
-    
-    $inspect(energyProd)
-
 </script>
 
 <div class="vflow-container flex flex-col items-center px-8">
@@ -111,6 +112,8 @@
     <div class="flex flex-row ">
         <Character charIndex={0}/>
         <Character charIndex={1}/>
+        <Character charIndex={2}/>
+        <Character charIndex={3}/>
     </div>
     <div>
         
