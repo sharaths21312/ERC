@@ -185,7 +185,7 @@
 <div class="flex-col flex m-2">
     <input list="listchars" style="color: black;" onclick={selectTextInput}
     onchange={charInpChange} bind:this={charNameInp}
-    class="p-2">
+    class="p-2" title="Character">
     <div class="bg-gray-900 p-2 mt-2 flex flex-col">
         <!-- Final ER requirement display -->
         <span class="text-center mt-2 mb-1">Energy needed:</span>
@@ -194,7 +194,7 @@
         <div class="flex flex-col bg-slate-800 p-2 rounded-md">
             <div class="flex flex-row sourceheader">
                 <h2 class="flex-1">Skill uses</h2>
-                <button class="mr-2" onclick={addSource}>+</button>
+                <button class="mr-2" onclick={addSource} title="Add">+</button>
             </div>
             <!-- Normal particle sources -->
             {#each energyProd.characters[thisCharIndex]?.sources ?? [] as c, i (c)}
@@ -207,12 +207,12 @@
                                 <option value={j}>{p.label}</option>
                             {/each}
                         </select>
-                        <button class="text-center px-3" onclick={() => energyProd.characters[thisCharIndex].sources.splice(i, 1)}>×</button>
+                        <button class="text-center px-3" onclick={() => energyProd.characters[thisCharIndex].sources.splice(i, 1)} title="Remove">×</button>
                     </div>
                     <!-- Skill amount and funnel -->
                     <div class="flex flex-row my-1 self-stretch">
                         <input type="number" class="flex-1 m-1" bind:value={c.amount} placeholder="# usages" min="0">
-                        <input type="checkbox" class="mx-2" bind:checked={c.isFunnel}>
+                        <input type="checkbox" class="mx-2" bind:checked={c.isFunnel} title="Funnel this">
                     </div>
                     {@render funnel(c, `character${thisCharIndex}src${i}funnel`)}
                 </div>
@@ -222,28 +222,28 @@
             <!-- Favonius -->
             <div class="mb-1 pb-1 border-b-2 border-white border-solid flex flex-row text-center text-lg font-bold ">
                 <h2 class="flex-1">Favonius</h2>
-                <button class="mr-2" onclick={addFav}>+</button>
+                <button class="mr-2" onclick={addFav} title="Add">+</button>
             </div>
             {#each energyProd.characters[thisCharIndex].favs as fav, i (fav)}
                 <div class="flex flex-col border-b border-white border-solid favinput my-1 pb-2"
                 transition:slide={{duration:100}} animate:flip={{duration:100}}>
                     <div class="flex flex-row self-stretch">
-                        <input type="number" bind:value={fav.amount}>
-                        <input type="checkbox" class="mx-2" bind:checked={fav.isFunnel}>
-                        <button class="text-center px-1" onclick={() => energyProd.characters[thisCharIndex].favs.splice(i, 1)}>×</button>
+                        <input type="number" bind:value={fav.amount} title="Number of procs">
+                        <input type="checkbox" class="mx-2" bind:checked={fav.isFunnel} title="Funnel this">
+                        <button class="text-center px-1" onclick={() => energyProd.characters[thisCharIndex].favs.splice(i, 1)} title="Remove">×</button>
                     </div>
                     {@render funnel(fav, `character${thisCharIndex}fav${i}funnel`)}
                 </div>
             {/each}
-            <button onclick={addFav}>Add Fav</button>
         </div>
         <!-- Fieldtime and rot length -->
         <input class="charbottominp" type="number" id="character{thisCharIndex}bonusenergy" name="character{thisCharIndex}bonusenergy"
-        bind:value={energyProd.characters[thisCharIndex].bonusFlatEnergy} placeholder="Bonus flat energy">
+            bind:value={energyProd.characters[thisCharIndex].bonusFlatEnergy} placeholder="Bonus flat energy" title="Bonus flat energy">
         <input class="charbottominp" type="number" id="character{thisCharIndex}tbb" name="character{thisCharIndex}tbb"
-        bind:value={energyProd.characters[thisCharIndex].timeBetweenBurst} placeholder={metadata.rotationFixed ? "No. rots per burst" : "Time between bursts"}>
+            bind:value={energyProd.characters[thisCharIndex].timeBetweenBurst} placeholder={metadata.rotationFixed ? "No. rots per burst" : "Time between bursts"}
+            title={metadata.rotationFixed ? "No. rots per burst" : "Time between bursts"}>
         <input class="charbottominp" type="number" id="character{thisCharIndex}fieldtime" name="character{thisCharIndex}fieldtime"
-        bind:value={energyProd.characters[thisCharIndex].fieldTimeFraction} placeholder="Fractional field time">
+            bind:value={energyProd.characters[thisCharIndex].fieldTimeFraction} placeholder="Fractional field time" title="Fractional field time">
     </div>
 </div>
 
@@ -251,17 +251,19 @@
 {#snippet funnel(f: Tfunnel, name: string)}
     {#if f.isFunnel}
     <div class="flex flex-col self-stretch border-solid border-b border-white">
-        <select class="text-black w-full p-1 my-2" bind:value={f.funnelChar} transition:slide={{duration:100}}>
+        <select class="text-black w-full p-1 my-2" bind:value={f.funnelChar}
+            transition:slide={{duration:100}} title="Funnel to">
             {#each Object.entries(charsSelected) as activeChars, cidx}
                 {#if activeChars}
                     <option value={cidx}>{activeChars[1].names[0]}</option>
                 {/if}
             {/each}
         </select>
-        <span class="flex flex-row items-center text-center w-full bg-white text-black px-3" transition:slide={{duration:100}}>
+        <span class="flex flex-row items-center text-center w-full bg-white text-black px-3"
+            transition:slide={{duration:100}}>
             <input type="number" class="w-full px-2 m-1 mb-3 border-none"
                 bind:value={f.funnelAmt} min="0" max="100"
-                placeholder="% funnelled">
+                placeholder="% funnelled" title="% funnelled">
             %
         </span>
     </div>

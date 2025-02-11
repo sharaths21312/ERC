@@ -263,38 +263,6 @@
         },
         {
             "names": [
-                "Childe"
-            ],
-            "burstcost": 60.0,
-            "cooldown": 15.0,
-            "element": "Hydro",
-            "helptext": "If Tartaglia is using ranged burst, put 20 in \"Bonus non-particle energy\". Use the \"Aimed Shot\" skill in \"Skill uses (other type)\" for the number of aimed shots done in ranged form.",
-            "particlesources": [
-                {
-                    "label": "7-9s melee",
-                    "energytype": "Instant",
-                    "cooldown": 13.0,
-                    "amount": 3.0,
-                    "element": "Hydro"
-                },
-                {
-                    "label": "11s melee",
-                    "energytype": "Instant",
-                    "cooldown": 17.0,
-                    "amount": 4.0,
-                    "element": "Hydro"
-                },
-                {
-                    "label": "Aimed Shot",
-                    "energytype": "Instant",
-                    "cooldown": 3.0,
-                    "amount": 1.0,
-                    "element": "Hydro"
-                }
-            ]
-        },
-        {
-            "names": [
                 "Charlotte"
             ],
             "burstcost": 80.0,
@@ -1078,6 +1046,7 @@
         },
         {
             "names": [
+                "Sanganomiya Kokomi",
                 "Kokomi"
             ],
             "burstcost": 70.0,
@@ -1105,7 +1074,8 @@
         },
         {
             "names": [
-                "Kuki Shinobu"
+                "Kuki Shinobu",
+                "Shinobu"
             ],
             "burstcost": 60.0,
             "cooldown": 15.0,
@@ -1261,7 +1231,8 @@
         },
         {
             "names": [
-                "Mavuika"
+                "Mavuika",
+                "Mauvika"
             ],
             "burstcost": 0.0,
             "cooldown": 0.0,
@@ -1670,24 +1641,6 @@
         },
         {
             "names": [
-                "Shinobu"
-            ],
-            "burstcost": 60.0,
-            "cooldown": 15.0,
-            "element": "Pyro",
-            "helptext": "",
-            "particlesources": [
-                {
-                    "label": "Press",
-                    "energytype": "Instant",
-                    "cooldown": 30.0,
-                    "amount": 5.0,
-                    "element": "Pyro"
-                }
-            ]
-        },
-        {
-            "names": [
                 "Sigewinne"
             ],
             "burstcost": 70.0,
@@ -1731,7 +1684,8 @@
         },
         {
             "names": [
-                "Tartaglia"
+                "Tartaglia",
+                "Childe"
             ],
             "burstcost": 60.0,
             "cooldown": 15.0,
@@ -1799,7 +1753,8 @@
         },
         {
             "names": [
-                "Traveler (Anemo)"
+                "Traveler (Anemo)",
+                "AMC"
             ],
             "burstcost": 60.0,
             "cooldown": 15.0,
@@ -1824,7 +1779,8 @@
         },
         {
             "names": [
-                "Traveler (Dendro)"
+                "Traveler (Dendro)",
+                "DMC"
             ],
             "burstcost": 80.0,
             "cooldown": 20.0,
@@ -1842,7 +1798,8 @@
         },
         {
             "names": [
-                "Traveler (Electro)"
+                "Traveler (Electro)",
+                "EMC"
             ],
             "burstcost": 80.0,
             "cooldown": 20.0,
@@ -1860,7 +1817,8 @@
         },
         {
             "names": [
-                "Traveler (Geo)"
+                "Traveler (Geo)",
+                "GMC"
             ],
             "burstcost": 60.0,
             "cooldown": 15.0,
@@ -1878,7 +1836,8 @@
         },
         {
             "names": [
-                "Traveler (Hydro)"
+                "Traveler (Hydro)",
+                "HMC"
             ],
             "burstcost": 80.0,
             "cooldown": 20.0,
@@ -1903,7 +1862,8 @@
         },
         {
             "names": [
-                "Traveler (Pyro)"
+                "Traveler (Pyro)",
+                "PMC"
             ],
             "burstcost": 70.0,
             "cooldown": 18.0,
