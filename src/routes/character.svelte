@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { TcharsSelected, Tfunnel, TJSONCharsData, Tmetadata, TtotalParticleGeneration } from "$lib/datatypes";
+    import type { TcharsSelected, Tfunnel, Tmetadata, TrawCharacterData, TtotalParticleGeneration } from "$lib/datatypes";
 	import { particleTransferFrac, favGen, sum } from "$lib/index.svelte";
     let { charIndex: thisCharIndex }: { charIndex: number } = $props();
 	import { getContext, onMount } from "svelte";
@@ -14,7 +14,7 @@
 
     let charList = getContext("charslist") as string[]
     let changeChar = getContext("changeChar") as (s: string, idx: number) => null
-    let jsondata = getContext("jsonchars") as TJSONCharsData
+    let jsondata = getContext("jsonchars") as TrawCharacterData[]
     let charNameInp: HTMLInputElement
     const numberformat = Intl.NumberFormat('en-US', { 'maximumFractionDigits': 0 })
 
@@ -83,7 +83,9 @@
                     }
                 } else if (sourceData.energytype == "Flat") {
                     amtflat += sourceData.amount * sourceInput.amount * relativeRots
-                } else {
+                } else if (sourceData.energytype == "Self" && cind == thisCharIndex) {
+                    amtflat += sourceData.amount * sourceInput.amount;
+                } else if (sourceData.energytype == "Turret") {
                     let sourceData = charsSelected[cind].particlesources[sourceInput.index]
                     let totaltime = 20;
                     if (metadata.rotationFixed) {
@@ -153,7 +155,7 @@
         }
     }
 
-    function changeEnergy() {
+    function addSource() {
         if (!energyProd.characters[thisCharIndex]) {
             energyProd.characters[thisCharIndex] = {
                 sources: [],
@@ -190,7 +192,10 @@
         <span class="text-lg font-bold text-center mb-2">{numberformat.format(debug.erneed)}%</span>
 
         <div class="flex flex-col bg-slate-800 p-2 rounded-md">
-            <h2 class="sourceheader">Skill uses</h2>
+            <div class="flex flex-row sourceheader">
+                <h2 class="flex-1">Skill uses</h2>
+                <button class="mr-2" onclick={addSource}>+</button>
+            </div>
             <!-- Normal particle sources -->
             {#each energyProd.characters[thisCharIndex]?.sources ?? [] as c, i (c)}
                 <div animate:flip={{duration:100}} transition:slide={{duration:100}}
@@ -205,21 +210,27 @@
                         <button class="text-center px-3" onclick={() => energyProd.characters[thisCharIndex].sources.splice(i, 1)}>×</button>
                     </div>
                     <!-- Skill amount and funnel -->
-                    <input type="number" class="w-full m-1" bind:value={c.amount} placeholder="# usages" min="0">
+                    <div class="flex flex-row my-1 self-stretch">
+                        <input type="number" class="flex-1 m-1" bind:value={c.amount} placeholder="# usages" min="0">
+                        <input type="checkbox" class="mx-2" bind:checked={c.isFunnel}>
+                    </div>
                     {@render funnel(c, `character${thisCharIndex}src${i}funnel`)}
                 </div>
             {/each}
-            <button onclick={changeEnergy}>Add source</button>
         </div>
         <div class="my-2 bg-slate-700 rounded-md p-2 flex flex-col">
             <!-- Favonius -->
-            <h2 class="text-center text-lg font-bold mb-1 pb-1 border-b-2 border-white border-solid">Favonius</h2>
+            <div class="mb-1 pb-1 border-b-2 border-white border-solid flex flex-row text-center text-lg font-bold ">
+                <h2 class="flex-1">Favonius</h2>
+                <button class="mr-2" onclick={addFav}>+</button>
+            </div>
             {#each energyProd.characters[thisCharIndex].favs as fav, i (fav)}
                 <div class="flex flex-col border-b border-white border-solid favinput my-1 pb-2"
                 transition:slide={{duration:100}} animate:flip={{duration:100}}>
                     <div class="flex flex-row self-stretch">
                         <input type="number" bind:value={fav.amount}>
-                        <button class="text-center px-3" onclick={() => energyProd.characters[thisCharIndex].favs.splice(i, 1)}>×</button>
+                        <input type="checkbox" class="mx-2" bind:checked={fav.isFunnel}>
+                        <button class="text-center px-1" onclick={() => energyProd.characters[thisCharIndex].favs.splice(i, 1)}>×</button>
                     </div>
                     {@render funnel(fav, `character${thisCharIndex}fav${i}funnel`)}
                 </div>
@@ -238,10 +249,6 @@
 
 
 {#snippet funnel(f: Tfunnel, name: string)}
-<label for={name} class="my-1">
-    <input type="checkbox" bind:checked={f.isFunnel} id={name}>
-    Enable funnelling
-</label>
     {#if f.isFunnel}
     <div class="flex flex-col self-stretch border-solid border-b border-white">
         <select class="text-black w-full p-1 my-2" bind:value={f.funnelChar} transition:slide={{duration:100}}>
@@ -263,8 +270,11 @@
 
 <style>
     input {
-        margin: 2px;
         text-align: center;
+        min-width: 0px;
+    }
+    input[type=number] {
+        margin: 2px;
         min-width: 0px;
     }
     select {

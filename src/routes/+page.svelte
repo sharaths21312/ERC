@@ -1,6 +1,6 @@
 <script lang="ts">
     import * as jsonfile from "$lib/characters.json"
-	import type { TcharsSelected, TtotalParticleGeneration, Tmetadata, TJSONCharsData, TrawCharacterData } from "$lib/datatypes";
+	import type { TcharsSelected, TtotalParticleGeneration, Tmetadata, TrawCharacterData } from "$lib/datatypes";
     // import {  } from "$lib/index.svelte";
 	import { setContext } from "svelte";
 	import Character from "./character.svelte";
@@ -109,7 +109,7 @@
             <input class="data-inputs" type="text" id="electroresinterval" bind:value={metadata.eResoInterval}/>
         {/if}
     </div>
-    <div class="flex flex-row ">
+    <div class="flex flex-row max-w-screen-2xl justify-center flex-wrap">
         <Character charIndex={0}/>
         <Character charIndex={1}/>
         <Character charIndex={2}/>

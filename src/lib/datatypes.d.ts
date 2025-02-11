@@ -3,10 +3,11 @@ import type { favGen } from "./index.svelte"
 export type TrawCharacterData = {
     names: string[],
     element: TElement,
-    weapon: TWeapon,
+    weapon: TWeapon?,
     burstcost: number,
+    cooldown: number?,
     particlesources: TparticleSource[],
-    helptext: string
+    helptext: string?
 }
 
 export type TparticleSource = {
@@ -15,7 +16,7 @@ export type TparticleSource = {
     element: TElement,
     cooldown: number,
     duration?: number,
-    energytype: "Turret"|"Flat"|"Instant"
+    energytype: "Turret"|"Flat"|"Instant"|"Self"
 }
 
 export type TcharacterParticleGeneration =
@@ -64,15 +65,6 @@ export type Tmetadata = {
 export type TcharsSelected = {
     [index: number]: TrawCharacterData,
 }
-
-export type TJSONCharsData = {
-    names: string[],
-    element: string,
-    weapon: string,
-    helptext: string,
-    burstcost: number,
-    particlesources: TparticleSource[];
-}[]
 
 
 export type TElement = "Pyro"|"Hydro"|"Dendro"|"Electro"|"Cryo"|"Anemo"|"Geo"|"None"
