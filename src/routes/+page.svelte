@@ -115,8 +115,10 @@
         <Character charIndex={2}/>
         <Character charIndex={3}/>
     </div>
-    <div>
-        
+    <div class="mt-3">
+        {#each Object.values(charsSelected) as c}
+            <p>{c.helptext}</p>
+        {/each}
     </div>
 </div>
 

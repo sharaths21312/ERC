@@ -48,8 +48,8 @@
             totalfieldtime += elt.fieldTimeFraction
         }
         let thisCharProd = energyProd.characters[thisCharIndex]
-        let timeBetweenBurst = (metadata.rotationFixed
-                                    ? thisCharProd.timeBetweenBurst * metadata.rotationLength
+        let timeBetweenBurst = (metadata.rotationFixed // The ||1 accounts for non burst scenarios
+                                    ? (thisCharProd.timeBetweenBurst || 1) * metadata.rotationLength
                                     : thisCharProd.timeBetweenBurst)
         let fieldtimefrac = thisCharProd.fieldTimeFraction / totalfieldtime
 
@@ -59,7 +59,8 @@
             let cind = parseInt(charProd[0]);
             let amt = 0;
             let amtflat = 0;
-            let relativeRots = thisCharProd.timeBetweenBurst / energyProd.characters[cind].timeBetweenBurst
+            let relativeRots = metadata.rotationFixed ? (thisCharProd.timeBetweenBurst || 1)
+                              : thisCharProd.timeBetweenBurst / energyProd.characters[cind].timeBetweenBurst;
             for (const sourceInput of charProd[1].sources) {
                 let sourceData = charsSelected[cind].particlesources[sourceInput.index]
                 let energyMult = particleTransferFrac(sourceData.element, thisChar.element)
@@ -130,8 +131,12 @@
             case "custom":
                 break;
         }
-
-        let erpercent = Math.max(100, (thisChar.burstcost - sum(flatEnergyTotal))/sum(particleEnergyTotal) * 100)
+        let erpercent = 0;
+        if (thisCharProd.timeBetweenBurst == 0) {
+            erpercent = Math.max(100, (0 - sum(flatEnergyTotal))/sum(particleEnergyTotal) * 100)
+        } else {
+            erpercent = Math.max(100, (thisChar.burstcost - sum(flatEnergyTotal))/sum(particleEnergyTotal) * 100)
+        }
         return {
             energy: particleEnergyTotal,
             flat: flatEnergyTotal,

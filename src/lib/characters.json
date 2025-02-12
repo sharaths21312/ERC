@@ -1060,7 +1060,7 @@
                     "cooldown": 20.0,
                     "amount": 0.33,
                     "element": "Hydro",
-                    "duration": 12.0
+                    "duration": 24.0
                 },
                 {
                     "label": "No refresh",
@@ -1589,7 +1589,7 @@
             "burstcost": 60.0,
             "cooldown": 15.0,
             "element": "Electro",
-            "helptext": "If Sethos does not use his burst, switch to fixed rotation mode (cell C5).",
+            "helptext": "If Sethos does not use his burst, set time between burst to 0 and fixed rotation mode.",
             "particlesources": [
                 {
                     "label": "Press",
@@ -1600,16 +1600,16 @@
                 },
                 {
                     "label": "Full CA",
-                    "energytype": "Instant",
+                    "energytype": "Self",
                     "cooldown": 0.0,
-                    "amount": 0.0,
+                    "amount": -20.0,
                     "element": "Electro"
                 },
                 {
                     "label": "Partial CA",
-                    "energytype": "Instant",
+                    "energytype": "Self",
                     "cooldown": 0.0,
-                    "amount": 0.0,
+                    "amount": -10.0,
                     "element": "Electro"
                 }
             ]

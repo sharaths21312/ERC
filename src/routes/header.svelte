@@ -8,7 +8,6 @@
         path = document.location.pathname
         for (const link of document.getElementsByTagName("a")) {
             link.addEventListener("click", (e) => {
-                console.log("test")
                 var lnk = e.currentTarget as HTMLLinkElement
                 path = lnk.href.split("/")[3]
             })
