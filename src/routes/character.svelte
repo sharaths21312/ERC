@@ -131,6 +131,13 @@
             case "custom":
                 break;
         }
+        // Electro resonance
+        if (metadata.isElectroReso && metadata.eResoInterval > 0) {
+            particleEnergyTotal[particleEnergyTotal.length - 1]
+                += metadata.eResoInterval / timeBetweenBurst
+                    * (thisChar.element == "Electro" ? 3 : 1) * (0.6 + 0.4 * fieldtimefrac)
+        }
+
         let erpercent = 0;
         if (thisCharProd.timeBetweenBurst == 0) {
             erpercent = Math.max(100, (0 - sum(flatEnergyTotal))/sum(particleEnergyTotal) * 100)

@@ -30,6 +30,9 @@
         3: getCharData(char4) as TrawCharacterData,
     });
     
+    $effect(() => {
+        metadata.isElectroReso = Object.values(charsSelected).filter(x => x.element == "Electro").length >= 2
+    })
 
 
     let characterNameList: string[] = $state([]);
@@ -106,7 +109,8 @@
         {/if}
         {#if metadata.isElectroReso}
             <label for="electroresinterval">Electro Resonance</label>
-            <input class="data-inputs" type="text" id="electroresinterval" bind:value={metadata.eResoInterval}/>
+            <input class="data-inputs" type="text" title="Set 0 to disable"
+            id="electroresinterval" bind:value={metadata.eResoInterval}/>
         {/if}
     </div>
     <div class="flex flex-row max-w-screen-2xl justify-center flex-wrap">
