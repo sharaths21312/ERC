@@ -23,6 +23,7 @@ jobs:
       - name: build
         env:
            BASE_PATH: '/${{ github.event.repository.name }}'
+           PUBLIC_HASH: '${{ github.sha }}'
         run: |
           npm run build
 

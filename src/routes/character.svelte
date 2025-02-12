@@ -134,7 +134,7 @@
         // Electro resonance
         if (metadata.isElectroReso && metadata.eResoInterval > 0) {
             particleEnergyTotal[particleEnergyTotal.length - 1]
-                += metadata.eResoInterval / timeBetweenBurst
+                += timeBetweenBurst / metadata.eResoInterval
                     * (thisChar.element == "Electro" ? 3 : 1) * (0.6 + 0.4 * fieldtimefrac)
         }
 

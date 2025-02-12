@@ -1,7 +1,6 @@
 <script lang="ts">
     import * as jsonfile from "$lib/characters.json"
 	import type { TcharsSelected, TtotalParticleGeneration, Tmetadata, TrawCharacterData } from "$lib/datatypes";
-    // import {  } from "$lib/index.svelte";
 	import { setContext } from "svelte";
 	import Character from "./character.svelte";
     
