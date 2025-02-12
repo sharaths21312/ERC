@@ -19,7 +19,7 @@
 
 <div class="flex w-full px-5 justify-between items-center bg-zinc-700">
     <a class="font-bold text-lg" href="{base}/">Energy Recharge Calculator
-        <span class="font-normal text-sm">Hash: {PUBLIC_HASH}</span>
+        <span class="font-normal text-sm">Hash: {PUBLIC_HASH.slice(0, 7)}</span>
     </a>
     <div class="mx-3">
         <a href="{base}/data" class="{path == "data" ? "highlight" : ""}">Data</a>

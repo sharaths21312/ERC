@@ -1484,7 +1484,7 @@
             "burstcost": 90.0,
             "cooldown": 18.0,
             "element": "Electro",
-            "helptext": "Raiden's burst gives the entire team energy based on Raiden's ER, typically 20-25 energy. Put this in every character's \"Bonus non-particle energy\".",
+            "helptext": "Raiden's burst energy generation assumes TL10. The energy recharge number is given as the amount above 100 (for example, if she is at 200 ER, set the ER bonus to 100)",
             "particlesources": [
                 {
                     "label": "Press",
@@ -1493,6 +1493,20 @@
                     "amount": 0.45,
                     "element": "Electro",
                     "duration": 25.0
+                },
+                {
+                    "label": "Burst Base Gen",
+                    "energytype": "Flat",
+                    "cooldown": 18,
+                    "amount": 12.5,
+                    "element": "Electro"
+                },
+                {
+                    "label": "Burst ER bonus",
+                    "energytype": "Flat",
+                    "cooldown": 18,
+                    "element": "Electro",
+                    "amount": 0.075
                 }
             ]
         },
