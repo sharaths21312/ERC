@@ -90,7 +90,7 @@
                     let sourceData = charsSelected[cind].particlesources[sourceInput.index]
                     let totaltime = 20;
                     if (metadata.rotationFixed) {
-                        totaltime = metadata.rotationLength * charProd[1].timeBetweenBurst
+                        totaltime = metadata.rotationLength
                     } else {
                         totaltime = charProd[1].timeBetweenBurst
                     }
