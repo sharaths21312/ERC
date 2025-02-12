@@ -64,6 +64,13 @@
         }
     }
 
+    function exportJSON(): string {
+        return JSON.stringify({
+            energyProd: energyProd,
+            names: Object.values(charsSelected).map(x => x.names[0])
+        });
+    }
+
     let energyProd: TtotalParticleGeneration = $state({
         generalParticles: {
             type: "None",

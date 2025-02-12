@@ -142,7 +142,7 @@
         if (thisCharProd.timeBetweenBurst == 0) {
             erpercent = Math.max(100, (0 - sum(flatEnergyTotal))/sum(particleEnergyTotal) * 100)
         } else {
-            erpercent = Math.max(100, (thisChar.burstcost - sum(flatEnergyTotal))/sum(particleEnergyTotal) * 100)
+            erpercent = Math.max(100, (thisChar.burstcost - sum(flatEnergyTotal) - thisCharProd.bonusFlatEnergy)/sum(particleEnergyTotal) * 100)
         }
         return {
             energy: particleEnergyTotal,
@@ -251,11 +251,11 @@
         <!-- Fieldtime and rot length -->
         <input class="charbottominp" type="number" id="character{thisCharIndex}bonusenergy" name="character{thisCharIndex}bonusenergy"
             bind:value={energyProd.characters[thisCharIndex].bonusFlatEnergy} placeholder="Bonus flat energy" title="Bonus flat energy">
+        <input class="charbottominp" type="number" id="character{thisCharIndex}fieldtime" name="character{thisCharIndex}fieldtime"
+            bind:value={energyProd.characters[thisCharIndex].fieldTimeFraction} placeholder="Fractional field time" title="Fractional field time">
         <input class="charbottominp" type="number" id="character{thisCharIndex}tbb" name="character{thisCharIndex}tbb"
             bind:value={energyProd.characters[thisCharIndex].timeBetweenBurst} placeholder={metadata.rotationFixed ? "No. rots per burst" : "Time between bursts"}
             title={metadata.rotationFixed ? "No. rots per burst" : "Time between bursts"}>
-        <input class="charbottominp" type="number" id="character{thisCharIndex}fieldtime" name="character{thisCharIndex}fieldtime"
-            bind:value={energyProd.characters[thisCharIndex].fieldTimeFraction} placeholder="Fractional field time" title="Fractional field time">
     </div>
 </div>
 
