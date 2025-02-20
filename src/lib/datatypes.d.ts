@@ -1,5 +1,3 @@
-import type { favGen } from "./index.svelte"
-
 export type TrawCharacterData = {
     names: string[],
     element: TElement,
@@ -8,6 +6,13 @@ export type TrawCharacterData = {
     cooldown: number?,
     particlesources: TparticleSource[],
     helptext: string?
+}
+
+export type TfavGen = {
+    amount: number,
+    isFunnel: boolean,
+    funnelChar: number,
+    funnelAmt: number
 }
 
 export type TparticleSource = {
@@ -29,7 +34,7 @@ export type TcharacterParticleGeneration =
         funnelAmt: number,
         funnelChar: number
     }[],
-    favs: favGen[],
+    favs: TfavGen[],
     fieldTimeFraction: number,
     timeBetweenBurst: number,
     bonusFlatEnergy: number,
@@ -62,10 +67,16 @@ export type Tmetadata = {
     duration: number
 }
 
-export type TcharsSelected = {
-    [index: number]: TrawCharacterData,
-}
+export type TcharsSelected = TrawCharacterData[]
 
+export type TcharsStorage = {
+    data: TtotalParticleGeneration,
+    names: string[]
+}
+export type TcharsRead = {
+    data: TtotalParticleGeneration,
+    names: string[]
+}
 
 export type TElement = "Pyro"|"Hydro"|"Dendro"|"Electro"|"Cryo"|"Anemo"|"Geo"|"None"
 export type TWeapon = "Sword"|"Claymore"|"Catalyst"|"Bow"|"Polearm"

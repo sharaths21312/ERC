@@ -1,15 +1,15 @@
 <script lang="ts">
-    import type { TcharsSelected, Tfunnel, Tmetadata, TrawCharacterData, TtotalParticleGeneration } from "$lib/datatypes";
-	import { particleTransferFrac, favGen, sum } from "$lib/index.svelte";
-    let { charIndex: thisCharIndex }: { charIndex: number } = $props();
+    import type { TcharsSelected, Tfunnel, Tmetadata, TrawCharacterData, TtotalParticleGeneration, TfavGen } from "$lib/datatypes";
+	import { particleTransferFrac, sum, charNameText } from "$lib/index.svelte";
+    let { charIndex: thisCharIndex, thisCharName = $bindable("") }: { charIndex: number, thisCharName: string } = $props();
 	import { getContext, onMount } from "svelte";
 	import { flip } from "svelte/animate";
     import { slide } from "svelte/transition";
     
     let charsSelected = getContext("charsSelected") as TcharsSelected
-    let thisChar = $state(charsSelected[thisCharIndex])
+    let thisChar = $derived(charsSelected[thisCharIndex])
     let metadata = getContext("metadata") as Tmetadata
-
+    let selectedCharNames = getContext("selectedCharNames") as charNameText[]
     let energyProd: TtotalParticleGeneration = getContext("energyproduction")
 
     let charList = getContext("charslist") as string[]
@@ -36,13 +36,11 @@
             enabled: true
         };
     }
-    
+    $inspect(thisCharName)
 
     let debug = $derived.by(() => {
         let particleEnergyTotal: number[] = []
-        let energyAmt: number[] = []
         let flatEnergyTotal: number[] = []
-        let numchars = Object.keys(energyProd.characters).length;
         let totalfieldtime = 0
         for (const elt of Object.values(energyProd.characters)) {
             totalfieldtime += elt.fieldTimeFraction
@@ -152,18 +150,21 @@
     })
 
     function addFav () {
-        energyProd.characters[thisCharIndex].favs.push(new favGen());
+        energyProd.characters[thisCharIndex].favs.push({
+            amount: 0,
+            isFunnel: false,
+            funnelChar: 0,
+            funnelAmt: 100
+        });
     }
 
     $effect(() => {
         charNameInp.value = thisChar.names[0]
     })
 
-    function charInpChange(e: Event) {
-        e.preventDefault();
+    function charInpChange() {
         if (charList.findIndex(x => x == charNameInp.value) != -1) {
             changeChar(charNameInp.value, thisCharIndex)
-            thisChar = charsSelected[thisCharIndex]
         }
     }
 
@@ -197,7 +198,7 @@
 <div class="flex-col flex m-2">
     <input list="listchars" style="color: black;" onclick={selectTextInput}
     onchange={charInpChange} bind:this={charNameInp}
-    class="p-2" title="Character">
+    class="p-2" title="Character" bind:value={thisCharName}>
     <div class="bg-gray-900 p-2 mt-2 flex flex-col">
         <!-- Final ER requirement display -->
         <span class="text-center mt-2 mb-1">Energy needed:</span>

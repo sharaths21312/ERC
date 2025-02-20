@@ -1,13 +1,24 @@
 <script lang="ts">
     import * as jsonfile from "$lib/characters.json"
-	import type { TcharsSelected, TtotalParticleGeneration, Tmetadata, TrawCharacterData } from "$lib/datatypes";
+	import type { TcharsSelected, TtotalParticleGeneration, Tmetadata, TrawCharacterData, TcharsStorage } from "$lib/datatypes";
 	import { setContext } from "svelte";
 	import Character from "./character.svelte";
+	import { flip } from "svelte/animate";
+	import { slide } from "svelte/transition";
     
     const charsData = jsonfile.characters;
-    
+    const energyProd: TtotalParticleGeneration = $state({
+        generalParticles: {
+            type: "None",
+            amount: 9
+        },
+        characters: []
+    })
+
+    let storageData: TcharsStorage[] = $state([])
     let isRotFixed = true;
 
+    
     let metadata: Tmetadata = $state({
         rotationLength: 20,
         thresholdEnergyMode: "default",
@@ -17,18 +28,19 @@
         eResoInterval: 5.5,
         duration: 90
     })
+    // svelte-ignore non_reactive_update
+        let loadModal: HTMLDialogElement;
+    // This runs on page load
+    $effect(() => {
+        if (localStorage.getItem("data")) {
+            storageData = JSON.parse(localStorage.getItem("data")!).data
+        }
+    })
+    let charsSelected: TcharsSelected = $state([
+        getCharData("Ayaka")!, getCharData("Kokomi")!,
+        getCharData("Kazuha")!, getCharData("Shenhe")!]
+    );
 
-    let char1 = "Ayaka"
-    let char2 = "Kokomi"
-    let char3 = "Kazuha"
-    let char4 = "Shenhe"
-    let charsSelected: TcharsSelected = $state({
-        0: getCharData(char1) as TrawCharacterData,
-        1: getCharData(char2) as TrawCharacterData,
-        2: getCharData(char3) as TrawCharacterData,
-        3: getCharData(char4) as TrawCharacterData,
-    });
-    
     $effect(() => {
         metadata.isElectroReso = Object.values(charsSelected).filter(x => x.element == "Electro").length >= 2
     })
@@ -41,6 +53,11 @@
         }
     }
     characterNameList.sort()
+    var selectedCharNames: string[] = $state(
+        charsSelected.map(element => {
+            return element.names[0]
+        }
+    ))
 
     function getCharData(charName:string) {
         for (const elt of charsData) {
@@ -66,24 +83,46 @@
 
     function exportJSON(): string {
         return JSON.stringify({
-            energyProd: energyProd,
+            energyProd: $state.snapshot(energyProd),
             names: Object.values(charsSelected).map(x => x.names[0])
         });
     }
 
-    let energyProd: TtotalParticleGeneration = $state({
-        generalParticles: {
-            type: "None",
-            amount: 9
-        },
-        characters: []
-    });
+    function loadObj(data: TcharsStorage) {
+        debugger;
+        for (let i = 0; i < data.names.length; i++) {
+            charsSelected[i] = getCharData(data.names[i])!
+            selectedCharNames[i] = charsSelected[i].names[0];
+            energyProd.characters = data.data.characters
+            energyProd.generalParticles = data.data.generalParticles
+        }
+    }
+    function saveStorage() {
+        localStorage.setItem("data", JSON.stringify({data: $state.snapshot(storageData)}))
+    }
+    function saveButtonClicked(event: MouseEvent) {
+        debugger;
+        let btn = event.target as HTMLButtonElement
+        storageData.push({
+            data: $state.snapshot(energyProd),
+            names: Object.values($state.snapshot(charsSelected)).map(x => x.names[0])
+        })
+        saveStorage()
+        btn.classList.add("greenindicator")
+        btn.disabled = true
+        setTimeout(() => {
+            btn.classList.remove("greenindicator")
+            btn.disabled = false
+        }, 2000);
+    }
+
     setContext("changeChar", (charName: string, charIndex: number) =>
         charsSelected[charIndex] = getCharData(charName) as TrawCharacterData)
     setContext("charslist", characterNameList);
+    setContext("energyproduction", energyProd)
+    setContext("selectedCharNames", selectedCharNames)
     setContext("metadata", metadata)
     setContext("charsSelected", charsSelected);
-    setContext("energyproduction", energyProd)
     setContext("jsonchars", charsData);
     setContext("chardatagetter", getCharData);
 
@@ -120,16 +159,43 @@
         {/if}
     </div>
     <div class="flex flex-row max-w-screen-2xl justify-center flex-wrap">
-        <Character charIndex={0}/>
-        <Character charIndex={1}/>
-        <Character charIndex={2}/>
-        <Character charIndex={3}/>
+        <Character charIndex={0} bind:thisCharName={selectedCharNames[0]}/>
+        <Character charIndex={1} bind:thisCharName={selectedCharNames[1]}/>
+        <Character charIndex={2} bind:thisCharName={selectedCharNames[2]}/>
+        <Character charIndex={3} bind:thisCharName={selectedCharNames[3]}/>
     </div>
     <div class="mt-3">
         {#each Object.values(charsSelected) as c}
             <p>{c.helptext}</p>
         {/each}
     </div>
+    <div class="flex flex-row my-3">
+        <button class="saveloadbtn" onclick={saveButtonClicked}>Save config</button>
+        <button class="saveloadbtn" onclick={() => loadModal.showModal()}>Load config</button>
+
+        <button class="saveloadbtn" disabled>Export JSON</button>
+        <button class="saveloadbtn" disabled>Import JSON</button>
+    </div>
+
+    <dialog id="loadmodal" bind:this={loadModal} class="loadmodal">
+        <div class="p-1 flex flex-row items-center">
+            <span class="text-lg flex-1">Choose save</span>
+            <button class="p-2 m-auto" onclick={() => loadModal.close()}>
+                x
+            </button>
+        </div>
+        {#each storageData as saved, i (saved)}
+            <div class="flex flex-row border-solid rounded border-white border-2" animate:flip={{duration:100}} transition:slide={{duration:100}}>
+                <div class="savednamesgrid grid content-center flex-1">
+                    {#each saved.names as name}
+                        <span class="m-1">{name}</span>
+                    {/each}
+                </div>
+                <button class="p-1 m-1 rounded border-black border-solid border-2" onclick={() => {loadObj(saved)}}>load</button>
+                <button class="p-1 m-1" onclick={() => {storageData.splice(i, 1); saveStorage()}}>x</button>
+            </div>
+        {/each}
+    </dialog>
 </div>
 
 <datalist id="listchars">
@@ -139,10 +205,39 @@
 </datalist>
 
 <style>
+    .loadmodal {
+        min-width: 200px;
+        min-height: 300px;
+        opacity: 1;
+        border-radius: 15px;
+        color: white;
+        padding: 20px;
+        flex-direction: column;
+        @apply bg-slate-700;
+    }
+    .loadmodal:open {
+        display: flex;
+    }
     .topbar-container {
         width: min(90%, 800px);
         padding: 20px;
     }
+    .saveloadbtn {
+        padding: 5px;
+        margin: 3px;
+        border: 2px solid white;
+        border-radius: 10%;
+    }
+    .saveloadbtn:not(:disabled):hover {
+        background-color: rgba(240, 248, 255, 0.174);
+    }
+    
+    .savednamesgrid {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        padding: 10px;
+    }
+
     @media (max-width: 788px) {
         .topbar-container {
             grid-template-columns: auto 1fr;
@@ -154,6 +249,9 @@
         }
         .topbar-container label {
             text-align: center;
+        }
+        .savednamesgrid {
+            grid-template-columns: auto auto;
         }
     }
 
@@ -173,6 +271,9 @@
         padding-inline: 8px;
         padding-block: 5px;
         width: 100%;
+    }
+    :global(.greenindicator) {
+        background-color: rgba(17, 175, 17, 0.6);
     }
 
     select option {
