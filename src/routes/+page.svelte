@@ -81,31 +81,24 @@
         }
     }
 
-    function exportJSON(): string {
-        return JSON.stringify({
-            energyProd: $state.snapshot(energyProd),
-            names: Object.values(charsSelected).map(x => x.names[0])
-        });
-    }
-
     function loadObj(data: TcharsStorage) {
-        debugger;
         for (let i = 0; i < data.names.length; i++) {
             charsSelected[i] = getCharData(data.names[i])!
             selectedCharNames[i] = charsSelected[i].names[0];
-            energyProd.characters = data.data.characters
-            energyProd.generalParticles = data.data.generalParticles
         }
+        energyProd.characters = data.data.characters
+        energyProd.generalParticles = data.data.generalParticles
+        metadata = data.metadata
     }
     function saveStorage() {
         localStorage.setItem("data", JSON.stringify({data: $state.snapshot(storageData)}))
     }
     function saveButtonClicked(event: MouseEvent) {
-        debugger;
         let btn = event.target as HTMLButtonElement
         storageData.push({
             data: $state.snapshot(energyProd),
-            names: Object.values($state.snapshot(charsSelected)).map(x => x.names[0])
+            names: Object.values($state.snapshot(charsSelected)).map(x => x.names[0]),
+            metadata: $state.snapshot(metadata)
         })
         saveStorage()
         btn.classList.add("greenindicator")
@@ -116,8 +109,16 @@
         }, 2000);
     }
 
-    setContext("changeChar", (charName: string, charIndex: number) =>
-        charsSelected[charIndex] = getCharData(charName) as TrawCharacterData)
+    setContext("changeChar", (charName: string, charIndex: number) => {
+        charsSelected[charIndex] = getCharData(charName) as TrawCharacterData
+        energyProd.characters.forEach(elt => { // If a character has too few sources, this prevents an error
+            elt.sources.forEach(src => {
+                if (src.index >= charsSelected[charIndex].particlesources.length) {
+                    src.index = 0
+                }
+            })
+        });
+    })
     setContext("charslist", characterNameList);
     setContext("energyproduction", energyProd)
     setContext("selectedCharNames", selectedCharNames)

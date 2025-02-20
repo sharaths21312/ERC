@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { TcharsSelected, Tfunnel, Tmetadata, TrawCharacterData, TtotalParticleGeneration, TfavGen } from "$lib/datatypes";
-	import { particleTransferFrac, sum, charNameText } from "$lib/index.svelte";
+	import { particleTransferFrac, sum } from "$lib/index.svelte";
     let { charIndex: thisCharIndex, thisCharName = $bindable("") }: { charIndex: number, thisCharName: string } = $props();
 	import { getContext, onMount } from "svelte";
 	import { flip } from "svelte/animate";
@@ -9,12 +9,10 @@
     let charsSelected = getContext("charsSelected") as TcharsSelected
     let thisChar = $derived(charsSelected[thisCharIndex])
     let metadata = getContext("metadata") as Tmetadata
-    let selectedCharNames = getContext("selectedCharNames") as charNameText[]
     let energyProd: TtotalParticleGeneration = getContext("energyproduction")
 
     let charList = getContext("charslist") as string[]
     let changeChar = getContext("changeChar") as (s: string, idx: number) => null
-    let jsondata = getContext("jsonchars") as TrawCharacterData[]
     let charNameInp: HTMLInputElement
     const numberformat = Intl.NumberFormat('en-US', { 'maximumFractionDigits': 0 })
 
@@ -151,7 +149,7 @@
 
     function addFav () {
         energyProd.characters[thisCharIndex].favs.push({
-            amount: 0,
+            amount: 1,
             isFunnel: false,
             funnelChar: 0,
             funnelAmt: 100
@@ -267,9 +265,10 @@
         <select class="text-black w-full p-1 my-2" bind:value={f.funnelChar}
             transition:slide={{duration:100}} title="Funnel to">
             {#each Object.entries(charsSelected) as activeChars, cidx}
-                {#if activeChars}
+                {#if activeChars && cidx != thisCharIndex}
                     <option value={cidx}>{activeChars[1].names[0]}</option>
                 {/if}
+                <option value={-1}>Nobody</option>
             {/each}
         </select>
         <span class="flex flex-row items-center text-center w-full bg-white text-black px-3"

@@ -52,9 +52,7 @@ export type TtotalParticleGeneration = {
         type: TElement,
         amount: number
     },
-    characters: {
-        [index: number]: TcharacterParticleGeneration
-    }
+    characters: TcharacterParticleGeneration[]
 }
 
 export type Tmetadata = {
@@ -71,11 +69,8 @@ export type TcharsSelected = TrawCharacterData[]
 
 export type TcharsStorage = {
     data: TtotalParticleGeneration,
-    names: string[]
-}
-export type TcharsRead = {
-    data: TtotalParticleGeneration,
-    names: string[]
+    names: string[],
+    metadata: Tmetadata
 }
 
 export type TElement = "Pyro"|"Hydro"|"Dendro"|"Electro"|"Cryo"|"Anemo"|"Geo"|"None"
