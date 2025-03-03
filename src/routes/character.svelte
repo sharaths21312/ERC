@@ -268,8 +268,8 @@
                 {#if activeChars && cidx != thisCharIndex}
                     <option value={cidx}>{activeChars[1].names[0]}</option>
                 {/if}
-                <option value={-1}>Nobody</option>
-            {/each}
+                {/each}
+            <option value={-1}>Nobody</option>
         </select>
         <span class="flex flex-row items-center text-center w-full bg-white text-black px-3"
             transition:slide={{duration:100}}>
