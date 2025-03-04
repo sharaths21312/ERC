@@ -59,10 +59,23 @@
                               : thisCharProd.timeBetweenBurst / energyProd.characters[cind].timeBetweenBurst;
             for (const sourceInput of charProd[1].sources) {
                 let sourceData = charsSelected[cind].particlesources[sourceInput.index]
+                let sourceAmt = sourceData.amount
+                if (metadata.energyRNG != 0) {
+                    if (sourceData.energytype == "Instant") {
+                        // Unless the energy rng is custom, the worst case is the floor of the generation
+                        sourceAmt -= metadata.energyRNG * (sourceData.manual_rng == null
+                                                            ? (sourceAmt - Math.floor(sourceAmt))
+                                                            : sourceData.manual_rng)
+                    } else if (sourceData.energytype == "Turret") {
+                        // Unless the energy rng is custom, the worst case is half the generation
+                        sourceAmt *= (1 - (sourceData.manual_rng ?? 0.5) * metadata.energyRNG)
+                    }
+                }
                 let energyMult = particleTransferFrac(sourceData.element, thisChar.element)
-
+                // sourceData is the raw data
+                // sourceInput is the user input
                 if (sourceData.energytype == "Instant") {
-                    let particles = sourceInput.amount * sourceData.amount * energyMult * relativeRots
+                    let particles = sourceInput.amount * sourceAmt * energyMult * relativeRots
                     if (sourceInput.isFunnel && sourceInput.funnelChar == thisCharIndex) {
                         // If funnelling to this character
                         amt += (0.6 + 0.4 * sourceInput.funnelAmt/100) * particles
@@ -79,9 +92,9 @@
                         amt += 0.6 * particles
                     }
                 } else if (sourceData.energytype == "Flat") {
-                    amtflat += sourceData.amount * sourceInput.amount * relativeRots
+                    amtflat += sourceAmt * sourceInput.amount * relativeRots
                 } else if (sourceData.energytype == "Self" && cind == thisCharIndex) {
-                    amtflat += sourceData.amount * sourceInput.amount;
+                    amtflat += sourceAmt * sourceInput.amount;
                 } else if (sourceData.energytype == "Turret") {
                     let sourceData = charsSelected[cind].particlesources[sourceInput.index]
                     let totaltime = 20;
@@ -93,7 +106,7 @@
                     let uptime = Math.min(1, sourceInput.amount * sourceData.duration!/totaltime)
                     let numseconds = uptime * timeBetweenBurst
                     let energyMult = particleTransferFrac(sourceData.element, thisChar.element)
-                    amt += energyMult * numseconds * (0.6 + 0.4 * fieldtimefrac) * sourceData.amount
+                    amt += energyMult * numseconds * (0.6 + 0.4 * fieldtimefrac) * sourceAmt
                 }
             }
 
@@ -210,9 +223,9 @@
             <!-- Normal particle sources -->
             {#each energyProd.characters[thisCharIndex]?.sources ?? [] as c, i (c)}
                 <div animate:flip={{duration:100}} transition:slide={{duration:100}}
-                    class="flex flex-col items-center mt-1 mb-1 py-2 border-b border-solid border-white">
+                    class="flex flex-col items-center py-2 border-b border-solid border-white">
                     <!-- Skill type picker -->
-                    <div class="my-2 flex flex-row self-stretch">
+                    <div class="my-1 flex flex-row self-stretch">
                         <select name="char{thisCharIndex}sourcefor{i}" class="data-inputs w-full" bind:value={c.index}>
                             {#each thisChar.particlesources as p, j}
                                 <option value={j}>{p.label}</option>
@@ -222,7 +235,7 @@
                     </div>
                     <!-- Skill amount and funnel -->
                     <div class="flex flex-row my-1 self-stretch">
-                        <input type="number" class="flex-1 m-1" bind:value={c.amount} placeholder="# usages" min="0">
+                        <input type="number" class="flex-1 my-1" bind:value={c.amount} placeholder="# usages" title="# usages" min="0">
                         <input type="checkbox" class="mx-2" bind:checked={c.isFunnel} title="Funnel this">
                     </div>
                     {@render funnel(c, `character${thisCharIndex}src${i}funnel`)}
@@ -262,18 +275,18 @@
 {#snippet funnel(f: Tfunnel, name: string)}
     {#if f.isFunnel}
     <div class="flex flex-col self-stretch border-solid border-b border-white">
-        <select class="text-black w-full p-1 my-2" bind:value={f.funnelChar}
+        <select class="funnel-select" bind:value={f.funnelChar}
             transition:slide={{duration:100}} title="Funnel to">
             {#each Object.entries(charsSelected) as activeChars, cidx}
                 {#if activeChars && cidx != thisCharIndex}
                     <option value={cidx}>{activeChars[1].names[0]}</option>
                 {/if}
-                {/each}
+            {/each}
             <option value={-1}>Nobody</option>
         </select>
         <span class="flex flex-row items-center text-center w-full bg-white text-black px-3"
             transition:slide={{duration:100}}>
-            <input type="number" class="w-full px-2 m-1 mb-3 border-none"
+            <input type="number" class="w-full border-none"
                 bind:value={f.funnelAmt} min="0" max="100"
                 placeholder="% funnelled" title="% funnelled">
             %
@@ -288,26 +301,29 @@
         min-width: 0px;
     }
     input[type=number] {
-        margin: 2px;
         min-width: 0px;
     }
     select {
         min-width: 0px;
     }
     .charbottominp {
-        margin-block: 3px;
-        margin-inline: 4px;
+        margin-block: 2px;
+        margin-inline: 3px;
         border-radius: 0px;
         border-width: 0px;
     }
-
+    .funnel-select {
+        color: black;
+        margin-block: 0.4rem;
+        padding: 0.2rem;
+    }
     .sourceheader {
         text-align: center;
         font-size: 1.125rem;
-        line-height: 1.75rem;
+        line-height: 1.5rem;
         font-weight: bold;
-        margin-bottom: 5px;
-        padding-bottom: 2px;
+        margin-bottom: 2px;
+        padding-bottom: 4px;
         border-bottom: 2px solid white;
     }
     input {

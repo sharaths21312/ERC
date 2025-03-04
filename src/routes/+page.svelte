@@ -24,6 +24,7 @@
         thresholdEnergyMode: "default",
         customEnergyValue: 0,
         rotationFixed: true,
+        energyRNG: 0,
         isElectroReso: false,
         eResoInterval: 5.5,
         duration: 90
@@ -158,6 +159,14 @@
             <input class="data-inputs" type="text" title="Set 0 to disable"
             id="electroresinterval" bind:value={metadata.eResoInterval}/>
         {/if}
+        <label for="energyrng">Energy RNG</label>
+        <select class="data-inputs" id="energyrng" name="energyrng"
+        bind:value={metadata.energyRNG}>
+            <option value={0}>Average</option>
+            <option value={0.5}>Safe</option>
+            <option value={1}>Worst case</option>
+            <option value={-0.25}>Optimistic</option>
+        </select>
     </div>
     <div class="flex flex-row max-w-screen-2xl justify-center flex-wrap">
         <Character charIndex={0} bind:thisCharName={selectedCharNames[0]}/>
@@ -165,10 +174,12 @@
         <Character charIndex={2} bind:thisCharName={selectedCharNames[2]}/>
         <Character charIndex={3} bind:thisCharName={selectedCharNames[3]}/>
     </div>
-    <div class="mt-3">
-        {#each Object.values(charsSelected) as c}
-            <p>{c.helptext}</p>
-        {/each}
+    <div class="mt-3 helptextdiv">
+        <ul>
+            {#each Object.values(charsSelected) as c}
+                <li>{c.helptext}</li>
+            {/each}
+        </ul>
     </div>
     <div class="flex flex-row my-3">
         <button class="saveloadbtn" onclick={saveButtonClicked}>Save config</button>
@@ -192,7 +203,7 @@
                         <span class="m-1">{name}</span>
                     {/each}
                 </div>
-                <button class="p-1 m-1 rounded border-black border-solid border-2" onclick={() => {loadObj(saved)}}>load</button>
+                <button class="px-1 m-1 rounded border-black border-solid border-2" onclick={() => {loadObj(saved)}}>load</button>
                 <button class="p-1 m-1" onclick={() => {storageData.splice(i, 1); saveStorage()}}>x</button>
             </div>
         {/each}
@@ -212,7 +223,7 @@
         opacity: 1;
         border-radius: 15px;
         color: white;
-        padding: 20px;
+        padding: 15px;
         flex-direction: column;
         @apply bg-slate-700;
     }
@@ -221,7 +232,7 @@
     }
     .topbar-container {
         width: min(90%, 800px);
-        padding: 20px;
+        padding: 15px;
     }
     .saveloadbtn {
         padding: 5px;
@@ -237,6 +248,9 @@
         display: grid;
         grid-template-columns: auto auto auto auto;
         padding: 10px;
+    }
+    .helptextdiv {
+        max-width: 70%;
     }
 
     @media (max-width: 788px) {
@@ -262,15 +276,15 @@
     }
     
     .data-inputs {
-        margin-right: 20px;
+        margin-right: 10px;
     }
 
     :global(.data-inputs) {
         color: black;
         text-align: center;
         min-width: 0px;
-        padding-inline: 8px;
-        padding-block: 5px;
+        padding-inline: 4px;
+        padding-block: 3px;
         width: 100%;
     }
     :global(.greenindicator) {

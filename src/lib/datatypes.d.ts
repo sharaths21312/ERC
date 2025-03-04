@@ -20,7 +20,8 @@ export type TparticleSource = {
     amount: number,
     element: TElement,
     cooldown: number,
-    duration?: number,
+    duration: number?,
+    manual_rng: number?,
     energytype: "Turret"|"Flat"|"Instant"|"Self"
 }
 
@@ -61,6 +62,7 @@ export type Tmetadata = {
     customEnergyValue: number,
     rotationFixed: boolean,
     isElectroReso: boolean,
+    energyRNG: number,
     eResoInterval: number,
     duration: number
 }

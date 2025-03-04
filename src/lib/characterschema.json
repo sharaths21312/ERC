@@ -43,7 +43,6 @@
           },
           "weapon": {
             "title": "Weapon",
-            "description": "Type of weapon",
             "enum": [
               "Sword",
               "Claymore",
@@ -97,6 +96,10 @@
                 "duration": {
                   "type": "number",
                   "description": "Duration of turrets"
+                },
+                "manual_rng": {
+                  "type": "number",
+                  "description": "Used to declare custom rng amounts for safe/worst case. Use 0 if particles are guaranteed"
                 }
               },
               "if": {

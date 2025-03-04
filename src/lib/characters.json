@@ -526,7 +526,8 @@
                     "energytype": "Instant",
                     "cooldown": 15.0,
                     "amount": 4.0,
-                    "element": "Cryo"
+                    "element": "Cryo",
+                    "manual_rng": 0.25
                 }
             ]
         },
@@ -1324,7 +1325,8 @@
                     "cooldown": 5.0,
                     "amount": 0.36,
                     "element": "Dendro",
-                    "duration": 25.0
+                    "duration": 25.0,
+                    "manual_rng": 0
                 },
                 {
                     "label": "Hold",
@@ -1332,7 +1334,8 @@
                     "cooldown": 6.0,
                     "amount": 0.36,
                     "element": "Dendro",
-                    "duration": 25.0
+                    "duration": 25.0,
+                    "manual_rng": 0
                 }
             ]
         },
@@ -1820,13 +1823,20 @@
             "burstcost": 80.0,
             "cooldown": 20.0,
             "element": "Dendro",
-            "helptext": "Dendro Traveler's C1 is already factored in and does not need to be added to \"Bonus non-particle energy\".",
+            "helptext": "",
             "particlesources": [
                 {
                     "label": "Press",
                     "energytype": "Instant",
                     "cooldown": 8.0,
                     "amount": 2.5,
+                    "element": "Dendro"
+                },
+                {
+                    "label": "C1",
+                    "energytype": "Self",
+                    "cooldown": 8.0,
+                    "amount": 3.5,
                     "element": "Dendro"
                 }
             ]
@@ -1903,13 +1913,27 @@
             "burstcost": 70.0,
             "cooldown": 18.0,
             "element": "Pyro",
-            "helptext": "Blazing Threshold can trigger once every 2.9s, for a max of 5 per Skill. C2 and Burst restore Nightsoul Points for more particles. They gain 5 energy when a Pyro reaction is triggered with a 12s cooldown and 4 energy when a teammate triggers Nightsoul Burst. Put this in \"Bonus non-particle energy\".",
+            "helptext": "Blazing Threshold can trigger once every 2.9s, for a max of 5 per Skill; C2 and Burst restore Nightsoul Points for more skill duration. Their A4 passive gains them 5 energy when a Pyro reaction is triggered with a 12s cooldown and 4 energy when a teammate triggers Nightsoul Burst.",
             "particlesources": [
                 {
                     "label": "Blazing Threshold",
                     "energytype": "Instant",
                     "cooldown": 2.9,
                     "amount": 1.0,
+                    "element": "Pyro"
+                },
+                {
+                    "label": "A4 (reaction)",
+                    "energytype": "Self",
+                    "amount": 5,
+                    "cooldown": 12,
+                    "element": "Pyro"
+                },
+                {
+                    "label": "A4 (Nightsoul Burst)",
+                    "energytype": "Self",
+                    "amount": 4,
+                    "cooldown": 0,
                     "element": "Pyro"
                 }
             ]
@@ -1961,6 +1985,13 @@
                     "cooldown": 6.0,
                     "amount": 3.0,
                     "element": "Anemo"
+                },
+                {
+                    "label": "Electro absorb",
+                    "energytype": "Self",
+                    "cooldown": 6,
+                    "amount": 13,
+                    "element": "Anemo"
                 }
             ]
         },
@@ -1971,7 +2002,7 @@
             "burstcost": 60.0,
             "cooldown": 15.0,
             "element": "Cryo",
-            "helptext": "Wriothesley generates 1 particle on-hit from his normal attack during his skill if above 50% HP with a 2s ICD. Rebuke: Vaulting Fist shares this ICD and will generate 1 Elemental Particle on-hit.",
+            "helptext": "Wriothesley generates 1 particle on-hit with a shared 2s CD between normal attacks during his skill if above 50% HP or his special CA, \"Rebuke: Vaulting Fist\"",
             "particlesources": [
                 {
                     "label": "NA during skill",
@@ -2004,6 +2035,7 @@
                     "cooldown": 12.0,
                     "amount": 0.5,
                     "element": "Pyro",
+                    "manual_rng": 0,
                     "duration": 8.0
                 }
             ]
@@ -2069,13 +2101,20 @@
             "burstcost": 80.0,
             "cooldown": 20.0,
             "element": "Hydro",
-            "helptext": "Xingqiu's C6 gives him 3 energy on every third Sword Rain trigger, typically 12 energy in total. Put this in \"Bonus non-particle energy\".",
+            "helptext": "Xingqiu's C6 gives him 3 energy on every third Sword Rain trigger, typically 12 energy in total.",
             "particlesources": [
                 {
                     "label": "Press",
                     "energytype": "Instant",
                     "cooldown": 21.0,
                     "amount": 5.0,
+                    "element": "Hydro"
+                },
+                {
+                    "label": "C6 (12 energy)",
+                    "energytype": "Self",
+                    "cooldown": 20,
+                    "amount": 12,
                     "element": "Hydro"
                 }
             ]
@@ -2111,9 +2150,17 @@
                     "label": "3 totems",
                     "energytype": "Turret",
                     "cooldown": 4.0,
+                    "manual_rng": 0,
                     "amount": 0.36,
                     "element": "Electro",
                     "duration": 14.0
+                },
+                {
+                    "label": "C1 (3 totems)",
+                    "energytype": "Self",
+                    "cooldown": 22,
+                    "amount": 24,
+                    "element": "Electro"
                 }
             ]
         },
@@ -2142,23 +2189,23 @@
             "burstcost": 80.0,
             "cooldown": 20.0,
             "element": "Dendro",
-            "helptext": "Yaoyao's C2 gives her 15 flat energy if she stays on field during her burst. Put this in \"Bonus non-particle energy\". Yaoyao's radishes only generate particles if the explosion hits an enemy.",
+            "helptext": "Yaoyao's C2 gives her 15 flat energy if she stays on field during her burst. Yaoyao's radishes only generate particles if the explosion hits an enemy.",
             "particlesources": [
                 {
-                    "label": "Press",
+                    "label": "Yuguei",
                     "energytype": "Turret",
                     "cooldown": 15.0,
                     "amount": 0.5,
+                    "manual_rng": 0,
                     "element": "Dendro",
                     "duration": 10.0
                 },
                 {
-                    "label": "Hold",
-                    "energytype": "Turret",
-                    "cooldown": 15.0,
-                    "amount": 0.5,
-                    "element": "Dendro",
-                    "duration": 10.0
+                    "label": "C2 (max stacks)",
+                    "energytype": "Self",
+                    "cooldown": 15,
+                    "amount": 15,
+                    "element": "Dendro"
                 }
             ]
         },
@@ -2195,6 +2242,32 @@
                     "cooldown": 18.0,
                     "amount": 4.0,
                     "element": "Pyro"
+                }
+            ]
+        },
+        {
+            "names": [
+                "Yumemizuki Mizuki"
+            ],
+            "element": "Anemo",
+            "burstcost": 60,
+            "cooldown": 15,
+            "weapon": "Catalyst",
+            "helptext": "Mizuki's skill generates particles when she's onfield and hitting enemies, up to 4 times",
+            "particlesources": [
+                {
+                    "label": "Press",
+                    "energytype": "Instant",
+                    "amount": 4,
+                    "cooldown": 15,
+                    "element": "Anemo"
+                },
+                {
+                    "label": "C4 (max stack)",
+                    "energytype": "Self",
+                    "amount": 15,
+                    "cooldown": 15,
+                    "element": "Anemo"
                 }
             ]
         },
