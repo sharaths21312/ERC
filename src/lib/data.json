@@ -6,40 +6,38 @@
       "names": [
         "Aino"
       ],
-      "help": "Aino's C4 restores her 10 energy after using a Skill.",
       "element": "Hydro",
       "bursts": [
         {
-          "energy": 50,
-          "cooldown": 13.5
+          "cooldown": 13.5,
+          "energy": 50.0
         }
       ],
       "sources": [
         {
           "title": "Constellation 0",
-          "cooldown": 10,
+          "cooldown": 10.0,
           "gen": [
             {
               "type": "particle",
-              "amount": 3,
+              "amount": 3.0,
               "element": "Hydro"
             }
           ]
         },
         {
           "title": "Constellation 4",
-          "cooldown": 10,
+          "cooldown": 10.0,
           "gen": [
             {
               "type": "particle",
-              "amount": 3,
+              "amount": 3.0,
               "element": "Hydro"
             },
             {
               "type": "flat",
-              "target": "self",
-              "element": "Hydro",
-              "amount": 5
+              "amount": 10.0,
+              "element": "Hydro"
             }
           ]
         }
@@ -49,26 +47,3846 @@
       "names": [
         "Albedo"
       ],
-      "help": "Albedo's skill triggers every 2.5s and distributes its particles based on time spent on field. Albedo C1 gains 1.2 energy per E trigger. Put this in \"Bonus non-particle energy\".",
       "element": "Geo",
       "bursts": [
         {
-          "cooldown": 12,
-          "energy": 40
+          "cooldown": 12.0,
+          "energy": 40.0
         }
       ],
       "sources": [
         {
           "title": "Press",
+          "cooldown": 4.0,
           "gen": [
             {
               "type": "particle_turret",
               "amount": 0.3,
-              "duration": 30,
+              "element": "Geo",
+              "duration": 30.0
+            }
+          ]
+        },
+        {
+          "title": "Source 2",
+          "cooldown": 0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.3,
               "element": "Geo"
             }
-          ],
-          "cooldown": 4
+          ]
+        },
+        {
+          "title": "Source 3",
+          "cooldown": 0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.3,
+              "element": "Geo"
+            }
+          ]
+        }
+      ],
+      "help": "Albedo's skill triggers every 2.5s and distributes its particles based on time spent on field. Albedo C1 gains 1.2 energy per E trigger. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Alhaitham"
+      ],
+      "element": "Dendro",
+      "bursts": [
+        {
+          "cooldown": 18.0,
+          "energy": 70.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Projection Attack",
+          "cooldown": 18.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 1.0,
+              "element": "Dendro"
+            }
+          ]
+        }
+      ],
+      "help": "Alhaitham generates 1 particle when his Projection Attacks hit an enemy, with a 1.5 second ICD."
+    },
+    {
+      "names": [
+        "Aloy"
+      ],
+      "element": "Cryo",
+      "bursts": [
+        {
+          "cooldown": 12.0,
+          "energy": 40.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 20.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 5.0,
+              "element": "Cryo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Amber"
+      ],
+      "element": "Pyro",
+      "bursts": [
+        {
+          "cooldown": 12.0,
+          "energy": 40.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Pyro"
+            }
+          ]
+        }
+      ],
+      "help": "Feed Amber's particles to whoever will be on field when Baron Bunny explodes."
+    },
+    {
+      "names": [
+        "Arlecchino"
+      ],
+      "element": "Pyro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 30.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 5.0,
+              "element": "Pyro"
+            }
+          ]
+        }
+      ],
+      "help": "Arlecchino's burst resets her skill cooldown. Arlecchino's Normal Attacks reduce her skill cooldown by .8s on hit. Arlecchino's C4 gives her 15 energy on burst. Divide this energy by the number of rotations between bursts. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Ayaka"
+      ],
+      "element": "Cryo",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 10.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.5,
+              "element": "Cryo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Ayato"
+      ],
+      "element": "Hydro",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "On field",
+          "cooldown": 12.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.5,
+              "element": "Hydro"
+            }
+          ]
+        },
+        {
+          "title": "Off field",
+          "cooldown": 12.0,
+          "gen": []
+        },
+        {
+          "title": "Hybrid",
+          "cooldown": 12.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 1.5,
+              "element": "Hydro"
+            }
+          ]
+        }
+      ],
+      "help": "Ayato's A4 gives him 2 energy per second if he is not on field and has less than 40 energy. Put this in \"Bonus non-particle energy\". Hybrid Ayato does one attack after each E before swapping out."
+    },
+    {
+      "names": [
+        "Baizhu"
+      ],
+      "element": "Dendro",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 10.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.5,
+              "element": "Dendro"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Barbara"
+      ],
+      "element": "Hydro",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 32.0,
+          "gen": []
+        }
+      ],
+      "help": "Barbara C1 gains 1 energy per 10 seconds. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Beidou"
+      ],
+      "element": "Electro",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "0 stacks",
+          "cooldown": 7.5,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 2.0,
+              "element": "Electro"
+            }
+          ]
+        },
+        {
+          "title": "1 stack",
+          "cooldown": 7.5,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Electro"
+            }
+          ]
+        },
+        {
+          "title": "Perfect",
+          "cooldown": 7.5,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Electro"
+            }
+          ]
+        }
+      ],
+      "help": "Beidou's skill type is how many times she gets hit while holding her skill."
+    },
+    {
+      "names": [
+        "Bennett"
+      ],
+      "element": "Pyro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 4.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 2.25,
+              "element": "Pyro"
+            }
+          ]
+        },
+        {
+          "title": "Hold",
+          "cooldown": 6.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Pyro"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Candace"
+      ],
+      "element": "Hydro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 6.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 2.0,
+              "element": "Hydro"
+            }
+          ]
+        },
+        {
+          "title": "Hold",
+          "cooldown": 9.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Hydro"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Childe"
+      ],
+      "element": "Hydro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "7-9s melee",
+          "cooldown": 13.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Hydro"
+            }
+          ]
+        },
+        {
+          "title": "11s melee",
+          "cooldown": 17.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Hydro"
+            }
+          ]
+        },
+        {
+          "title": "Aimed Shot",
+          "cooldown": 3.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 1.0,
+              "element": "Hydro"
+            }
+          ]
+        }
+      ],
+      "help": "If Tartaglia is using ranged burst, put 20 in \"Bonus non-particle energy\". Use the \"Aimed Shot\" skill in \"Skill uses (other type)\" for the number of aimed shots done in ranged form."
+    },
+    {
+      "names": [
+        "Charlotte"
+      ],
+      "element": "Cryo",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 12.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Cryo"
+            }
+          ]
+        },
+        {
+          "title": "Full Hold",
+          "cooldown": 18.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 5.0,
+              "element": "Cryo"
+            }
+          ]
+        }
+      ],
+      "help": "When enemies marked by Charlotte's skill are defeated, its cooldown is reduced by 2s, up to a maximum of 8s. Charlotte's C4 gives her 2 flat energy for each marked enemy hit by her burst, up to 10."
+    },
+    {
+      "names": [
+        "Chasca"
+      ],
+      "element": "Anemo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 6.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 5.0,
+              "element": "Anemo"
+            }
+          ]
+        }
+      ],
+      "help": "Chasca's C4 restores up to 9 energy per Burst. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Chevreuse"
+      ],
+      "element": "Pyro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Pyro"
+            }
+          ]
+        },
+        {
+          "title": "Hold",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Pyro"
+            }
+          ]
+        }
+      ],
+      "help": "Chevreuse's C1 gives 6 energy to any ally with the Coordinated Tactics status that triggers Overload, once per 10 seconds. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Chiori"
+      ],
+      "element": "Geo",
+      "bursts": [
+        {
+          "cooldown": 13.5,
+          "energy": 50.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 16.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.33,
+              "element": "Geo",
+              "duration": 17.0
+            }
+          ]
+        },
+        {
+          "title": "Hold",
+          "cooldown": 16.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.33,
+              "element": "Geo",
+              "duration": 17.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Chongyun"
+      ],
+      "element": "Cryo",
+      "bursts": [
+        {
+          "cooldown": 12.0,
+          "energy": 40.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Cryo"
+            }
+          ]
+        }
+      ],
+      "help": "Chongyun C4 regenerates 1 Energy every time he hits an opponent affected by Cryo, once per 2 seconds. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Citlali"
+      ],
+      "element": "Cryo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Constellation 0",
+          "cooldown": 16.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 5.0,
+              "element": "Cryo"
+            }
+          ]
+        },
+        {
+          "title": "Constellation 4",
+          "cooldown": 16.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 5.0,
+              "element": "Cryo"
+            },
+            {
+              "type": "flat",
+              "amount": 8.0,
+              "element": "Cryo"
+            }
+          ]
+        }
+      ],
+      "help": "Citlali's C4 restores 8 energy per Skill. The \"Constellation 4\" Skill use already counts this."
+    },
+    {
+      "names": [
+        "Clorinde"
+      ],
+      "element": "Electro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 16.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Electro"
+            }
+          ]
+        }
+      ],
+      "help": "Swift Hunt, Impale the Night, C1, and C6 share particle ICD of 2s. This results in 4 particles per skill. Put one Skill use per full Skill uptime used."
+    },
+    {
+      "names": [
+        "Collei"
+      ],
+      "element": "Dendro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 12.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Dendro"
+            }
+          ]
+        }
+      ],
+      "help": "Collei's C1 gives her 20% ER when not on field. This reduces her ER needs by about 10%."
+    },
+    {
+      "names": [
+        "Columbina"
+      ],
+      "element": "Hydro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 17.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.33,
+              "element": "Hydro",
+              "duration": 25.0
+            }
+          ]
+        }
+      ],
+      "help": "Columbina's C1 restores 6 energy to the active character when Gravity Interference accumulated Lunar Charged. Columbina's C4 restores 4 energy to herself when Gravity Interference is triggered. Put these in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Cyno"
+      ],
+      "element": "Electro",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press (no burst)",
+          "cooldown": 7.5,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Electro"
+            }
+          ]
+        },
+        {
+          "title": "Press (in burst)",
+          "cooldown": 3.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 1.33,
+              "element": "Electro"
+            }
+          ]
+        }
+      ],
+      "help": "Cyno's skill generates fewer particles during his burst. Cyno's C4 gives all other party members 3 energy per reaction triggered, up to 15 energy. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Dahlia"
+      ],
+      "element": "Hydro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 9.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Hydro"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Dehya"
+      ],
+      "element": "Pyro",
+      "bursts": [
+        {
+          "cooldown": 18.0,
+          "energy": 70.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Constellation 0",
+          "cooldown": 20.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.33,
+              "element": "Pyro",
+              "duration": 12.0
+            }
+          ]
+        },
+        {
+          "title": "Constellation 2",
+          "cooldown": 0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.33,
+              "element": "Pyro",
+              "duration": 18.0
+            }
+          ]
+        }
+      ],
+      "help": "Dehya's C4 gives her a total of 15 energy per burst. Put this in \"Bonus non-particle energy\". Divide this energy by the number of rotations between bursts."
+    },
+    {
+      "names": [
+        "Diluc"
+      ],
+      "element": "Pyro",
+      "bursts": [
+        {
+          "cooldown": 12.0,
+          "energy": 40.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "3-skill combo",
+          "cooldown": 10.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.75,
+              "element": "Pyro"
+            }
+          ]
+        }
+      ],
+      "help": "One use of Diluc's skill represents a full three-skill combo."
+    },
+    {
+      "names": [
+        "Diona"
+      ],
+      "element": "Cryo",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 6.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 1.6,
+              "element": "Cryo"
+            }
+          ]
+        },
+        {
+          "title": "Hold",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Cryo"
+            }
+          ]
+        }
+      ],
+      "help": "Diona C1 gains 15 energy on burst. Put this in \"Bonus non-particle energy\". Divide this energy by the number of rotations between bursts."
+    },
+    {
+      "names": [
+        "Dori"
+      ],
+      "element": "Electro",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 9.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 2.0,
+              "element": "Electro"
+            }
+          ]
+        }
+      ],
+      "help": "Dori's A4 is already factored in, don't give her flat energy. Dori's C4 means some of your characters may need slighly less ER than recommended."
+    },
+    {
+      "names": [
+        "Durin"
+      ],
+      "element": "Pyro",
+      "bursts": [
+        {
+          "cooldown": 18.0,
+          "energy": 70.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 12.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Pyro"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Escoffier"
+      ],
+      "element": "Cryo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Cryo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Emilie"
+      ],
+      "element": "Dendro",
+      "bursts": [
+        {
+          "cooldown": 13.5,
+          "energy": 50.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 14.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.33,
+              "element": "Dendro",
+              "duration": 22.0
+            }
+          ]
+        },
+        {
+          "title": "Burst",
+          "cooldown": 13.5,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": -1.0,
+              "element": "Dendro"
+            }
+          ]
+        }
+      ],
+      "help": "Only level 1-2 Lumidouce Cases generate particles. As Emilie's Burst replaces her case, you will miss one particle."
+    },
+    {
+      "names": [
+        "Eula"
+      ],
+      "element": "Cryo",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 4.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 1.5,
+              "element": "Cryo"
+            }
+          ]
+        },
+        {
+          "title": "Hold",
+          "cooldown": 10.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 2.5,
+              "element": "Cryo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Faruzan"
+      ],
+      "element": "Anemo",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Aimed Shot",
+          "cooldown": 6.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 2.0,
+              "element": "Anemo"
+            }
+          ]
+        },
+        {
+          "title": "No Aimed Shot",
+          "cooldown": 6.0,
+          "gen": []
+        },
+        {
+          "title": "C6 triggers",
+          "cooldown": 0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.5,
+              "element": "Anemo",
+              "duration": 4.0
+            }
+          ]
+        }
+      ],
+      "help": "Faruzan only generates particles when she uses an aimed shot after her skill, or when C6 triggers, with a shared 5.5s ICD. C4 gives her 2-4 energy per skill use or C6 trigger, with no ICD."
+    },
+    {
+      "names": [
+        "Fischl"
+      ],
+      "element": "Electro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Constellation 0",
+          "cooldown": 25.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.67,
+              "element": "Electro",
+              "duration": 10.0
+            }
+          ]
+        },
+        {
+          "title": "Constellation 6",
+          "cooldown": 25.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.67,
+              "element": "Electro",
+              "duration": 12.0
+            }
+          ]
+        },
+        {
+          "title": "Source 3",
+          "cooldown": 0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.67,
+              "element": "Electro"
+            }
+          ]
+        }
+      ],
+      "help": "The Oz generated by Fischl's burst doesn't count as a skill use. \"Skill uses per rotation\" should be 0.5 if you use Fischl burst every second rotation."
+    },
+    {
+      "names": [
+        "Flins"
+      ],
+      "element": "Electro",
+      "bursts": [
+        {
+          "cooldown": 16.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Constellation 0",
+          "cooldown": 16.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Electro"
+            }
+          ]
+        },
+        {
+          "title": "Constellation 1",
+          "cooldown": 16.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Electro"
+            },
+            {
+              "type": "flat",
+              "amount": -6.0,
+              "element": "Electro"
+            }
+          ]
+        }
+      ],
+      "help": "Flins does 2 Special Burst per rotation. He generates 4 or 5 particles depending on his combos, put 1.25 in Skill uses for 5 particles. Flins C1 restores 8 energy every 5.5 seconds when Lunar Charged is triggered, and allows for another Special Burst usage, thus costing him 6 more energy."
+    },
+    {
+      "names": [
+        "Freminet"
+      ],
+      "element": "Cryo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Level 0 (no burst)",
+          "cooldown": 10.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 2.0,
+              "element": "Cryo"
+            }
+          ]
+        },
+        {
+          "title": "Level 0 (burst)",
+          "cooldown": 0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 1.0,
+              "element": "Cryo"
+            }
+          ]
+        },
+        {
+          "title": "Level 4",
+          "cooldown": 0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 1.0,
+              "element": "Cryo"
+            }
+          ]
+        }
+      ],
+      "help": "Freminet's burst resets his skill cooldown and reduces its cooldown to 3s. His A1 reduces his skill cooldown by 1s if unleashed at level 1-3. His C2 restores 2-3 energy per skill use."
+    },
+    {
+      "names": [
+        "Furina"
+      ],
+      "element": "Hydro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Salon Members",
+          "cooldown": 20.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.3,
+              "element": "Hydro",
+              "duration": 30.0
+            }
+          ]
+        },
+        {
+          "title": "Singer",
+          "cooldown": 20.0,
+          "gen": []
+        }
+      ],
+      "help": "Furina's C4 gives her 0.8 energy per second while her skill is active. Multiply this by the rotation length and put this in \"Bonus non-particle energy\""
+    },
+    {
+      "names": [
+        "Gaming"
+      ],
+      "element": "Pyro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 6.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 2.0,
+              "element": "Pyro"
+            }
+          ]
+        }
+      ],
+      "help": "Gaming generates particles when he uses Plunging Attack: Charmed Cloudstrider, with a 3 second ICD. Gaming's C4 adds an additional 2 flat energy per enemy hit. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Ganyu"
+      ],
+      "element": "Cryo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 10.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Cryo"
+            }
+          ]
+        }
+      ],
+      "help": "Feed half of Ganyu's particles to whoever will be on field when the Ice Lotus explodes. Ganyu C1 gives her 2 energy per charged shot. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Gorou"
+      ],
+      "element": "Geo",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 10.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 2.0,
+              "element": "Geo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Heizou"
+      ],
+      "element": "Anemo",
+      "bursts": [
+        {
+          "cooldown": 12.0,
+          "energy": 40.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "0-1 stacks",
+          "cooldown": 10.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 2.0,
+              "element": "Anemo"
+            }
+          ]
+        },
+        {
+          "title": "2-3 stacks",
+          "cooldown": 10.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 2.5,
+              "element": "Anemo"
+            }
+          ]
+        },
+        {
+          "title": "Full stacks",
+          "cooldown": 10.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Anemo"
+            }
+          ]
+        }
+      ],
+      "help": "Heizou's C4 gives him 13.5 energy on burst. Put this in \"Bonus non-particle energy\". Divide this energy by the number of rotations between bursts."
+    },
+    {
+      "names": [
+        "Hu Tao"
+      ],
+      "element": "Pyro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 16.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.8,
+              "element": "Pyro"
+            }
+          ]
+        }
+      ],
+      "help": "Hu Tao's skill use assumes 2 particle generation triggers. Hu Tao doesn't generally need to burst every rotation."
+    },
+    {
+      "names": [
+        "Iansan"
+      ],
+      "element": "Electro",
+      "bursts": [
+        {
+          "cooldown": 18.0,
+          "energy": 70.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 16.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Electro"
+            }
+          ]
+        }
+      ],
+      "help": "Iansan's C1 restore 15 energy to herself when Nightsoul Points are consumed. This can happen once every 15s. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Ifa"
+      ],
+      "element": "Anemo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 7.5,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.3,
+              "element": "Anemo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Illuga"
+      ],
+      "element": "Geo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Constellation 0",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.5,
+              "element": "Geo"
+            }
+          ]
+        },
+        {
+          "title": "Constellation 1",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.5,
+              "element": "Geo"
+            },
+            {
+              "type": "flat",
+              "amount": 12.0,
+              "element": "Geo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Ineffa"
+      ],
+      "element": "Electro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 16.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.33,
+              "element": "Electro",
+              "duration": 20.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Itto"
+      ],
+      "element": "Geo",
+      "bursts": [
+        {
+          "cooldown": 18.0,
+          "energy": 70.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 10.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.5,
+              "element": "Geo"
+            }
+          ]
+        }
+      ],
+      "help": "Itto C2 gives him 6-18 energy on burst, depending on the number of Geo characters in the team. Put this in \"Bonus non-particle energy\". Divide this energy by the number of rotations between bursts."
+    },
+    {
+      "names": [
+        "Jahoda"
+      ],
+      "element": "Anemo",
+      "bursts": [
+        {
+          "cooldown": 18.0,
+          "energy": 70.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Anemo"
+            }
+          ]
+        }
+      ],
+      "help": "When having Ascendant Gleam, Jahoda restores 2 energy to herself when Fluffy Meowball hits an enemy with a 3.5 second ICD. Jahoda's C4 restores 4 energy to herself if her Elemental Burst undergoes Elemental Conversion. Put these in \"Bonus non-particle energy.\""
+    },
+    {
+      "names": [
+        "Jean"
+      ],
+      "element": "Anemo",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 64.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 6.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 2.67,
+              "element": "Anemo"
+            }
+          ]
+        }
+      ],
+      "help": "Jean's Burst cost is reduced by 16 due to her A4 passive."
+    },
+    {
+      "names": [
+        "Kachina"
+      ],
+      "element": "Geo",
+      "bursts": [
+        {
+          "cooldown": 18.0,
+          "energy": 70.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Independent",
+          "cooldown": 20.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.33,
+              "element": "Geo",
+              "duration": 12.0
+            }
+          ]
+        },
+        {
+          "title": "Mounted",
+          "cooldown": 0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Geo"
+            }
+          ]
+        }
+      ],
+      "help": "Kachina generates particles per skill hit. If Nighsoul points are used to move around, she may generate less energy. C2 adds skill hits. Add .33 skills if C2."
+    },
+    {
+      "names": [
+        "Kaeya"
+      ],
+      "element": "Cryo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "0 freezes",
+          "cooldown": 6.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 2.67,
+              "element": "Cryo"
+            }
+          ]
+        },
+        {
+          "title": "1 freeze",
+          "cooldown": 6.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.67,
+              "element": "Cryo"
+            }
+          ]
+        },
+        {
+          "title": "2+ freezes",
+          "cooldown": 6.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.67,
+              "element": "Cryo"
+            }
+          ]
+        }
+      ],
+      "help": "Kaeya's skill type is determined by the number of enemies he freezes with his skill. Kaeya's C6 gains 15 energy on burst. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Kaveh"
+      ],
+      "element": "Dendro",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 6.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 2.0,
+              "element": "Dendro"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Kazuha"
+      ],
+      "element": "Anemo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 6.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Anemo"
+            }
+          ]
+        },
+        {
+          "title": "Hold",
+          "cooldown": 9.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Anemo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Keqing"
+      ],
+      "element": "Electro",
+      "bursts": [
+        {
+          "cooldown": 12.0,
+          "energy": 40.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 7.5,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 2.5,
+              "element": "Electro"
+            }
+          ]
+        },
+        {
+          "title": "C2 proc",
+          "cooldown": 0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 1.0,
+              "element": "Electro"
+            }
+          ]
+        }
+      ],
+      "help": "Keqing's C2 can trigger at most once per 5 seconds."
+    },
+    {
+      "names": [
+        "Kirara"
+      ],
+      "element": "Dendro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Final Kick",
+          "cooldown": 8.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Dendro"
+            }
+          ]
+        },
+        {
+          "title": "Collision",
+          "cooldown": 4.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 1.0,
+              "element": "Dendro"
+            }
+          ]
+        }
+      ],
+      "help": "Kirara can generate up to one collision particle every 4 seconds when using her hold skill, with the first particle being generated immediately"
+    },
+    {
+      "names": [
+        "Kinich"
+      ],
+      "element": "Dendro",
+      "bursts": [
+        {
+          "cooldown": 18.0,
+          "energy": 70.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 18.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 5.0,
+              "element": "Dendro"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Klee"
+      ],
+      "element": "Pyro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 20.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Pyro"
+            }
+          ]
+        }
+      ],
+      "help": "Klee's A4 gives every team member 2 energy whenever her charged attack crits. Put this in every character's \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Kokomi"
+      ],
+      "element": "Hydro",
+      "bursts": [
+        {
+          "cooldown": 18.0,
+          "energy": 70.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Refresh",
+          "cooldown": 20.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.33,
+              "element": "Hydro",
+              "duration": 12.0
+            }
+          ]
+        },
+        {
+          "title": "No refresh",
+          "cooldown": 20.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.33,
+              "element": "Hydro",
+              "duration": 12.0
+            }
+          ]
+        },
+        {
+          "title": "Source 3",
+          "cooldown": 0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.33,
+              "element": "Hydro"
+            }
+          ]
+        }
+      ],
+      "help": "Kokomi's skill type determines whether her burst refreshes her jellyfish."
+    },
+    {
+      "names": [
+        "Kuki Shinobu"
+      ],
+      "element": "Electro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Constellation 0",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.3,
+              "element": "Electro",
+              "duration": 12.0
+            }
+          ]
+        },
+        {
+          "title": "Constellation 2",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.3,
+              "element": "Electro",
+              "duration": 15.0
+            }
+          ]
+        },
+        {
+          "title": "Constellation 4",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.39,
+              "element": "Electro",
+              "duration": 15.0
+            }
+          ]
+        }
+      ],
+      "help": "Kuki Shinobu's C4 triggers 3 times and has a 45% chance of generating a particle on each trigger."
+    },
+    {
+      "names": [
+        "Layla"
+      ],
+      "element": "Cryo",
+      "bursts": [
+        {
+          "cooldown": 12.0,
+          "energy": 40.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "1 volley",
+          "cooldown": 12.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.11,
+              "element": "Cryo",
+              "duration": 12.0
+            }
+          ]
+        },
+        {
+          "title": "2 volleys",
+          "cooldown": 12.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.22,
+              "element": "Cryo",
+              "duration": 12.0
+            }
+          ]
+        },
+        {
+          "title": "3 volleys",
+          "cooldown": 12.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.33,
+              "element": "Cryo",
+              "duration": 12.0
+            }
+          ]
+        }
+      ],
+      "help": "Layla's C2 gives her 4 energy per volley of shooting stars. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Lan Yan"
+      ],
+      "element": "Anemo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 16.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Anemo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Lauma"
+      ],
+      "element": "Dendro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 12.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.33,
+              "element": "Dendro",
+              "duration": 15.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Lisa"
+      ],
+      "element": "Electro",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 1.0,
+          "gen": []
+        },
+        {
+          "title": "Hold",
+          "cooldown": 16.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 5.0,
+              "element": "Electro"
+            }
+          ]
+        }
+      ],
+      "help": "Lisa's C1 gives her 2 energy per enemy hit with her held skill. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Linnea"
+      ],
+      "element": "Geo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 18.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.33,
+              "element": "Geo",
+              "duration": 25.0
+            }
+          ]
+        },
+        {
+          "title": "Lumi Hit",
+          "cooldown": 18.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Geo"
+            }
+          ]
+        }
+      ],
+      "help": "Linnea generates 3 particles when Lumi hits with a 9s ICD."
+    },
+    {
+      "names": [
+        "Lynette"
+      ],
+      "element": "Anemo",
+      "bursts": [
+        {
+          "cooldown": 18.0,
+          "energy": 70.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 12.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Anemo"
+            }
+          ]
+        },
+        {
+          "title": "Hold",
+          "cooldown": 12.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Anemo"
+            }
+          ]
+        }
+      ],
+      "help": "Lynette's C4 gives her an extra charge on her elemental skill."
+    },
+    {
+      "names": [
+        "Lyney"
+      ],
+      "element": "Pyro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 5.0,
+              "element": "Pyro"
+            }
+          ]
+        }
+      ],
+      "help": "Lyney gets 3 energy whenever he consumes HP using a fully-charged attack. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Mavuika"
+      ],
+      "element": "Pyro",
+      "bursts": [
+        {
+          "cooldown": 18.0,
+          "energy": 0.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 5.0,
+              "element": "Pyro"
+            }
+          ]
+        }
+      ],
+      "help": "Mavuika does not use Energy to Burst. Ignore her energy requirement."
+    },
+    {
+      "names": [
+        "Mika"
+      ],
+      "element": "Cryo",
+      "bursts": [
+        {
+          "cooldown": 18.0,
+          "energy": 70.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Cryo"
+            }
+          ]
+        },
+        {
+          "title": "Hold",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Cryo"
+            }
+          ]
+        }
+      ],
+      "help": "Mika's C4 gives him up to 15 energy per burst. Put this in \"Bonus non-particle energy\". Divide this energy by the number of rotations between bursts."
+    },
+    {
+      "names": [
+        "Mona"
+      ],
+      "element": "Hydro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 12.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.33,
+              "element": "Hydro"
+            }
+          ]
+        }
+      ],
+      "help": "Feed Mona's particles to whoever will be on field when her skill explodes."
+    },
+    {
+      "names": [
+        "Mualani"
+      ],
+      "element": "Hydro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 6.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.5,
+              "element": "Hydro"
+            }
+          ]
+        }
+      ],
+      "help": "Mualani's Sharky Bites can generate particles once per Skill use. Mualani's C4 restores 8 energy per puffer. She will gain 2 puffers per Skill."
+    },
+    {
+      "names": [
+        "Nahida"
+      ],
+      "element": "Dendro",
+      "bursts": [
+        {
+          "cooldown": 13.5,
+          "energy": 50.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 5.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.36,
+              "element": "Dendro",
+              "duration": 25.0
+            }
+          ]
+        },
+        {
+          "title": "Hold",
+          "cooldown": 6.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.36,
+              "element": "Dendro",
+              "duration": 25.0
+            }
+          ]
+        },
+        {
+          "title": "Source 3",
+          "cooldown": 0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.36,
+              "element": "Dendro"
+            }
+          ]
+        }
+      ],
+      "help": "Nahida's skill generates 3 particles every 8.25 seconds on average."
+    },
+    {
+      "names": [
+        "Navia"
+      ],
+      "element": "Geo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 9.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.5,
+              "element": "Geo"
+            }
+          ]
+        }
+      ],
+      "help": "Navia's C1 gives her 3 flat energy per Crystal Shrapnel stack consumed, up to a maximum of 9 per skill use. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Nefer"
+      ],
+      "element": "Dendro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 9.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 2.67,
+              "element": "Dendro"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Neuvillette"
+      ],
+      "element": "Hydro",
+      "bursts": [
+        {
+          "cooldown": 18.0,
+          "energy": 70.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 12.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Hydro"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Nilou"
+      ],
+      "element": "Hydro",
+      "bursts": [
+        {
+          "cooldown": 18.0,
+          "energy": 70.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 18.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.5,
+              "element": "Hydro"
+            }
+          ]
+        },
+        {
+          "title": "Source 2",
+          "cooldown": 0,
+          "gen": [
+            {
+              "type": "flat",
+              "amount": 15.0,
+              "element": "Hydro"
+            }
+          ]
+        }
+      ],
+      "help": "Nilou's C4 gives her 15 energy per skill use. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Ningguang"
+      ],
+      "element": "Geo",
+      "bursts": [
+        {
+          "cooldown": 12.0,
+          "energy": 40.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 12.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.4,
+              "element": "Geo"
+            }
+          ]
+        }
+      ],
+      "help": "Ningguang's skill only generates particles if she waits at least 6 seconds between skill uses. Do not include skill uses which do not generate particles."
+    },
+    {
+      "names": [
+        "Noelle"
+      ],
+      "element": "Geo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 24.0,
+          "gen": []
+        }
+      ],
+      "help": "Noelle's burst typically lasts longer than 15 seconds due to hitlag, so you can burst every 20 seconds and still have full uptime."
+    },
+    {
+      "names": [
+        "Ororon"
+      ],
+      "element": "Electro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Electro"
+            },
+            {
+              "type": "flat",
+              "amount": 9.0,
+              "element": "Electro"
+            }
+          ]
+        }
+      ],
+      "help": "Ororon's C4 restores 8 flat energy after his burst.  Put this in 'Bonus non-particle energy\". Ororon's A4 restores 3 energy 3 times to him and your on-fielder. The 9 energy from this is already considered in his skill."
+    },
+    {
+      "names": [
+        "Qiqi"
+      ],
+      "element": "Cryo",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 30.0,
+          "gen": []
+        }
+      ],
+      "help": "Qiqi's C1 gives her 2 energy per hit with her Herald of Frost. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Raiden"
+      ],
+      "element": "Electro",
+      "bursts": [
+        {
+          "cooldown": 18.0,
+          "energy": 90.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 10.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.45,
+              "element": "Electro",
+              "duration": 25.0
+            }
+          ]
+        },
+        {
+          "title": "Source 2",
+          "cooldown": 0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.45,
+              "element": "Electro"
+            }
+          ]
+        },
+        {
+          "title": "Source 3",
+          "cooldown": 0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.45,
+              "element": "Electro"
+            }
+          ]
+        }
+      ],
+      "help": "Raiden's burst gives the entire team energy based on Raiden's ER, typically 20-25 energy. Put this in every character's \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Razor"
+      ],
+      "element": "Electro",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 75.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 6.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Electro"
+            }
+          ]
+        },
+        {
+          "title": "Hold",
+          "cooldown": 10.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Electro"
+            }
+          ]
+        }
+      ],
+      "help": "Don't include Razor's skill uses during his burst, as they don't generate particles. Razor's burst cost is reduced by 5, and his ER needs reduced by 45%, to account for his talents."
+    },
+    {
+      "names": [
+        "Rosaria"
+      ],
+      "element": "Cryo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 6.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Cryo"
+            }
+          ]
+        }
+      ],
+      "help": "Rosaria's C4 gives her 5 energy when her skill crits. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Sara"
+      ],
+      "element": "Electro",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Aimed Shot",
+          "cooldown": 10.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Electro"
+            }
+          ]
+        },
+        {
+          "title": "No Aimed Shot",
+          "cooldown": 10.0,
+          "gen": []
+        }
+      ],
+      "help": "Sara only generates particles when she uses an aimed shot after her skill, even with C2. Sara's A4 gives the party 1.2 energy for every 100% ER she has. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Sayu"
+      ],
+      "element": "Anemo",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 6.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 2.0,
+              "element": "Anemo"
+            }
+          ]
+        },
+        {
+          "title": "Short Hold",
+          "cooldown": 6.5,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Anemo"
+            }
+          ]
+        },
+        {
+          "title": "Full Hold",
+          "cooldown": 11.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 6.0,
+              "element": "Anemo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Sethos"
+      ],
+      "element": "Electro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 8.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 2.0,
+              "element": "Electro"
+            }
+          ]
+        },
+        {
+          "title": "Full CA",
+          "cooldown": 0.0,
+          "gen": [
+            {
+              "type": "flat",
+              "amount": -10.0,
+              "element": "Electro"
+            }
+          ]
+        },
+        {
+          "title": "Partial CA",
+          "cooldown": 0.0,
+          "gen": [
+            {
+              "type": "flat",
+              "amount": -20.0,
+              "element": "Electro"
+            }
+          ]
+        }
+      ],
+      "help": "If Sethos does not use his burst, put 0 in \"Number of rotations between bursts\"."
+    },
+    {
+      "names": [
+        "Shenhe"
+      ],
+      "element": "Cryo",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 10.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Cryo"
+            }
+          ]
+        },
+        {
+          "title": "Hold",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Cryo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Sigewinne"
+      ],
+      "element": "Hydro",
+      "bursts": [
+        {
+          "cooldown": 18.0,
+          "energy": 70.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 18.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Hydro"
+            }
+          ]
+        },
+        {
+          "title": "Hold",
+          "cooldown": 18.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Hydro"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Skirk"
+      ],
+      "element": "Cryo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 0.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Attack",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Cryo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Sucrose"
+      ],
+      "element": "Anemo",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Anemo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Tartaglia"
+      ],
+      "element": "Hydro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "7-9s melee",
+          "cooldown": 13.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Hydro"
+            }
+          ]
+        },
+        {
+          "title": "11s melee",
+          "cooldown": 17.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Hydro"
+            }
+          ]
+        },
+        {
+          "title": "Aimed Shot",
+          "cooldown": 3.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 1.0,
+              "element": "Hydro"
+            }
+          ]
+        }
+      ],
+      "help": "If Tartaglia is using ranged burst, put 20 in \"Bonus non-particle energy\". Use the \"Aimed Shot\" skill in \"Skill uses (other type)\" for the number of aimed shots done in ranged form."
+    },
+    {
+      "names": [
+        "Tighnari"
+      ],
+      "element": "Dendro",
+      "bursts": [
+        {
+          "cooldown": 12.0,
+          "energy": 40.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 12.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.5,
+              "element": "Dendro"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Thoma"
+      ],
+      "element": "Pyro",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.4,
+              "element": "Pyro"
+            }
+          ]
+        }
+      ],
+      "help": "Thoma C4 gains 15 energy on burst. Put this in \"Bonus non-particle energy\". Divide this energy by the number of rotations between bursts."
+    },
+    {
+      "names": [
+        "Traveler (Anemo)"
+      ],
+      "element": "Anemo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 5.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 2.0,
+              "element": "Anemo"
+            }
+          ]
+        },
+        {
+          "title": "Hold",
+          "cooldown": 8.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.33,
+              "element": "Anemo"
+            }
+          ]
+        }
+      ],
+      "help": "Anemo Traveler's C2 is ignored, since it appears in their stats screen"
+    },
+    {
+      "names": [
+        "Traveler (Dendro)"
+      ],
+      "element": "Dendro",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 8.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 2.5,
+              "element": "Dendro"
+            }
+          ]
+        }
+      ],
+      "help": "Dendro Traveler's C1 is already factored in and does not need to be added to \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Traveler (Electro)"
+      ],
+      "element": "Electro",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 13.5,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 1.0,
+              "element": "Electro"
+            }
+          ]
+        }
+      ],
+      "help": "Electro Traveler's skill generates 12 energy. Their burst gives about 16 energy. Put these in the \"Bonus non-particle energy\" of whoever uses them. Also consider the amulet ER bonus."
+    },
+    {
+      "names": [
+        "Traveler (Geo)"
+      ],
+      "element": "Geo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 6.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.33,
+              "element": "Geo"
+            }
+          ]
+        }
+      ],
+      "help": "Geo Traveler's burst gives 5 energy per enemy hit. Put this in \"Bonus non-particle energy\". Divide this energy by the number of rotations between bursts."
+    },
+    {
+      "names": [
+        "Traveler (Hydro)"
+      ],
+      "element": "Hydro",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 10.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.33,
+              "element": "Hydro"
+            }
+          ]
+        },
+        {
+          "title": "Hold",
+          "cooldown": 10.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.33,
+              "element": "Hydro"
+            }
+          ]
+        },
+        {
+          "title": "Source 3",
+          "cooldown": 0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.39,
+              "element": "Hydro"
+            }
+          ]
+        }
+      ],
+      "help": "Hydro Traveler's C1 gives 2-8 energy when holding the elemental skill. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Traveler (Pyro)"
+      ],
+      "element": "Pyro",
+      "bursts": [
+        {
+          "cooldown": 18.0,
+          "energy": 70.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Blazing Threshold",
+          "cooldown": 2.9,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 1.0,
+              "element": "Pyro"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Varka"
+      ],
+      "element": "Anemo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 16.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 6.0,
+              "element": "Anemo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Venti"
+      ],
+      "element": "Anemo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 45.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 6.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Anemo"
+            }
+          ]
+        },
+        {
+          "title": "Hold",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Anemo"
+            }
+          ]
+        }
+      ],
+      "help": "Venti's burst cost is reduced by 15 due to his A4 passive. It also gives energy to any characters of the element absorbed by the burst. Put this in those characters' \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Wanderer"
+      ],
+      "element": "Anemo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "8-10s uptime",
+          "cooldown": 6.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Anemo"
+            }
+          ]
+        },
+        {
+          "title": "6-8s uptime",
+          "cooldown": 0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Anemo"
+            }
+          ]
+        }
+      ],
+      "help": "If Wanderer absorbs Electro with his skill, he will gain approximately 13 energy per skill use. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Wriothesley"
+      ],
+      "element": "Cryo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "NA during skill",
+          "cooldown": 2.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 1.0,
+              "element": "Cryo"
+            }
+          ]
+        },
+        {
+          "title": "Vaulting Fist",
+          "cooldown": 5.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 1.0,
+              "element": "Cryo"
+            }
+          ]
+        }
+      ],
+      "help": "Wriothesley generates 1 particle on-hit from his normal attack during his skill if above 50% HP with a 2s ICD. Rebuke: Vaulting Fist shares this ICD and will generate 1 Elemental Particle on-hit."
+    },
+    {
+      "names": [
+        "Xiangling"
+      ],
+      "element": "Pyro",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 12.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.5,
+              "element": "Pyro",
+              "duration": 8.0
+            }
+          ]
+        },
+        {
+          "title": "Source 2",
+          "cooldown": 0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.5,
+              "element": "Pyro"
+            }
+          ]
+        },
+        {
+          "title": "Source 3",
+          "cooldown": 0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.5,
+              "element": "Pyro"
+            }
+          ]
+        }
+      ],
+      "help": "Xiangling's Guoba is assumed to hit 4 times. If you want to assume it only hits twice, count that as 0.5 skill uses. Gouba's particles are distributed based on time spent on field."
+    },
+    {
+      "names": [
+        "Xianyun"
+      ],
+      "element": "Anemo",
+      "bursts": [
+        {
+          "cooldown": 18.0,
+          "energy": 70.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 12.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 5.0,
+              "element": "Anemo"
+            }
+          ]
+        }
+      ],
+      "help": "Xianyun generates particles when using her special plunge attack, Driftcloud Wave, after using her skill."
+    },
+    {
+      "names": [
+        "Xiao"
+      ],
+      "element": "Anemo",
+      "bursts": [
+        {
+          "cooldown": 18.0,
+          "energy": 70.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 10.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Anemo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Xilonen"
+      ],
+      "element": "Geo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 7.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Geo"
+            }
+          ]
+        }
+      ],
+      "help": "Xilonen can trigger Nightsoul Burst an additional time due to her A4 passive, with a 14s ICD. Add 6 flat energy if using Scroll. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Xingqiu"
+      ],
+      "element": "Hydro",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 21.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 5.0,
+              "element": "Hydro"
+            }
+          ]
+        }
+      ],
+      "help": "Xingqiu's C6 gives him 3 energy on every third Sword Rain trigger, typically 12 energy in total. Put this in \"Bonus non-particle energy\". Divide this energy by the number of rotations between bursts."
+    },
+    {
+      "names": [
+        "Xinyan"
+      ],
+      "element": "Pyro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 18.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Pyro"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Yae Miko"
+      ],
+      "element": "Electro",
+      "bursts": [
+        {
+          "cooldown": 22.0,
+          "energy": 90.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "3 totems",
+          "cooldown": 4.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.36,
+              "element": "Electro",
+              "duration": 14.0
+            }
+          ]
+        },
+        {
+          "title": "Source 2",
+          "cooldown": 0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.36,
+              "element": "Electro"
+            }
+          ]
+        },
+        {
+          "title": "Source 3",
+          "cooldown": 0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.36,
+              "element": "Electro"
+            }
+          ]
+        }
+      ],
+      "help": "One use of Yae's skill represents all 3 totems. Yae generates a particle once per 2.5-3s, 2.75s is assumed as average. Yae's C1 gives her up to 24 flat energy. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Yanfei"
+      ],
+      "element": "Pyro",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 9.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Pyro"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Yaoyao"
+      ],
+      "element": "Dendro",
+      "bursts": [
+        {
+          "cooldown": 20.0,
+          "energy": 80.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.5,
+              "element": "Dendro",
+              "duration": 10.0
+            }
+          ]
+        },
+        {
+          "title": "Hold",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.5,
+              "element": "Dendro",
+              "duration": 10.0
+            }
+          ]
+        }
+      ],
+      "help": "Yaoyao's C2 gives her 15 flat energy if she stays on field during her burst. Put this in \"Bonus non-particle energy\". Yaoyao's radishes only generate particles if the explosion hits an enemy."
+    },
+    {
+      "names": [
+        "Yelan"
+      ],
+      "element": "Hydro",
+      "bursts": [
+        {
+          "cooldown": 18.0,
+          "energy": 70.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 10.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Hydro"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Yoimiya"
+      ],
+      "element": "Pyro",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 18.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Pyro"
+            }
+          ]
+        }
+      ],
+      "help": "Yoimiya Skill can sometimes make 5 particles. If you want to assume this put 1.25 in Skill uses."
+    },
+    {
+      "names": [
+        "Yumemizuki Mizuki"
+      ],
+      "element": "Anemo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 15.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.0,
+              "element": "Anemo"
+            }
+          ]
+        }
+      ],
+      "help": "Mizuki's skill only generates energy when she is on-field. Mizuki's C4 restores 20 energy per Burst. Put this in \"Bonus non-particle energy\"."
+    },
+    {
+      "names": [
+        "Yun Jin"
+      ],
+      "element": "Geo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 9.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 2.0,
+              "element": "Geo"
+            }
+          ]
+        },
+        {
+          "title": "Level 1",
+          "cooldown": 9.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 2.5,
+              "element": "Geo"
+            }
+          ]
+        },
+        {
+          "title": "Level 2",
+          "cooldown": 9.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3.0,
+              "element": "Geo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Zhongli"
+      ],
+      "element": "Geo",
+      "bursts": [
+        {
+          "cooldown": 12.0,
+          "energy": 40.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 4.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.25,
+              "element": "Geo",
+              "duration": 30.0
+            }
+          ]
+        },
+        {
+          "title": "Hold",
+          "cooldown": 12.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.25,
+              "element": "Geo",
+              "duration": 30.0
+            }
+          ]
+        },
+        {
+          "title": "Miss pillar",
+          "cooldown": 12.0,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.25,
+              "element": "Geo"
+            }
+          ]
+        }
+      ],
+      "help": "Zhongli's pillar is assumed to hit on every pulse, and distributes its particles based on time spent on field. If you don't want the pillar to hit, put \"Miss pillar\"."
+    },
+    {
+      "names": [
+        "Zibai"
+      ],
+      "element": "Geo",
+      "bursts": [
+        {
+          "cooldown": 15.0,
+          "energy": 60.0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "cooldown": 18.0,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 4.7,
+              "element": "Geo"
+            }
+          ]
         }
       ]
     }
