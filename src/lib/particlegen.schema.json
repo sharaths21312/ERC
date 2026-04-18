@@ -10,12 +10,12 @@
         "enum": ["particle", "flat", "particle_turret", "flat_turret"]
       },
       "target": {
-        "description": "Target priority, default 'all'",
+        "description": "Target priority, default 'all' for particles and 'self' for flat energy",
         "enum": ["all", "self", "notself", "onfield"]
       },
       "element": {
         "type": "string",
-        "enum": ["Pyro", "Hydro", "Dendro", "Electro", "Cryo", "Anemo", "Geo"]
+        "enum": ["Pyro", "Hydro", "Dendro", "Electro", "Cryo", "Anemo", "Geo", "None"]
       },
       "amount": {
         "description": "Per second for turrets, amounts per use otherwise",

@@ -3890,5 +3890,27 @@
         }
       ]
     }
+  ],
+  "gear": [
+    {
+      "names": ["Favonius"],
+      "gen": [
+        {
+          "type": "particle",
+          "element": "None",
+          "amount": 3
+        }
+      ]
+    }, {
+      "names": ["Prototype Amber", "pamber"],
+      "refine_scaling": 1.5,
+      "gen": [
+        {
+          "type": "flat",
+          "amount": 12,
+          "element": "None"
+        }
+      ]
+    }
   ]
 }

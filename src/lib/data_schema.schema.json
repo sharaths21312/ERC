@@ -50,10 +50,23 @@
       }
     },
     "gear": {
-
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "names": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "refine_scaling": {
+            "type": "number",
+            "description": "Refine scaling, defined as R5/R1."
+          },
+          "gen": { "$ref": "particlegen.schema.json" }
+        },
+        "required": ["names", "gen"]
+      }
     }
   },
-  "$defs": {
-
-  }
+  "required": ["characters", "gear"]
 }
