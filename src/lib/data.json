@@ -1,0 +1,76 @@
+{
+  "$id": "/src/lib/data.json",
+  "$schema": "data_schema.schema.json",
+  "characters": [
+    {
+      "names": [
+        "Aino"
+      ],
+      "help": "Aino's C4 restores her 10 energy after using a Skill.",
+      "element": "Hydro",
+      "bursts": [
+        {
+          "energy": 50,
+          "cooldown": 13.5
+        }
+      ],
+      "sources": [
+        {
+          "title": "Constellation 0",
+          "cooldown": 10,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3,
+              "element": "Hydro"
+            }
+          ]
+        },
+        {
+          "title": "Constellation 4",
+          "cooldown": 10,
+          "gen": [
+            {
+              "type": "particle",
+              "amount": 3,
+              "element": "Hydro"
+            },
+            {
+              "type": "flat",
+              "target": "self",
+              "element": "Hydro",
+              "amount": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "names": [
+        "Albedo"
+      ],
+      "help": "Albedo's skill triggers every 2.5s and distributes its particles based on time spent on field. Albedo C1 gains 1.2 energy per E trigger. Put this in \"Bonus non-particle energy\".",
+      "element": "Geo",
+      "bursts": [
+        {
+          "cooldown": 12,
+          "energy": 40
+        }
+      ],
+      "sources": [
+        {
+          "title": "Press",
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.3,
+              "duration": 30,
+              "element": "Geo"
+            }
+          ],
+          "cooldown": 4
+        }
+      ]
+    }
+  ]
+}

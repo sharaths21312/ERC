@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "/src/lib/data_schema.json",
+  "title": "Characters",
+  "type": "object",
+  "properties": {
+    "characters": {
+      "description": "List of chars",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "names": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "help": {
+            "type": "string"
+          },
+          "element": {
+            "type": "string",
+            "enum": ["Pyro", "Hydro", "Dendro", "Electro", "Cryo", "Anemo", "Geo", "None"]
+          },
+          "bursts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "cooldown": {"type": "number"},
+                "energy": {"type": "number"}
+              },
+              "required": ["cooldown", "energy"]
+            }
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "cooldown": {"type": "number"},
+                "gen": { "$ref": "particlegen.schema.json" }
+              },
+              "required": ["title", "gen", "cooldown"]
+            }
+          }
+        },
+        "required": ["bursts", "names", "element", "sources"]
+      }
+    },
+    "gear": {
+
+    }
+  },
+  "$defs": {
+
+  }
+}

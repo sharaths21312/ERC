@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "/src/lib/particlegen.schema.json",
+  "title": "Particle Generation",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "type": {
+        "enum": ["particle", "flat", "particle_turret", "flat_turret"]
+      },
+      "target": {
+        "description": "Target priority, default 'all'",
+        "enum": ["all", "self", "notself", "onfield"]
+      },
+      "element": {
+        "type": "string",
+        "enum": ["Pyro", "Hydro", "Dendro", "Electro", "Cryo", "Anemo", "Geo"]
+      },
+      "amount": {
+        "description": "Per second for turrets, amounts per use otherwise",
+        "type": "number"
+      },
+      "rng_reduction": {
+        "description": "Worst case particle generation. Defaults to gen/floor(gen) for flat/particles and gen/2 for turrets",
+        "type": "number"
+      },
+      "duration": {
+        "description": "Duration for turrets",
+        "type": "number"
+      }
+    },
+    "required": ["type", "element", "amount"],
+    "if": {
+      "properties": {
+        "type": { "const": "turret" }
+      }
+    },
+    "then": {
+      "properties": {
+        "duration": true
+      }
+    }
+  }
+}

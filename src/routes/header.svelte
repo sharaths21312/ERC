@@ -17,7 +17,7 @@
 
 </script>
 
-<div class="flex w-full px-5 justify-between items-center bg-zinc-700">
+<div class="flex w-full px-5 justify-between items-center">
     <a class="font-bold text-lg" href="{base}/">Energy Recharge Calculator
         <span class="font-normal text-sm">Hash: {(PUBLIC_HASH ?? "unknown").slice(0, 7)}</span>
     </a>
@@ -37,6 +37,6 @@
     }
 
     .highlight {
-        background-color: rgb(48, 48, 62);
+        background-color: #6b6b77;
     }
 </style>

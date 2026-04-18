@@ -2,11 +2,22 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-body {
-    color: white;
-    @apply bg-neutral-800;
+
+body[data-theme=dark] {
+    --bg-col: #262626;
+    --text-col-main: #fff;
+    --fg-1: #111827;
+    --fg-2: #334155;
+    --input-panels: #404040;
+    --header-bg: #3f3f46;
 }
 
-.subgrid-container {
-    grid-column: 1/span 2;
+
+body {
+    color: var(--text-col-main);
+    background-color: var(--bg-col);
+}
+
+header {
+    background-color: var(--header-bg);
 }

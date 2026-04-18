@@ -6,7 +6,11 @@
 <svelte:head>
 	<title>Energy Recharge Calculator</title>
 </svelte:head>
-<Header/>
+
+<header>
+	<Header/>
+</header>
+
 <main>
 	{@render children()}
 </main>
