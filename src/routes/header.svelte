@@ -2,8 +2,6 @@
 	import { onMount } from "svelte";
     import { base } from "$app/paths";
     import { PUBLIC_HASH } from "$env/static/public";
-    import "../app.css"
-
     let path = $state(`${base}/`)
     onMount(() => {
         path = document.location.pathname

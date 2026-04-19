@@ -3,11 +3,20 @@
 	<head>
 		<meta charset="utf-8"/>
 		<link rel="icon" href="%sveltekit.assets%/favicon.webp" />
-		<!-- <link rel="stylesheet" href="app.css"/> -->
+		<link rel="stylesheet" href="%sveltekit.assets%/styles.css"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover" data-theme="dark">
 		<div style="display: contents">%sveltekit.body%</div>
+		<script>
+			const ua = navigator.userAgent;
+			let browserClass = "";
+			if (ua.includes("Chrome")) browserClass = "chrome";
+			else if (ua.includes("Firefox")) browserClass = "firefox";
+			else if (ua.includes("Safari") && !ua.includes("Chrome")) browserClass = "safari";
+
+			document.body.classList.add(browserClass);
+		</script>
 	</body>
 </html>

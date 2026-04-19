@@ -1,0 +1,41 @@
+.data_inputs,
+select.data_inputs>option {
+    color: white;
+    background-color: rgb(18, 18, 18);
+    padding-inline: 8pt;
+    padding-block: 4pt;
+}
+
+.data_inputs {
+    border-radius: 8px;
+}
+
+
+select.data_inputs:open {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+select.data_inputs,
+::picker(select) {
+    appearance: base-select;
+}
+
+.top_input {
+    width: 0;
+    min-width: 100px;
+}
+
+.top_label {
+    padding-inline: 12px;
+    padding-block: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.top_label_text {
+    padding-right: 16pt;
+}
