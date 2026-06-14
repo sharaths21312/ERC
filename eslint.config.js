@@ -29,5 +29,8 @@ export default ts.config(
 	},
 	{
 		ignores: ['build/', '.svelte-kit/', 'dist/']
+	},
+	{
+		"@typescript-eslint/no-unused-vars": "off"
 	}
 );

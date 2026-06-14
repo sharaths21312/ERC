@@ -27,7 +27,8 @@
               "type": "object",
               "properties": {
                 "cooldown": {"type": "number"},
-                "energy": {"type": "number"}
+                "energy": {"type": "number"},
+                "name": { "type": "string"}
               },
               "required": ["cooldown", "energy"]
             }
@@ -62,7 +63,10 @@
             "type": "number",
             "description": "Refine scaling, defined as R5/R1."
           },
-          "gen": { "$ref": "particlegen.schema.json" }
+          "gen": { "$ref": "particlegen.schema.json" },
+          "help": {
+            "type": "string"
+          }
         },
         "required": ["names", "gen"]
       }

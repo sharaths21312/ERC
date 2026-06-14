@@ -1,27 +1,17 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-    import { base } from "$app/paths";
     import { PUBLIC_HASH } from "$env/static/public";
-    let path = $state(`${base}/`)
-    onMount(() => {
-        path = document.location.pathname
-        for (const link of document.getElementsByTagName("a")) {
-            link.addEventListener("click", (e) => {
-                var lnk = e.currentTarget as HTMLLinkElement
-                path = lnk.href.split("/")[3]
-            })
-        }
-    })
-
+	import { resolve } from "$app/paths";
+    import { page } from "$app/state";
 </script>
 
 <div class="flex w-full px-5 justify-between items-center">
-    <a class="font-bold text-lg" href="{base}/">Energy Recharge Calculator
+    <a class="font-bold text-lg" href="{resolve("/")}">Energy Recharge Calculator
         <span class="font-normal text-sm">Hash: {(PUBLIC_HASH ?? "unknown").slice(0, 7)}</span>
     </a>
     <div class="mx-3">
-        <a href="{base}/data" class="{path == "data" ? "highlight" : ""}">Data</a>
-        <a href="{base}/help" class="{path == "help" ? "highlight" : ""}">Help</a>
+        <a href="{resolve("/data")}" class="{page.route.id == "/data" ? "highlight" : ""}">Data</a>
+        <a href="{resolve("/help")}" class="{page.route.id == "/help" ? "highlight" : ""}">Help</a>
     </div>
 </div>
 
@@ -35,6 +25,7 @@
     }
 
     .highlight {
-        background-color: #6b6b77;
+        background-color: var(--selected-col);
+        color: black;
     }
 </style>

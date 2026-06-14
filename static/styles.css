@@ -1,32 +1,42 @@
-.data_inputs,
-select.data_inputs>option {
-    color: white;
-    background-color: rgb(18, 18, 18);
+body {
+    --body-bg-colL: #232024;
+    --panel-bg-col: #2d282f;
+    --clickable-col: #423745;
+    --selected-col: #dab2f9;
+    --text-col: #fff;
+    --subpanel-bg-col: #423745;
+
+}
+
+.data-inputs,
+select.data-inputs>option {
+    color: var(--text-col);
+    background-color: var(--body-bg-colL);
     padding-inline: 8pt;
     padding-block: 4pt;
 }
 
-.data_inputs {
+.data-inputs {
     border-radius: 8px;
 }
 
 
-select.data_inputs:open {
+select.data-inputs:open {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
 
-select.data_inputs,
+select.data-inputs,
 ::picker(select) {
     appearance: base-select;
 }
 
-.top_input {
+.top-input {
     width: 0;
     min-width: 100px;
 }
 
-.top_label {
+.top-label {
     padding-inline: 12px;
     padding-block: 5px;
     display: flex;
@@ -36,6 +46,10 @@ select.data_inputs,
     justify-content: space-between;
 }
 
-.top_label_text {
+.top-label-text {
     padding-right: 16pt;
+}
+
+.subpanel-bg {
+    background-color: var(--subpanel-bg-col);
 }

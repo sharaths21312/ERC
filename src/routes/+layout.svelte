@@ -1,7 +1,7 @@
 <script lang="ts">
 	import "../app.css"
 	import Header from './header.svelte';
-	import { CalculatorConfig, set_calculator_state, set_char_data_file, set_data_file, set_gear_data_file, set_output_state } from '$lib/index.svelte';
+	import { createCharacter, set_calculator_state, set_char_data_file, set_data_file, set_gear_data_file, set_output_state } from '$lib/index.svelte';
 	import type { ICalculatorState, ICharacter, IDataSchema, IGear, IOutputElt } from '$lib/datatypes';
 	import file_data from '$lib/data.json'
 	let { children } = $props();
@@ -24,10 +24,10 @@
 	})
 	set_gear_data_file(gear_data);
 	let calculator_state: ICalculatorState = $state({
-		0: new CalculatorConfig("Albedo"),
-		1: new CalculatorConfig("Albedo"),
-		2: new CalculatorConfig("Albedo"),
-		3: new CalculatorConfig("Albedo"),
+		0: createCharacter("Flins", char_data),
+		1: createCharacter("Columbina", char_data),
+		2: createCharacter("Ineffa", char_data),
+		3: createCharacter("Sucrose", char_data),
 		general: {
 			rotation_type: 'fixed',
 			rotation_length: 20,
@@ -64,6 +64,6 @@
 	<Header/>
 </header>
 
-<main>
+<main style="zoom: 95%;">
 	{@render children()}
 </main>

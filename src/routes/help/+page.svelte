@@ -1,5 +1,8 @@
 <script>
-    
+// @ts-nocheck
+
+import Helptext from './helptext.svx'
+
 </script>
 
-Help text
+<Helptext />
