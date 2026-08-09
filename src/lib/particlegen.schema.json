@@ -21,7 +21,7 @@
         "description": "Per second for turrets, amounts per use otherwise",
         "type": "number"
       },
-      "rng_reduction": {
+      "worst_case": {
         "description": "Worst case particle generation. Defaults to gen/floor(gen) for flat/particles and gen/2 for turrets THIS IS DIFFERENT TO THE SHEET",
         "type": "number"
       },

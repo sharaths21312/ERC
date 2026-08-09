@@ -90,10 +90,9 @@
             if (gen.type.includes("turret")) {
               const recast_interval = skill_interval/inp_gear.amount;
               const turret_time_frac = gen.duration!/Math.min(recast_interval, gen.duration!)
-              genpersec = turret_time_frac * gen.amount
+              genpersec = turret_time_frac * remap_refine(gen.amount, data_gear.refine_scaling ?? 1, inp_gear.refine ?? 0)
             } else {
-              genpersec = (gen.amount + (data_gear.refine_scaling ?? 0) * (inp_gear.refine ?? 0)) * inp_gear.amount/skill_interval
-              console.log((gen.amount + (data_gear.refine_scaling ?? 0) * (inp_gear.refine ?? 0)))
+              genpersec = remap_refine(gen.amount, data_gear.refine_scaling ?? 1, inp_gear.refine ?? 0) * inp_gear.amount/skill_interval
             }
 
             const funnel_frac = funnelAndFieldtime(inp_gear, gen, curr_cidx, other_cidx, fieldtime_frac, num_chars)

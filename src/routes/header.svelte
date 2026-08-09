@@ -6,7 +6,7 @@
 </script>
 
 <div class="flex w-full px-5 justify-between items-center">
-    <a class="font-bold text-lg" href="{resolve("/")}">Energy Recharge Calculator
+    <a class="font-bold text-lg" href="{resolve("/")}">Energy Recharge Calculator<sup>β</sup>
         <span class="font-normal text-sm">Hash: {(PUBLIC_HASH ?? "unknown").slice(0, 7)}</span>
     </a>
     <div class="mx-3">
