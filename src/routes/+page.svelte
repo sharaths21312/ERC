@@ -1,7 +1,7 @@
 <script lang="ts">
   import Character from "./character.svelte";
   import { distinct, eltmulti, funnelAndFieldtime, get_calculator_state, get_char_data_file, get_gear_data_file, get_output_state, getDataGenerator, getGearDataGenerator, isParticle, remap_refine, set_output_state, single_output, sum } from "$lib/index.svelte";
-  import type { ICalculatorState, ICharacterConfig, ICharacterSource, IOutput, IParticleGenEntry } from "$lib/datatypes";
+  import type { ICalculatorState, ICharacterConfig, ICharacterSource, IOutput, IParticleGenEntry, TCharIdx } from "$lib/datatypes";
 
   let calculator_state = get_calculator_state()
   const indices = [0, 1, 2, 3] as const;
@@ -135,12 +135,13 @@
     return output;
   }
 
-  function countTurret() {
-    
+  function get_interval(cidx: TCharIdx) {
+    if (calculator_state.general.rotation_type == "fixed") {
+      return calculator_state.general.rotation_length
+    } else {
+      return calculator_state[cidx]!.bursts.interval
+    }
   }
-
-  // $inspect(calculator_state)
-  $inspect(output)
 </script>
 
 <div class="flex flex-col items-center">
@@ -233,6 +234,7 @@
   </ul>
 </div>
 
+<h2 class="text-2xl text-center my-4">Particle gen</h2>
 <div class="flex w-full justify-center gap-3">
   <table>
     <thead>
@@ -243,6 +245,7 @@
         {/each}
         <th>Others</th>
         <th>Drop</th>
+        <th>Total</th>
       </tr>
     </thead>
     <tbody>
@@ -250,13 +253,87 @@
           <tr>
             <td>{calculator_state[cidx]?.name}</td>
             {#each [0, 1, 2, 3, 4, 5] as oidx}
-              <td>{((output[cidx]?.particle_in[oidx] ?? 0) * 20).toFixed(2)}</td>
+              <td>{((output[cidx]?.particle_in[oidx] ?? 0) * get_interval(cidx)).toFixed(2)}</td>
+            {/each}
+            <td>{(sum(output[cidx]?.particle_in!) * get_interval(cidx)).toFixed(2)}</td>
+          </tr>
+        {/each}
+    </tbody>
+  </table>
+</div>
+
+<h2 class="text-2xl text-center my-4">Particle gen (gear)</h2>
+<div class="flex w-full justify-center gap-3">
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        {#each indices as cidx}
+          <th>{calculator_state[cidx]?.name}</th>
+        {/each}
+      </tr>
+    </thead>
+    <tbody>
+        {#each indices as cidx}
+          <tr>
+            <td>{calculator_state[cidx]?.name}</td>
+            {#each [0, 1, 2, 3] as oidx}
+              <td>{((output[cidx]?.particle_in_gear[oidx] ?? 0) * get_interval(cidx)).toFixed(2)}</td>
             {/each}
           </tr>
         {/each}
     </tbody>
   </table>
 </div>
+
+<h2 class="text-2xl text-center my-4">Flat energy gen</h2>
+<div class="flex w-full justify-center gap-3">
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        {#each indices as cidx}
+          <th>{calculator_state[cidx]?.name}</th>
+        {/each}
+      </tr>
+    </thead>
+    <tbody>
+        {#each indices as cidx}
+          <tr>
+            <td>{calculator_state[cidx]?.name}</td>
+            {#each [0, 1, 2, 3] as oidx}
+              <td>{((output[cidx]?.flat_gen[oidx] ?? 0) * get_interval(cidx)).toFixed(2)}</td>
+            {/each}
+          </tr>
+        {/each}
+    </tbody>
+  </table>
+</div>
+
+<h2 class="text-2xl text-center my-4">Flat energy gen (gear)</h2>
+<div class="flex w-full justify-center gap-3">
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        {#each indices as cidx}
+          <th>{calculator_state[cidx]?.name}</th>
+        {/each}
+      </tr>
+    </thead>
+    <tbody>
+        {#each indices as cidx}
+          <tr>
+            <td>{calculator_state[cidx]?.name}</td>
+            {#each [0, 1, 2, 3] as oidx}
+              <td>{((output[cidx]?.flat_gen_gear[oidx] ?? 0) * get_interval(cidx)).toFixed(2)}</td>
+            {/each}
+          </tr>
+        {/each}
+    </tbody>
+  </table>
+</div>
+
 
 <datalist id="character-list">
   {#each Object.keys(get_char_data_file()) as name}

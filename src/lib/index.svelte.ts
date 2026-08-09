@@ -10,7 +10,7 @@ export function particleTransferFrac(eltsource: TElement, eltprod: TElement) {
 }
 
 export function sum(nums: (number | undefined)[]): number {
-    return nums.reduce((a, b) => (a ?? 0) + (b ?? 0), 0) ?? 0;,
+    return nums.reduce((a, b) => (a ?? 0) + (b ?? 0), 0) ?? 0;
 }
 
 export function remap(val: number, old_min: number, old_max: number, new_min: number, new_max: number) {
