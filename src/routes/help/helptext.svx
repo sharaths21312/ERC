@@ -1,9 +1,10 @@
 # Guide
 
-## Missing features
-
-Flexible rots
-
-
 ## Differences from the spreadsheet
 
+- The fieldtime setting is a weight instead of a percentage, eg 1:1:1:1 means everyone has 25% fieldtime, 3:1:1:1 means the first character has half fieldtime and the rest share the other half and so on. Directly entering percentages will still work
+
+## Missing features
+
+- Save and load
+- Particle RNG adjustment

@@ -3656,7 +3656,7 @@
       ]
     },
     {
-      "names": ["Crane's Echoing Call"],
+      "names": ["Crane's Echoing Call", "Xianyun sig"],
       "gen": [
         {
           "type": "flat",
@@ -3667,7 +3667,7 @@
       "refine_scaling": 1.4
     },
     {
-      "names": ["Nocturne's Curtain Call"],
+      "names": ["Nocturne's Curtain Call", "Columbina sig"],
       "gen": [
         {
           "type": "flat",
@@ -3687,6 +3687,15 @@
         }
       ],
       "refine_scaling": 2
+    },
+    {
+      "names": ["Bloodsoaked Ruins", "Flins sig"],
+      "gen": [{
+        "type": "flat",
+        "amount": 12,
+        "element": "None"
+      }],
+      "refine_scaling": 1.33
     }
   ]
 }

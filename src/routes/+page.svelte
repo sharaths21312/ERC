@@ -142,6 +142,7 @@
       return calculator_state[cidx]!.bursts.interval
     }
   }
+  $inspect(output)
 </script>
 
 <div class="flex flex-col items-center">
@@ -154,7 +155,7 @@
       <span class="top-label-text">Rotation type</span>
       <select class="data-inputs top-input" id="rotation-type-input" bind:value={calculator_state.general.rotation_type}>
         <option value="fixed">Fixed</option>
-        <!-- <option value="flexible">Flexible</option> -->
+        <option value="flexible">Flexible</option>
       </select>
     </label>
 
@@ -206,8 +207,8 @@
       <span class="top-label-text">Energy RNG</span>
       <select class="data-inputs top-input" id="particle-rng" bind:value={calculator_state.general.energy_pessimism}>
         <option value={0}>Average</option>
-        <option value={0.5}>Safe</option>
-        <option value={1}>Worst-case</option>
+        <!-- <option value={0.5}>Safe</option>
+        <option value={1}>Worst-case</option> -->
       </select>
     </label>
   </div>

@@ -125,7 +125,7 @@
         <!-- Gear selection -->
         <div class="flex flex-col p-1 my-0.5 rounded-md" style="background-color: var(--highlight-col); border-width: 1px;">
           <div class="source-selector"
-            style:grid-template-columns={refine_enabled[i] ? "1fr 50px 30px" : "1fr 30px"}>
+            style:grid-template-columns={refine_enabled[i] ? "110px 50px 40px" : "160px 40px"}>
             <input class="data-inputs" bind:value={current_gear.name}
               list="gear-list" onchange={() => gearNameChange(current_gear)}
               onclick={e => (e.target as HTMLInputElement).select()}>
@@ -182,13 +182,12 @@
         <label for="char-{idx}-bonus-fieldtime"><button popovertarget="fieldtime-popover">Fieldtime &#x1F6C8;</button></label>
         <input type="number" step="any" class="data-inputs numbers-bottom"
           id="char-{idx}-bonus-fieldtime" bind:value={current_char.fieldtime}>
-          
         </div>
         
       {#if getData(current_char.name).bursts.length > 1}
         <div class="bottom-input-container">
           <label for="char-{idx}-burst-id">Burst</label>
-          <select id="char-{idx}-burst-id" class="data-inputs numbers-bottom">
+          <select id="char-{idx}-burst-id" class="data-inputs numbers-bottom" bind:value={current_char.bursts.source_idx}>
             {#each getData(current_char.name).bursts as burst, idx}
               <option value={idx}>{burst.name}</option>
             {/each}
@@ -238,7 +237,7 @@
 
   .source-selector {
     display: grid;
-    grid-template-columns: 1fr minmax(20px, 40px);
+    grid-template-columns: 160px 40px;
   }
 
   .data-inputs {
@@ -252,7 +251,7 @@
 
   .funnel-selector {
     display: grid;
-    grid-template-columns: 1fr 35px calc(24px + 0.125rem);
+    grid-template-columns: 130px 35px 25px;
     padding-left: 12px;
     padding-right: 2px;
     padding-block: 3px;

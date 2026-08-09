@@ -124,6 +124,7 @@ export function eltmulti(self: TElement, other: TElement) {
 export function funnelAndFieldtime(input_config: ICharacterSource | IGearSources, source: IParticleGenEntry, cidx: TCharacterIndex, oidx: TCharacterIndex, fieldtime: number, numchars: number): number {
     const off_mult = numchars > 1 ? 1 - numchars * 0.1 : 1
     const isparticle = isParticle(source);
+    const funnel_fraction = Math.max(0, Math.min(input_config.funnel.percentage/100, 1))
 
     // Flat: all - 1 for everyone, can be funnelled; self - 1 for self, notself - 1 for not self; onfield - distribute on fieldtime, can be funnelled
     if (!isparticle && !input_config.funnel.active) {
@@ -137,9 +138,9 @@ export function funnelAndFieldtime(input_config: ICharacterSource | IGearSources
             case "onfield":
                 if (input_config.funnel.active) {
                     if (cidx == input_config.funnel.to) {
-                        return input_config.funnel.percentage + (1 - input_config.funnel.percentage) * fieldtime
+                        return funnel_fraction + (1 - funnel_fraction) * fieldtime
                     } else {
-                        return (1 - input_config.funnel.percentage) * fieldtime
+                        return (1 - funnel_fraction) * fieldtime
                     }
                 } else {
                     return fieldtime
@@ -152,9 +153,9 @@ export function funnelAndFieldtime(input_config: ICharacterSource | IGearSources
         let neutral_share = cidx == oidx ? 1 : off_mult
         if (input_config.funnel.active) {
             if (cidx == input_config.funnel.to) {
-                return input_config.funnel.percentage + (1 - input_config.funnel.percentage) * neutral_share;
+                return funnel_fraction + (1 - funnel_fraction) * neutral_share;
             } else {
-                return input_config.funnel.percentage * off_mult + (1 - input_config.funnel.percentage) * neutral_share;
+                return funnel_fraction * off_mult + (1 - funnel_fraction) * neutral_share;
             }
         } else {
             return neutral_share;
