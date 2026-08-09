@@ -1,14 +1,20 @@
 <script lang="ts">
-	import type { IGear, IGearSources, TCharIdx } from "$lib/datatypes";
+	import type { ICalculatorState, IGear, IGearSources, TCharIdx } from "$lib/datatypes";
 	import { caseInsensitiveSearch, get_calculator_state, get_char_data_file, get_gear_data_file, get_output_state, getDataGenerator, getGearDataGenerator } from "$lib/index.svelte";
 
   const { idx }: { idx: TCharIdx } = $props()
   const calculator_state = get_calculator_state();
-  const output = get_output_state();
   const data = get_char_data_file();
   const gear_data = get_gear_data_file();
   // svelte-ignore state_referenced_locally
   const current_char = calculator_state[idx]!;
+  const output = get_output_state();
+  const current_req = $derived.by(() => {
+    if (output()[idx]) {
+      return Math.round(Math.max((output()[idx]!.er_req), 1) * 100)
+    }
+    return 100
+  });
   let selected_name = $state(current_char?.name ?? "")
 
   const other_chars = [0, 1, 2, 3].filter(v => v !== idx) as unknown as TCharIdx[]
@@ -32,7 +38,7 @@
   function addSource(e: Event) {
     current_char.sources.push({
       source_idx: 0,
-      amount: 1,
+      num_uses: 1,
       funnel: {
         active: false,
         percentage: 100,
@@ -47,7 +53,7 @@
       amount: 1,
       name: "Favonius",
       last_valid_name: "Favonius",
-      refine: 5,
+      refine: 4,
       funnel: {
         active: false,
         to: other_chars[0],
@@ -62,7 +68,7 @@
     <input list="character-list" class="data-inputs" bind:value={selected_name} onchange={nameChange}
       onclick={(e) => {(e.target as HTMLInputElement).select()}}>
     
-    <h3 class="w-full text-center font-bold text-lg my-2">100%</h3>
+    <h3 class="w-full text-center font-bold text-lg my-2">{current_req}%</h3>
 
     <div class="inputs-section">
       <div class="flex items-center justify-between px-3 py-0.5 my-1 mb-2 rounded-md subpanel-bg">
@@ -79,7 +85,7 @@
                 <option value={source_idx}>{source.title}</option>
               {/each}
             </select>
-            <input class="data-inputs text-center p-0" bind:value={source.amount} title="Skill uses">
+            <input class="data-inputs text-center p-0" bind:value={source.num_uses} title="Skill uses">
           </div>
 
           <!-- Source funnel -->
@@ -125,11 +131,11 @@
               onclick={e => (e.target as HTMLInputElement).select()}>
             {#if refine_enabled[i]}
               <select class="data-inputs p-0 text-center" bind:value={current_gear.refine}>
-                <option value={1}>R1</option>
-                <option value={2}>R2</option>
-                <option value={3}>R3</option>
-                <option value={4}>R4</option>
-                <option value={5}>R5</option>
+                <option value={0}>R1</option>
+                <option value={1}>R2</option>
+                <option value={2}>R3</option>
+                <option value={3}>R4</option>
+                <option value={4}>R5</option>
               </select>
             {/if}
             <input class="data-inputs text-center p-0" bind:value={current_gear.amount} title="Number of triggers">
@@ -191,7 +197,7 @@
       {/if}
       {#if calculator_state.general.rotation_type == "fixed"}
         <div class="bottom-input-container">
-          <label for="char-{idx}-burst-rotcount"><button popovertarget="rots-per-burst">R/B &#x1F6C8;</button></label>
+          <label for="char-{idx}-burst-rotcount"><button popovertarget="bursts-per-rot">B/R &#x1F6C8;</button></label>
           <input type="number" step="any" class="data-inputs numbers-bottom"
             id="char-{idx}-burst-rotcount" bind:value={current_char.bursts.rot_count}>
         </div>

@@ -6,24 +6,14 @@ export type TParticleTarget = "all" | "self" | "notself" | "onfield";
 
 export type TCharacterIndex = 0 | 1 | 2 | 3;
 
-export interface IParticleGenBase {
+export interface IParticleGenEntry {
 	type: TParticleGenType;
 	element: TElement;
 	amount: number;
 	target?: TParticleTarget;
 	rng_reduction?: number;
+	duration?: number;
 }
-
-export interface IParticleGenNonTurret extends IParticleGenBase {
-	type: "particle" | "flat";
-}
-
-export interface IParticleGenTurret extends IParticleGenBase {
-	type: "particle_turret" | "flat_turret";
-	duration: number;
-}
-
-export type TParticleGenEntry = IParticleGenNonTurret | IParticleGenTurret;
 
 export interface IBurst {
 	cooldown: number;
@@ -34,7 +24,7 @@ export interface IBurst {
 export interface ISource {
 	title: string;
 	cooldown: number;
-	gen: TParticleGenEntry[];
+	gen: IParticleGenEntry[];
 }
 
 export interface ICharacter {
@@ -47,7 +37,7 @@ export interface ICharacter {
 
 export interface IGear {
 	names: string[];
-	gen: TParticleGenEntry[];
+	gen: IParticleGenEntry[];
 	refine_scaling?: number;
 	help: string | undefined;
 }
@@ -77,7 +67,7 @@ export interface IGeneralConfig {
 
 export interface ICharacterConfig {
 	name: string;
-	sources: ICharacterSources[];
+	sources: ICharacterSource[];
 	gear: IGearSources[];
 	fieldtime: number;
 	bursts: IBurstSelection;
@@ -90,9 +80,9 @@ export interface IBurstSelection {
 	rot_count: number;
 }
 
-export interface ICharacterSources {
+export interface ICharacterSource {
 	source_idx: number;
-	amount: number;
+	num_uses: number;
 	funnel: IFunnelEntry;
 }
 
@@ -119,8 +109,10 @@ export interface IOutput {
 
 export interface IOutputElt {
 	particle_in: number[];
+	particle_in_gear: number[];
 	flat_gen: number[];
-	// energy
+	flat_gen_gear: number[];
+	er_req: number;
 }
 
 export type TCharIdx = 0 | 1 | 2 | 3;

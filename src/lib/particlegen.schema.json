@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "/src/lib/particlegen.schema.json",
+  "$id": "particlegen.schema.json",
   "title": "Particle Generation",
   "type": "array",
   "items": {
@@ -10,7 +10,7 @@
         "enum": ["particle", "flat", "particle_turret", "flat_turret"]
       },
       "target": {
-        "description": "Target priority, default 'all' for particles and 'self' for flat energy",
+        "description": "Target PARTIALLY IMPLEMENTED see funnelAndFieldtime in index.svelte.ts, only affects flat gen",
         "enum": ["all", "self", "notself", "onfield"]
       },
       "element": {
@@ -22,7 +22,7 @@
         "type": "number"
       },
       "rng_reduction": {
-        "description": "Worst case particle generation. Defaults to gen/floor(gen) for flat/particles and gen/2 for turrets",
+        "description": "Worst case particle generation. Defaults to gen/floor(gen) for flat/particles and gen/2 for turrets THIS IS DIFFERENT TO THE SHEET",
         "type": "number"
       },
       "duration": {

@@ -1,4 +1,9 @@
 # Guide
 
+## Missing features
+
+Flexible rots
+
+
 ## Differences from the spreadsheet
 

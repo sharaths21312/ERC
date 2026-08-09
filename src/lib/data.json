@@ -1,5 +1,5 @@
 {
-  "$id": "/src/lib/data.json",
+  "$id": "data.json",
   "$schema": "data_schema.schema.json",
   "characters": [
     {
@@ -1170,7 +1170,6 @@
             {
               "type": "flat",
               "amount": 24,
-              "target": "self",
               "element": "Electro"
             }
           ]

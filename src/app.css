@@ -2,7 +2,6 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-
 body[data-theme=dark] {
     --bg-col: #262626;
     --text-col-main: #fff;
