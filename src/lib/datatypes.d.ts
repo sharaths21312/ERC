@@ -8,7 +8,7 @@ export type TCharacterIndex = 0 | 1 | 2 | 3;
 
 export interface IParticleGenEntry {
 	type: TParticleGenType;
-	element: TElement;
+	element?: TElement;
 	amount: number;
 	target?: TParticleTarget;
 	rng_reduction?: number;

@@ -30,7 +30,7 @@
         "type": "number"
       }
     },
-    "required": ["type", "element", "amount"],
+    "required": ["type", "amount"],
     "if": {
       "properties": {
         "type": { "const": "turret" }
