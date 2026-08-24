@@ -1,6 +1,6 @@
 <script lang="ts">
   import Character from "./character.svelte";
-  import { distinct, eltmulti, funnelAndFieldtime, get_calculator_state, get_char_data_file, get_gear_data_file, get_output_state, getDataGenerator, getGearDataGenerator, isParticle, remap_refine, set_output_state, single_output, sum } from "$lib/index.svelte";
+  import { distinct, eltmulti, funnelAndFieldtime, get_calculator_state, get_char_data_file, get_gear_data_file, get_output_state, get_reset_funcs, get_stored_data, getDataGenerator, getGearDataGenerator, getRNGGen, isParticle, remap_refine, set_output_state, single_output, sum } from "$lib/index.svelte";
   import type { ICalculatorState, ICharacterConfig, ICharacterSource, IOutput, IParticleGenEntry, TCharIdx } from "$lib/datatypes";
 
   let calculator_state = get_calculator_state()
@@ -11,6 +11,14 @@
   const getData = getDataGenerator(data);
   const gear_data = get_gear_data_file();
   const getGearData = getGearDataGenerator(gear_data);
+  const saves = get_stored_data();
+  const save_funcs = get_reset_funcs();
+  let save_dialog: HTMLDialogElement;
+  let load_dialog: HTMLDialogElement;
+  let save_name = $state("");
+  let reload_key = $state(0);
+  console.log('loaded')
+
   let electro_reso = $derived.by(() => {
     let electro_count = 0;
     for (const cidx of indices) {
@@ -63,9 +71,9 @@
             if (gen.type.includes("turret")) {
               const recast_interval = skill_interval/inp_source.num_uses;
               const turret_time_frac = Math.min(1, gen.duration!/recast_interval)
-              genpersec = turret_time_frac * gen.amount
+              genpersec = turret_time_frac * getRNGGen(gen, calculator_state.general.energy_pessimism)
             } else {
-              genpersec = gen.amount * inp_source.num_uses/skill_interval
+              genpersec = inp_source.num_uses/skill_interval * getRNGGen(gen, calculator_state.general.energy_pessimism)
             }
 
             const funnel_frac = funnelAndFieldtime(inp_source, gen, curr_cidx, other_cidx, fieldtime_frac, num_chars)
@@ -142,7 +150,6 @@
       return calculator_state[cidx]!.bursts.interval
     }
   }
-  $inspect(output)
 </script>
 
 <div class="flex flex-col items-center">
@@ -206,9 +213,9 @@
     <label for="particle-rng" class="top-label">
       <span class="top-label-text">Energy RNG</span>
       <select class="data-inputs top-input" id="particle-rng" bind:value={calculator_state.general.energy_pessimism}>
-        <option value={0}>Average</option>
-        <!-- <option value={0.5}>Safe</option>
-        <option value={1}>Worst-case</option> -->
+        <option value={1}>Average</option>
+        <option value={0.5}>Safe</option>
+        <option value={0}>Worst-case</option>
       </select>
     </label>
   </div>
@@ -218,6 +225,14 @@
     <Character idx={1} />
     <Character idx={2} />
     <Character idx={3} />
+  </div>
+
+  <!-- Save/load buttons -->
+  <div>
+    <button onclick={() => save_dialog.showModal()} class="px-2 py-1 m-3 panel_bg border-2 border-white">Save</button>
+    <button onclick={() => load_dialog.showModal()} class="px-2 py-1 m-3 panel_bg border-2 border-white">Load</button>
+    <button onclick={() => save_funcs.reset()} class="px-2 py-1 m-3 panel_bg border-2 border-white">Reset</button>
+    <button onclick={() => save_funcs.reset_all()} class="px-2 py-1 m-3 panel_bg border-2 border-white">Reset all</button>
   </div>
 
   <ul>
@@ -353,6 +368,42 @@
 <div popover id="bonus-flat-gen">Bonus flat energy generation</div>
 <div popover id="fieldtime-popover">Field time (weight)</div>
 
+
+  <!-- Save modal -->
+
+  <dialog bind:this={save_dialog}>
+    <div class="panel_bg">
+      <form method="dialog" class="flex flex-col p-3" onsubmit={() => save_funcs.save(save_name, output)}>
+        <div class="grid m-2" style="grid-template-columns: 1fr auto;">
+          <div>Save state</div>
+          <button onclick={() => save_dialog.close()}>X</button>
+        </div>
+        <div class="grid gap-2 m-2 items-center" style="grid-template-columns: auto 1fr;">
+          <label for="save_name" class="mr-2">Name</label>
+          <input name="save_name" bind:value={save_name} class="data-inputs">
+        </div>
+        <button type="submit" class="px-2 my-2 border-white border-2 self-center">Save</button>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- Load modal -->
+  <dialog bind:this={load_dialog}>
+    <div class="panel_bg flex-col flex">
+      <div class="grid p-2 px-4 gap-2" style="grid-template-columns: 1fr auto;">
+        <div>Load saved state</div>
+        <button onclick={() => load_dialog.close()}>X</button>
+      </div>
+      {#each saves.saves as save, idx}
+        <div class="grid mx-3 my-1 p-2" style="grid-template-columns: 1fr auto auto;">
+          <div class="mx-2 p-1">{save.name}</div>
+          <button onclick={() => { load_dialog.close(); save_funcs.load(idx); reload_key++; } } class="px-1 mx-1 border-white border-2">Load</button>
+          <button onclick={() => { saves.saves.splice(idx, 1) }} class="px-1 mx-1 border-white border-2">Delete</button>
+        </div>
+      {/each}
+    </div>
+  </dialog>
+
 <style>
   .top_container {
       max-width: 1500px;
@@ -378,6 +429,11 @@
       max-width: 1700px;
   }
 
+  .panel_bg {
+    background-color: var(--panel-bg-col);
+    color: white;
+  }
+
   [popover] {
     position: relative;
     position-area: top span-right;
@@ -393,5 +449,10 @@
   th, td {
     padding: 3px;
     border: 1px solid white;
+  }
+
+  dialog {
+    border: 2px solid white;
+    border-radius: 4px;
   }
 </style>

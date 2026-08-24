@@ -1,6 +1,6 @@
 import { get, writable } from "svelte/store";
 import type { Writable } from "svelte/store";
-import type { TElement, IDataSchema, ICharacter, IGear, ICharacterSource, ICharacterConfig, IGearSources, ICalculatorState, IOutput, IOutputElt, ISource, TCharacterIndex, IParticleGenEntry } from "./datatypes";
+import type { TElement, IDataSchema, ICharacter, IGear, ICharacterSource, ICharacterConfig, IGearSources, ICalculatorState, IOutput, IOutputElt, IParticleGenEntry, TCharIdx, TStoredData, ISaveFuncs } from "$lib/datatypes";
 import { createContext } from "svelte";
 
 export function particleTransferFrac(eltsource: TElement, eltprod: TElement) {
@@ -27,6 +27,8 @@ export const [get_char_data_file, set_char_data_file] = createContext<Record<str
 export const [get_gear_data_file, set_gear_data_file] = createContext<Record<string, IGear>>();
 export const [get_calculator_state, set_calculator_state] = createContext<ICalculatorState>();
 export const [get_output_state, set_output_state] = createContext<() => IOutput>();
+export const [get_stored_data, set_stored_data] = createContext<TStoredData>();
+export const [get_reset_funcs, set_reset_funcs] = createContext<ISaveFuncs>()
 
 export function createCharacter(name: string, data: Record<string, ICharacter>): ICharacterConfig {
     return {
@@ -121,7 +123,7 @@ export function eltmulti(self: TElement, other: TElement) {
  * - flat and flat_turret self/notself/onfield/all
  * - particle and particle_turret default
  */
-export function funnelAndFieldtime(input_config: ICharacterSource | IGearSources, source: IParticleGenEntry, cidx: TCharacterIndex, oidx: TCharacterIndex, fieldtime: number, numchars: number): number {
+export function funnelAndFieldtime(input_config: ICharacterSource | IGearSources, source: IParticleGenEntry, cidx: TCharIdx, oidx: TCharIdx, fieldtime: number, numchars: number): number {
     const off_mult = numchars > 1 ? 1 - numchars * 0.1 : 1
     const isparticle = isParticle(source);
     const funnel_fraction = Math.max(0, Math.min(input_config.funnel.percentage/100, 1))
@@ -172,4 +174,18 @@ export function funnelAndFieldtime(input_config: ICharacterSource | IGearSources
 
 export function isParticle(source: IParticleGenEntry) {
     return source.type == "particle" || source.type == "particle_turret"
+}
+
+export function getRNGGen(source: IParticleGenEntry, safety: number) {
+    if (source.type.includes("flat")) {
+        return source.amount;
+    }
+
+    let wc: number = 0;
+    if (source.type == "particle") {
+        wc = source.rng_reduction ?? Math.floor(source.amount)
+    } else if (source.type == "particle_turret") {
+        wc = source.rng_reduction ?? source.amount/2
+    }
+    return remap(safety, 0, 1, wc, source.amount)
 }

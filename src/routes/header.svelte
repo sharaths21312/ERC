@@ -1,13 +1,12 @@
 <script lang="ts">
-	import { onMount } from "svelte";
-    import { PUBLIC_HASH } from "$env/static/public";
+    import { version } from "$app/environment";
 	import { resolve } from "$app/paths";
     import { page } from "$app/state";
 </script>
 
 <div class="flex w-full px-5 justify-between items-center">
-    <a class="font-bold text-lg" href="{resolve("/")}">Energy Recharge Calculator<sup>β</sup>
-        <span class="font-normal text-sm">Hash: {(PUBLIC_HASH ?? "unknown").slice(0, 7)}</span>
+    <a class="font-bold text-lg" href="{resolve("/")}">Energy Recharge Calculator
+        <span class="font-normal text-sm">{version}</span>
     </a>
     <div class="mx-3">
         <a href="{resolve("/data")}" class="{page.route.id == "/data" ? "highlight" : ""}">Data</a>

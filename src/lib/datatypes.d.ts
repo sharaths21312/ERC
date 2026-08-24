@@ -4,7 +4,7 @@ export type TParticleGenType = "particle" | "flat" | "particle_turret" | "flat_t
 
 export type TParticleTarget = "all" | "self" | "notself" | "onfield";
 
-export type TCharacterIndex = 0 | 1 | 2 | 3;
+export type TCharIdx = 0 | 1 | 2 | 3;
 
 export interface IParticleGenEntry {
 	type: TParticleGenType;
@@ -115,4 +115,23 @@ export interface IOutputElt {
 	er_req: number;
 }
 
-export type TCharIdx = 0 | 1 | 2 | 3;
+export type TStoredData = IStoredData_V1;
+
+export interface IStoredData_V1 {
+	saves: {
+		name: string;
+		last_er: number[];
+		state: ICalculatorState;
+	}[];
+	version: 1;
+	custom_chars: ICharacter[];
+	custom_gear: IGear[];
+	last_save?: ICalculatorState;
+}
+
+export interface ISaveFuncs {
+	reset: () => void;
+	reset_all: () => void;
+	save: (string, IOutput) => void;
+	load: (number) => void;
+}
