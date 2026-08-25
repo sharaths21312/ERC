@@ -7,6 +7,8 @@
 - When it comes to constellations/passives adding energy, whether the constellation/passive is accounted for is indicated by whether the name contains the Skill's name.
   - eg. Furina states "Salon Members (C4)", which means that you should *not* use it alongside the regular Skill use.
   - On the other hand, Flins for example simply states "Constellation 1" which means that it should be added alongside the regular Skill use.
+- Burst discount style abilities (Diona C1) only need 1 use to work
 - Fischl's burst doesn't automatically add a use.
 
 ## Missing features
+- A lot of the bonus flat energy abiities are yet to be added

@@ -7,7 +7,7 @@
     "type": "object",
     "properties": {
       "type": {
-        "enum": ["particle", "flat", "particle_turret", "flat_turret"]
+        "enum": ["particle", "flat", "particle_turret", "flat_turret", "burst_discount"]
       },
       "target": {
         "description": "Target PARTIALLY IMPLEMENTED see funnelAndFieldtime in index.svelte.ts, only affects flat gen",

@@ -207,7 +207,7 @@
           ]
         }
       ],
-      "help": "Arlecchino's burst resets her skill cooldown. Arlecchino's Normal Attacks reduce her skill cooldown by .8s on hit. Arlecchino's C4 gives her 15 energy on burst. Put this in \"Bonus non-particle energy\". In fixed mode, also divide by number of rotations between bursts"
+      "help": "Arlecchino's burst resets her skill cooldown. Arlecchino's Normal Attacks reduce her skill cooldown by .8s on hit."
     },
     {
       "names": [
@@ -936,9 +936,19 @@
               "worst_case": 3
             }
           ]
+        },
+        {
+          "title": "C1",
+          "cooldown": 20,
+          "gen": [
+            {
+              "type": "burst_discount",
+              "amount": 15
+            }
+          ]
         }
       ],
-      "help": "Diona C1 gains 15 energy on burst. Put this in \"Bonus non-particle energy\". Divide this energy by the number of rotations between bursts."
+      "help": ""
     },
     {
       "names": [
@@ -1435,9 +1445,19 @@
               "amount": 3
             }
           ]
+        },
+        {
+          "title": "C4 (full)",
+          "cooldown": 12,
+          "gen": [
+            {
+              "type": "burst_discount",
+              "amount": 13.5
+            }
+          ]
         }
       ],
-      "help": "Heizou's C4 gives him 13.5 energy on burst. Put this in \"Bonus non-particle energy\". Divide this energy by the number of rotations between bursts."
+      "help": ""
     },
     {
       "names": [

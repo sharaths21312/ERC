@@ -1,6 +1,6 @@
 export type TElement = "Pyro" | "Hydro" | "Dendro" | "Electro" | "Cryo" | "Anemo" | "Geo" | "None";
 
-export type TParticleGenType = "particle" | "flat" | "particle_turret" | "flat_turret";
+export type TParticleGenType = "particle" | "flat" | "particle_turret" | "flat_turret" | "burst_discount";
 
 export type TParticleTarget = "all" | "self" | "notself" | "onfield";
 

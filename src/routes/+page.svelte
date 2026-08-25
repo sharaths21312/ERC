@@ -53,6 +53,7 @@
       if (!char) continue;
       const char_data = getData(char.name);
       const fieldtime_frac = char.fieldtime/(sum(indices.map(i => calculator_state[i]?.fieldtime)))
+      let burst_discounts = 0;
 
       for (const other_cidx of indices) {
         const source_char = calculator_state[other_cidx];
@@ -62,6 +63,13 @@
         for (const inp_source of source_char.sources) {
           const data_source = source_char_data.sources[inp_source.source_idx]
           for (const gen of data_source.gen) {
+            if (gen.type == "burst_discount") {
+              if (other_cidx == curr_cidx) {
+                burst_discounts += gen.amount * inp_source.num_uses
+              }
+              continue
+            }
+
             // main logic
             let genpersec = 0;
 
@@ -132,7 +140,7 @@
         output[curr_cidx]!.particle_in[4] += elt_mult * fieldtime_mult * countpersec
       }
 
-      const energy_needed_persec = char_data.bursts[char.bursts.source_idx].energy / (isfixed ? calculator_state.general.rotation_length/char.bursts.rot_count : char.bursts.interval)
+      const energy_needed_persec = (char_data.bursts[char.bursts.source_idx].energy - burst_discounts) / (isfixed ? calculator_state.general.rotation_length/char.bursts.rot_count : char.bursts.interval)
 
       // ER needed = (burst cost - flat gen)/particle gen
       output[curr_cidx]!.er_req = (energy_needed_persec - sum(output[curr_cidx]!.flat_gen) - sum(output[curr_cidx]!.flat_gen_gear))/
