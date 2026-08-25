@@ -130,7 +130,7 @@
         case "none":
           break
         case "custom":
-          output[curr_cidx]!.particle_in[5] += 2 * 9/calculator_state.general.total_duration * fieldtime_mult
+          output[curr_cidx]!.particle_in[5] += 2 * calculator_state.general.hp_threshold_energy_custom/calculator_state.general.total_duration * fieldtime_mult
           break
       }
       // electro resonance
