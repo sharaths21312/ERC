@@ -30,6 +30,17 @@ export const [get_output_state, set_output_state] = createContext<() => IOutput>
 export const [get_stored_data, set_stored_data] = createContext<TStoredData>();
 export const [get_reset_funcs, set_reset_funcs] = createContext<ISaveFuncs>()
 
+const customizations = {
+    "Flins": {
+        bursts: {
+            source_idx: 0,
+            interval: 20,
+            rot_count: 2
+        },
+        fieldtime: 3
+    }
+}
+
 export function createCharacter(name: string, data: Record<string, ICharacter>): ICharacterConfig {
     return {
         name,
@@ -41,7 +52,9 @@ export function createCharacter(name: string, data: Record<string, ICharacter>):
         extra_flat_gen: 0,
         fieldtime: 1,
         sources: [create_empty_source()],
-        gear: []
+        gear: [],
+        // @ts-expect-error
+        ...(customizations[name] ?? {})
     };
 }
 

@@ -125,8 +125,8 @@
         <!-- Gear selection -->
         <div class="flex flex-col p-1 my-0.5 rounded-md" style="background-color: var(--highlight-col); border-width: 1px;">
           <div class="source-selector"
-            style:grid-template-columns={refine_enabled[i] ? "110px 50px 40px" : "160px 40px"}>
-            <input class="data-inputs" bind:value={current_gear.name}
+            style:grid-template-columns={refine_enabled[i] ? "135px 35px 30px" : "170px 30px"}>
+            <input class="data-inputs pr-0" bind:value={current_gear.name}
               list="gear-list" onchange={() => gearNameChange(current_gear)}
               onclick={e => (e.target as HTMLInputElement).select()}>
             {#if refine_enabled[i]}
@@ -234,6 +234,11 @@
     padding-inline: 8pt;
     margin-block: 3pt;
   } */
+
+  input::-webkit-calendar-picker-indicator {
+    display: none !important;
+  }
+
 
   .source-selector {
     display: grid;

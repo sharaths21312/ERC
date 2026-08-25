@@ -6,7 +6,6 @@
   let calculator_state = get_calculator_state()
   const indices = [0, 1, 2, 3] as const;
   const num_chars = $derived((indices.reduce((prev: number, i) => prev + (calculator_state[i] != null ? 1 : 0), 0)));
-  // ugly hack but just checks each character
   const data = get_char_data_file();
   const getData = getDataGenerator(data);
   const gear_data = get_gear_data_file();
@@ -235,7 +234,7 @@
     <button onclick={() => save_funcs.reset_all()} class="px-2 py-1 m-3 panel_bg border-2 border-white">Reset all</button>
   </div>
 
-  <ul>
+  <ul class="max-w-screen-lg mx-8">
     {#each allselections.characters as chars}
       {#if getData(chars)?.help}
         <li>{chars}: {getData(chars).help ?? ""}</li>
@@ -368,41 +367,40 @@
 <div popover id="bonus-flat-gen">Bonus flat energy generation</div>
 <div popover id="fieldtime-popover">Field time (weight)</div>
 
+<!-- Save modal -->
 
-  <!-- Save modal -->
-
-  <dialog bind:this={save_dialog}>
-    <div class="panel_bg">
-      <form method="dialog" class="flex flex-col p-3" onsubmit={() => save_funcs.save(save_name, output)}>
-        <div class="grid m-2" style="grid-template-columns: 1fr auto;">
-          <div>Save state</div>
-          <button onclick={() => save_dialog.close()}>X</button>
-        </div>
-        <div class="grid gap-2 m-2 items-center" style="grid-template-columns: auto 1fr;">
-          <label for="save_name" class="mr-2">Name</label>
-          <input name="save_name" bind:value={save_name} class="data-inputs">
-        </div>
-        <button type="submit" class="px-2 my-2 border-white border-2 self-center">Save</button>
-      </form>
-    </div>
-  </dialog>
-
-  <!-- Load modal -->
-  <dialog bind:this={load_dialog}>
-    <div class="panel_bg flex-col flex">
-      <div class="grid p-2 px-4 gap-2" style="grid-template-columns: 1fr auto;">
-        <div>Load saved state</div>
-        <button onclick={() => load_dialog.close()}>X</button>
+<dialog bind:this={save_dialog}>
+  <div class="panel_bg">
+    <form method="dialog" class="flex flex-col p-3" onsubmit={() => save_funcs.save(save_name, output)}>
+      <div class="grid m-2" style="grid-template-columns: 1fr auto;">
+        <div>Save state</div>
+        <button onclick={() => save_dialog.close()}>X</button>
       </div>
-      {#each saves.saves as save, idx}
-        <div class="grid mx-3 my-1 p-2" style="grid-template-columns: 1fr auto auto;">
-          <div class="mx-2 p-1">{save.name}</div>
-          <button onclick={() => { load_dialog.close(); save_funcs.load(idx); reload_key++; } } class="px-1 mx-1 border-white border-2">Load</button>
-          <button onclick={() => { saves.saves.splice(idx, 1) }} class="px-1 mx-1 border-white border-2">Delete</button>
-        </div>
-      {/each}
+      <div class="grid gap-2 m-2 items-center" style="grid-template-columns: auto 1fr;">
+        <label for="save_name" class="mr-2">Name</label>
+        <input name="save_name" bind:value={save_name} class="data-inputs">
+      </div>
+      <button type="submit" class="px-2 my-2 border-white border-2 self-center">Save</button>
+    </form>
+  </div>
+</dialog>
+
+<!-- Load modal -->
+<dialog bind:this={load_dialog}>
+  <div class="panel_bg flex-col flex">
+    <div class="grid p-2 px-4 gap-2" style="grid-template-columns: 1fr auto;">
+      <div>Load saved state</div>
+      <button onclick={() => load_dialog.close()}>X</button>
     </div>
-  </dialog>
+    {#each saves.saves as save, idx}
+      <div class="grid mx-3 my-1 p-2" style="grid-template-columns: 1fr auto auto;">
+        <div class="mx-2 p-1">{save.name}</div>
+        <button onclick={() => { load_dialog.close(); save_funcs.load(idx); reload_key++; } } class="px-1 mx-1 border-white border-2">Load</button>
+        <button onclick={() => { saves.saves.splice(idx, 1) }} class="px-1 mx-1 border-white border-2">Delete</button>
+      </div>
+    {/each}
+  </div>
+</dialog>
 
 <style>
   .top_container {

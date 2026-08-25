@@ -73,7 +73,7 @@
 			rotation_length: 20,
 			total_duration: 90,
 			electro_resonance_interval: 5.5,
-			energy_pessimism: 0,
+			energy_pessimism: 1,
 			hp_threshold_energy: 'default',
 			hp_threshold_energy_custom: 9
 		}

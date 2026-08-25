@@ -62,7 +62,7 @@ export interface IGeneralConfig {
 	rotation_length: number;
 	total_duration: number;
 	electro_resonance_interval: number;
-	energy_pessimism: number; // 0 -> default, 1 -> worst case
+	energy_pessimism: number; // 0 -> worst case, 1 -> default
 }
 
 export interface ICharacterConfig {
