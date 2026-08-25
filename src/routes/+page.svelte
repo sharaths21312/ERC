@@ -286,6 +286,7 @@
         {#each indices as cidx}
           <th>{calculator_state[cidx]?.name}</th>
         {/each}
+        <th>Total</th>
       </tr>
     </thead>
     <tbody>
@@ -295,6 +296,7 @@
             {#each [0, 1, 2, 3] as oidx}
               <td>{((output[cidx]?.particle_in_gear[oidx] ?? 0) * get_interval(cidx)).toFixed(2)}</td>
             {/each}
+            <td>{(sum(output[cidx]?.particle_in_gear!) * get_interval(cidx)).toFixed(2)}</td>
           </tr>
         {/each}
     </tbody>
@@ -310,6 +312,7 @@
         {#each indices as cidx}
           <th>{calculator_state[cidx]?.name}</th>
         {/each}
+        <th>Total</th>
       </tr>
     </thead>
     <tbody>
@@ -319,6 +322,7 @@
             {#each [0, 1, 2, 3] as oidx}
               <td>{((output[cidx]?.flat_gen[oidx] ?? 0) * get_interval(cidx)).toFixed(2)}</td>
             {/each}
+            <td>{(sum(output[cidx]?.flat_gen!) * get_interval(cidx)).toFixed(2)}</td>
           </tr>
         {/each}
     </tbody>
@@ -334,6 +338,7 @@
         {#each indices as cidx}
           <th>{calculator_state[cidx]?.name}</th>
         {/each}
+        <th>Total</th>
       </tr>
     </thead>
     <tbody>
@@ -343,6 +348,7 @@
             {#each [0, 1, 2, 3] as oidx}
               <td>{((output[cidx]?.flat_gen_gear[oidx] ?? 0) * get_interval(cidx)).toFixed(2)}</td>
             {/each}
+            <td>{(sum(output[cidx]?.flat_gen_gear!) * get_interval(cidx)).toFixed(2)}</td>
           </tr>
         {/each}
     </tbody>
@@ -394,7 +400,7 @@
     </div>
     {#each saves.saves as save, idx}
       <div class="grid mx-3 my-1 p-2" style="grid-template-columns: 1fr auto auto;">
-        <div class="mx-2 p-1">{save.name}</div>
+        <div class="mx-2 p-1">{save.name}: {save.state[0]?.name}/{save.state[1]?.name}/{save.state[2]?.name}/{save.state[3]?.name}</div>
         <button onclick={() => { load_dialog.close(); save_funcs.load(idx); reload_key++; } } class="px-1 mx-1 border-white border-2">Load</button>
         <button onclick={() => { saves.saves.splice(idx, 1) }} class="px-1 mx-1 border-white border-2">Delete</button>
       </div>

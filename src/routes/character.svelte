@@ -243,6 +243,7 @@
   .source-selector {
     display: grid;
     grid-template-columns: 160px 40px;
+    align-self: center;
   }
 
   .data-inputs {
