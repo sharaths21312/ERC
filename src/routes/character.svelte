@@ -17,7 +17,8 @@
   });
   let selected_name = $state(current_char?.name ?? "")
 
-  const other_chars = [0, 1, 2, 3].filter(v => v !== idx) as unknown as TCharIdx[]
+  // const other_chars = [0, 1, 2, 3].filter(v => v !== idx) as unknown as TCharIdx[]
+  const other_chars = [0, 1, 2, 3] as TCharIdx[]
   const getData = getDataGenerator(data);
   const getGearData = getGearDataGenerator(gear_data);
   const refine_enabled = $derived(current_char.gear.map(gear => getGearData(gear).refine_scaling != undefined))

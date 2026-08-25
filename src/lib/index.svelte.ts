@@ -142,7 +142,7 @@ export function funnelAndFieldtime(input_config: ICharacterSource | IGearSources
     const funnel_fraction = Math.max(0, Math.min(input_config.funnel.percentage/100, 1))
 
     // Flat: all - 1 for everyone, can be funnelled; self - 1 for self, notself - 1 for not self; onfield - distribute on fieldtime, can be funnelled
-    if (!isparticle && !input_config.funnel.active) {
+    if (!isparticle) {
         switch (source.target ?? "self") {
             case "all":
                 return 1

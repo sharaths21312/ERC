@@ -4,8 +4,9 @@
 
 - The fieldtime setting is a weight instead of a percentage
   - As an example, 1:1:1:1 means everyone has 25% fieldtime, 3:1:1:1 means the first character has half fieldtime and the rest share the other half and so on. Directly using percentages will still work.
-- Gear can be directly input
+- When it comes to constellations/passives adding energy, whether the constellation/passive is accounted for is indicated by whether the name contains the Skill's name.
+  - eg. Furina states "Salon Members (C4)", which means that you should *not* use it alongside the regular Skill use.
+  - On the other hand, Flins for example simply states "Constellation 1" which means that it should be added alongside the regular Skill use.
 - Fischl's burst doesn't automatically add a use.
-
 
 ## Missing features

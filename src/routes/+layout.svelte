@@ -124,9 +124,9 @@
 		save: save
 	})
 
-	$inspect(saves)
+	// $inspect(saves)
 	$inspect(calculator_state)
-	$inspect(reload_key)
+	// $inspect(reload_key)
 </script>
 
 

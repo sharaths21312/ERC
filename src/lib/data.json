@@ -758,9 +758,30 @@
               "duration": 25
             }
           ]
+        },
+        {
+          "title": "C1 proc",
+          "cooldown": 6,
+          "gen": [
+            {
+              "type": "flat",
+              "amount": 6,
+              "target": "onfield"
+            }
+          ]
+        },
+        {
+          "title": "C4 proc",
+          "cooldown": 6,
+          "gen": [
+            {
+              "type": "flat",
+              "amount": 4
+            }
+          ]
         }
       ],
-      "help": "Columbina's C1 restores 6 energy to the active character when Gravity Interference accumulated Lunar Charged. Columbina's C4 restores 4 energy to herself when Gravity Interference is triggered. Put these in \"Bonus non-particle energy\"."
+      "help": ""
     },
     {
       "names": [
@@ -940,9 +961,17 @@
               "amount": 2
             }
           ]
+        },
+        {
+          "title": "A4 proc, 100% ER",
+          "cooldown": 9,
+          "gen": [{
+            "type": "flat",
+            "amount": 5
+          }]
         }
       ],
-      "help": "Dori's A4 is already factored in, don't give her flat energy. Dori's C4 means some of your characters may need slighly less ER than recommended."
+      "help": "Dori's C4 means some of your characters may need slighly less ER than recommended."
     },
     {
       "names": [
@@ -1179,7 +1208,7 @@
           ]
         }
       ],
-      "help": "Flins does 2 Special Bursts per rotation (0.5 R/B). He generates 4 or 5 particles depending on his combos, put 1.25 in Skill uses for 5 particles. Flins C1 restores 8 energy every 5.5 seconds when Lunar Charged is triggered, the calculator assumes 3 procs as one use"
+      "help": "Flins does 2 Special Bursts per rotation. He generates 4 or 5 particles depending on his combos, put 1.25 in Skill uses for 5 particles. Flins C1 restores 8 energy every 5.5 seconds when Lunar Charged is triggered, the calculator assumes 3 procs as one use"
     },
     {
       "names": [
@@ -1253,9 +1282,25 @@
           "title": "Singer",
           "cooldown": 20,
           "gen": []
+        },
+        {
+          "title": "Salon Members (C4)", 
+          "cooldown": 20,
+          "gen": [
+            {
+              "type": "particle_turret",
+              "amount": 0.3,
+              "duration": 30
+            },
+            {
+              "type": "flat_turret",
+              "amount": 0.8,
+              "duration": 30
+            }
+          ]
         }
       ],
-      "help": "Furina's C4 gives her 0.8 energy per second while her skill is active. Multiply this by the rotation length and put this in \"Bonus non-particle energy\""
+      "help": ""
     },
     {
       "names": [
@@ -1278,9 +1323,19 @@
               "amount": 2
             }
           ]
+        },
+        {
+          "title": "C4 proc",
+          "cooldown": 0.2,
+          "gen": [
+            {
+              "type": "flat",
+              "amount": 2
+            }
+          ]
         }
       ],
-      "help": "Gaming generates particles when he uses Plunging Attack: Charmed Cloudstrider, with a 3 second ICD. Gaming's C4 adds an additional 2 flat energy per enemy hit. Put this in \"Bonus non-particle energy\"."
+      "help": "Gaming generates particles when he uses Plunging Attack: Charmed Cloudstrider, with a 3 second ICD."
     },
     {
       "names": [
@@ -1303,9 +1358,17 @@
               "amount": 4
             }
           ]
+        },
+        {
+          "title": "C1 proc",
+          "cooldown": 0,
+          "gen": [{
+            "type": "flat",
+            "amount": 2
+          }]
         }
       ],
-      "help": "Feed half of Ganyu's particles to whoever will be on field when the Ice Lotus explodes. Ganyu C1 gives her 2 energy per charged shot. Put this in \"Bonus non-particle energy\"."
+      "help": "Feed half of Ganyu's particles to whoever will be on field when the Ice Lotus explodes."
     },
     {
       "names": [
@@ -1422,9 +1485,19 @@
               "amount": 4
             }
           ]
+        },
+        {
+          "title": "C1 proc",
+          "cooldown": 15,
+          "gen": [
+            {
+              "type": "flat",
+              "amount": 15
+            }
+          ]
         }
       ],
-      "help": "Iansan's C1 restore 15 energy to herself when Nightsoul Points are consumed. This can happen once every 15s. Put this in \"Bonus non-particle energy\"."
+      "help": ""
     },
     {
       "names": [
@@ -1463,7 +1536,7 @@
       ],
       "sources": [
         {
-          "title": "Constellation 0",
+          "title": "Skill (C0)",
           "cooldown": 15,
           "gen": [
             {
@@ -1473,7 +1546,7 @@
           ]
         },
         {
-          "title": "Constellation 1",
+          "title": "Skill (C1)",
           "cooldown": 15,
           "gen": [
             {
@@ -2117,7 +2190,7 @@
           "cooldown": 18
         },
         {
-          "title": "C4",
+          "title": "Constellation 4",
           "gen": [
             {
               "amount": 15,
@@ -2667,7 +2740,7 @@
           ]
         },
         {
-          "title": "Sigil overflow (hex)",
+          "title": "Sigil overflow (Hex)",
           "cooldown": 0,
           "gen": [
             {
