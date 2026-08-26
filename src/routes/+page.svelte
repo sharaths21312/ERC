@@ -140,7 +140,7 @@
         output[curr_cidx]!.particle_in[4] += elt_mult * fieldtime_mult * countpersec
       }
 
-      const energy_needed_persec = (char_data.bursts[char.bursts.source_idx].energy - burst_discounts) / (isfixed ? calculator_state.general.rotation_length/char.bursts.rot_count : char.bursts.interval)
+      const energy_needed_persec = (char_data.bursts[char.bursts.source_idx].energy - burst_discounts - char.extra_flat_gen) / (isfixed ? calculator_state.general.rotation_length/char.bursts.rot_count : char.bursts.interval)
 
       // ER needed = (burst cost - flat gen)/particle gen
       output[curr_cidx]!.er_req = (energy_needed_persec - sum(output[curr_cidx]!.flat_gen) - sum(output[curr_cidx]!.flat_gen_gear))/
