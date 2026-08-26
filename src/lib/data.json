@@ -3884,12 +3884,7 @@
         {
           "title": "Miss pillar",
           "cooldown": 12,
-          "gen": [
-            {
-              "type": "particle_turret",
-              "amount": 0.25
-            }
-          ]
+          "gen": []
         }
       ],
       "help": "Zhongli's pillar is assumed to hit on every pulse, and distributes its particles based on time spent on field. If you don't want the pillar to hit, put \"Miss pillar\"."
@@ -3945,7 +3940,7 @@
           "element": "None"
         }
       ],
-      "help": "One proc, depending on refine"
+      "help": ""
     },
     {
       "names": [
